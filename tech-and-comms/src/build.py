@@ -73,7 +73,7 @@ for k, v in ICONS.items():
     html = html.replace(f"__I_{k}__", v)
 
 marq = ''.join(
-    '<span>Anticipate!</span><span>Where PR meets <span class="s">tech</span></span>'
+    '<span>Anticipate!</span><span>Where communications meet <span class="s">technology</span></span>'
     '<span>Tech &amp; Comms</span><span>26th Nov · Crawford University</span>' for _ in range(4))
 html = html.replace("__MARQUEE__", marq)
 
