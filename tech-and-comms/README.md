@@ -4,7 +4,9 @@ Landing page for The Comms Boardroom's **Tech & Comms** tour (first stop: Crawfo
 
 - `index.html` — the built, self-contained page (images inlined). Open it directly or host it on any static host (e.g. GitHub Pages).
 - `src/template.html` — page source.
-- `src/site.json` — the editable content: tour calendar (status is `confirmed`, `talks`, `planned` or `done`), speakers, announcement bar, registration link and contact details.
+- `google-sheet/` — the Google Apps Script that stores "Register your school" sign-ups in a Google Sheet, with setup steps.
+- `src/universities.json` — suggestions shown in the form's university field.
+- `src/site.json` — the editable content, including `registration.endpoint` (the Google Sheet web app URL): tour calendar (status is `confirmed`, `talks`, `planned` or `done`), speakers, announcement bar, registration link and contact details.
 - `src/photos.json` — optional stock photos (hero, topic panels, photo band). Put files in `assets/photos/`, list them with alt text and credit, and rebuild. Slots without a photo use built-in illustrations.
 - `assets/` — speaker photos and partner crests taken from the campaign design kit.
 
