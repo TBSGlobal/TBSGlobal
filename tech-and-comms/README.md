@@ -15,3 +15,12 @@ python3 tech-and-comms/src/build.py
 ```
 
 On the published claude.ai version, admins (the owner and editors) open the page link with `#admin` at the end to reach the admin dashboard. Visitors never see editing controls; anyone else who opens `#admin` sees an "admins only" notice, and the platform refuses their publish.
+
+## Deploying on Vercel
+
+`vercel.json` holds the settings, so Vercel picks them up automatically when this folder is the repo root:
+
+- Build command: `python3 src/build.py && mkdir -p dist && cp index.html dist/index.html`
+- Output directory: `dist`
+
+Every commit (for example an edit to `src/site.json` on github.com) rebuilds and redeploys the site.
