@@ -21,3 +21,7 @@ node src/frames2.js "$PWD/src" reel-01.html frames   # writes src/frames/0000.jp
 python3 src/audio.py src/sound.wav       # synthesised soundtrack
 ffmpeg -framerate 30 -i src/frames/%04d.jpg -i src/sound.wav -c:v libx264 -crf 20 -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 160k -shortest tech-and-comms-reel-topic01.mp4
 ```
+
+## Register-your-school reel (35 s)
+
+`tech-and-comms-register-your-school.mp4`: a late-night chat between Tolu (just back from Crawford) and a friend at another school, then a three-step walkthrough of the website form (pick your school → add your details → share with your class), back to the chat, and an end card: "Your campus could be next. Register your school → tech-and-comms.vercel.app". Source: `src/register.html` and `src/audio_register.py` (`node src/frames2.js "$PWD/src" register.html frames 35`). The chat, names and the hall photo are mockups.
