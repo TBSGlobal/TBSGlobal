@@ -285,19 +285,49 @@ section{position:relative}
 .chip.done{background:var(--navy);color:var(--white)}
 .legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 
-/* editor */
-.editor{margin-top:28px;background:var(--white);border:2px solid var(--navy);border-radius:18px;padding:22px;display:grid;gap:16px}
-.editor h3{font-family:var(--f-display);font-weight:400;font-size:1.2rem}
-.editor .hint{color:var(--muted);font-size:.88rem}
-.erow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr 1.2fr 1fr;gap:10px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+/* announcement bar (set from the admin dashboard) */
+.announce{background:var(--yellow);color:var(--navy);font-weight:700;font-size:.9rem;text-align:center;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.announce a{font-weight:800}
+
+/* admin dashboard (#admin) — owners and editors only */
+.admin{position:fixed;inset:0;z-index:100;background:var(--paper);overflow:auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.adm-bar{background:var(--navy);color:var(--white);position:sticky;top:0;z-index:2}
+.adm-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:12px}
+.adm-bar h1{font-family:var(--f-display);font-weight:400;font-size:1.05rem;display:flex;align-items:center;gap:10px}
+.adm-bar h1 small{font-family:var(--f-body);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;background:var(--yellow);color:var(--navy);padding:3px 8px;border-radius:999px}
+.adm-bar .btn{border-color:var(--white)}
+.adm-bar .btn.ghost{color:var(--white)}
+.adm-tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-block:24px 22px}
+.adm-tabs button{font:inherit;font-weight:700;font-size:.9rem;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;color:var(--muted);cursor:pointer}
+.adm-tabs button[aria-selected="true"]{color:var(--navy);border-color:var(--blue)}
+.adm-panel{display:grid;gap:16px;padding-bottom:120px}
+.adm-panel h2{font-family:var(--f-display);font-weight:400;font-size:1.3rem;color:var(--navy)}
+.adm-panel .hint{color:var(--muted);font-size:.9rem;max-width:70ch}
+.erow{display:grid;grid-template-columns:1.5fr 1fr 1fr .9fr 1.2fr 1fr;gap:10px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+.erow.sp{grid-template-columns:88px 1.4fr 1.2fr 1fr auto;align-items:end}
+.erow.kv{grid-template-columns:1fr}
 .erow .full{grid-column:1/-2}
-.erow .acts{display:flex;align-items:end;justify-content:flex-end}
+.erow .acts{display:flex;align-items:end;justify-content:flex-end;gap:6px;flex-wrap:wrap}
 .field{display:grid;gap:4px;min-width:0}
 .field label{font-size:.66rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.field input,.field select{font:inherit;font-size:.9rem;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);width:100%;min-width:0}
-.editor-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.status{font-size:.88rem;font-weight:600}
+.field input,.field select,.field textarea{font:inherit;font-size:.92rem;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);width:100%;min-width:0}
+.field.check{display:flex;align-items:center;gap:8px}
+.field.check input{width:auto}
+.thumb{width:88px;height:100px;border-radius:10px;overflow:hidden;background:var(--blue-soft);display:grid;place-items:center;font-size:.7rem;color:var(--muted);font-weight:700;text-align:center}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.adm-save{position:fixed;left:0;right:0;bottom:0;z-index:3;background:var(--white);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.adm-save .wrap{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding-block:12px}
+.status{font-size:.9rem;font-weight:600}
 .status.err{color:var(--danger)}.status.ok{color:var(--ok)}
+.locked{max-width:560px;margin:12vh auto 0;display:grid;gap:14px;text-align:left}
+.locked h2{font-family:var(--f-display);font-weight:400;font-size:1.6rem;color:var(--navy)}
+.locked p{color:var(--muted)}
+@media (max-width:960px){
+  .erow,.erow.sp{grid-template-columns:1fr 1fr}
+  .erow .full,.erow .acts{grid-column:1/-1}
+  .erow.sp .thumb{grid-row:span 2}
+}
+
 
 /* speakers */
 .speakers{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.5vw,28px)}
@@ -352,8 +382,6 @@ section{position:relative}
   .speakers{grid-template-columns:repeat(2,1fr)}
   .take{grid-template-columns:1fr 1fr}
   .t-stage{display:none}
-  .erow{grid-template-columns:1fr 1fr}
-  .erow .full,.erow .acts{grid-column:1/-1}
   .band{grid-template-columns:1fr 1fr}
   .band figure:first-child{grid-column:1/-1;grid-row:auto;aspect-ratio:16/9}
 }
@@ -375,7 +403,10 @@ section{position:relative}
 }
 </style>
 
-<script type="application/json" id="cal-data">__CAL_DATA__</script>
+<script type="application/json" id="site-data">__SITE_DATA__</script>
+<div hidden id="photo-bank"><img data-key="samuel" src="__IMG_SAMUEL__" alt=""><img data-key="onaopemipo" src="__IMG_ONAOPEMIPO__" alt=""></div>
+
+<div class="announce" id="announce" hidden></div>
 
 <header class="site-head" id="site-head">
   <div class="wrap">
@@ -413,7 +444,8 @@ section{position:relative}
             <b id="next-lbl">DAYS TO CRAWFORD UNIVERSITY</b>
             <span id="next-meta">26th Nov. 2026 · Legacy Hall</span>
           </div>
-          <a class="btn" href="#calendar">Tour calendar <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn" id="reg-btn" href="#" target="_blank" rel="noopener" hidden>Register <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#calendar">Tour calendar <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="collage" id="collage" aria-label="Tech &amp; Comms speakers">
@@ -531,28 +563,12 @@ section{position:relative}
           <h2 class="h2">Campus by campus.</h2>
           <p class="lead">Every university on the Tech &amp; Comms tour, starting with Crawford University this November. Tap a stop on the timeline to jump to it.</p>
         </div>
-        <div id="cal-tools" hidden>
-          <button class="btn ghost" type="button" id="edit-btn">Edit calendar</button>
-        </div>
       </div>
       <div class="timeline" id="timeline"></div>
       <div class="stops" id="stops"></div>
       <div class="legend" aria-label="Status key">
         <i class="chip confirmed">Confirmed</i><i class="chip talks">In talks</i><i class="chip planned">Planned</i><i class="chip done">Completed</i>
       </div>
-      <form class="editor" id="editor" hidden novalidate>
-        <div>
-          <h3>Edit tour calendar</h3>
-          <p class="hint">Changes go live for everyone who opens this page once you press Save. Leave the date empty for a stop that is not yet scheduled.</p>
-        </div>
-        <div id="erows" style="display:grid;gap:12px"></div>
-        <div class="editor-bar">
-          <button class="btn ghost" type="button" id="add-stop">Add a university</button>
-          <button class="btn" type="submit" id="save-btn">Save calendar</button>
-          <button class="btn ghost" type="button" id="cancel-btn">Cancel</button>
-          <span class="status" id="save-status" role="status" aria-live="polite"></span>
-        </div>
-      </form>
     </div>
   </section>
 
@@ -562,12 +578,7 @@ section{position:relative}
         <span class="eyebrow">Meet our speakers · Crawford University</span>
         <h2 class="h2">Tech <span class="amp">&amp;</span> Comms speakers.</h2>
       </div>
-      <div class="speakers">
-        <div class="spk rv"><div class="ph"><img src="__IMG_SAMUEL__" alt="Samuel Ogundeji"></div><h3>Samuel Ogundeji</h3><span class="role">Host · Founder, TCBR</span></div>
-        <div class="spk rv"><div class="ph"><img src="__IMG_ONAOPEMIPO__" alt="Onaopemipo Famori"></div><h3>Onaopemipo Famori</h3><span class="role">Speaker</span></div>
-        <div class="spk rv"><div class="ph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 22c0-5 4-8.5 9-8.5s9 3.5 9 8.5z"/></svg></div><h3>Gabriel Ntoka</h3><span class="role">Speaker</span></div>
-        <div class="spk rv"><div class="ph mystery" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c-3.6 0-6.2 2.2-6.2 5.6h3.6c0-1.6 1.1-2.5 2.6-2.5s2.5.9 2.5 2.2c0 1.2-.7 1.8-2 2.6-1.8 1.1-2.6 2.3-2.6 4.4v.9h3.5v-.6c0-1.3.4-1.8 1.9-2.7 1.7-1 3.1-2.4 3.1-4.8 0-3.1-2.6-5.1-6.4-5.1zM12 17.6a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/></svg></div><h3>Revealing soon</h3><span class="role">Speaker</span></div>
-      </div>
+      <div class="speakers" id="speakers-grid"></div>
     </div>
   </section>
 
@@ -600,12 +611,7 @@ section{position:relative}
             <li>Campaign kit and promotion handled by TCBR</li>
           </ul>
         </div>
-        <div class="contacts">
-          <div class="contact"><div><div class="k">Phone</div><div class="v">08160122896</div></div><button class="copy" type="button" data-copy="08160122896">Copy</button></div>
-          <div class="contact"><div><div class="k">Email</div><div class="v">info@thecommsboardroom.com</div></div><button class="copy" type="button" data-copy="info@thecommsboardroom.com">Copy</button></div>
-          <div class="contact"><div><div class="k">Website</div><div class="v"><a href="https://www.thecommsboardroom.com" target="_blank" rel="noopener">www.thecommsboardroom.com</a></div></div></div>
-          <div class="contact"><div><div class="k">Office</div><div class="v">22, Simpson Street, Ebute-Metta, Lagos</div></div></div>
-        </div>
+        <div class="contacts" id="contacts"></div>
       </div>
     </div>
   </section>
@@ -618,19 +624,60 @@ section{position:relative}
   </div>
 </footer>
 
+<div class="admin" id="admin" hidden>
+  <div class="adm-bar">
+    <div class="wrap">
+      <h1>Tech &amp; Comms <small>Admin</small></h1>
+      <a class="btn ghost small" href="#top" id="adm-exit">Back to the site</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="locked" id="adm-locked">
+      <span class="eyebrow">Admin dashboard</span>
+      <h2>This area is for Tech &amp; Comms admins.</h2>
+      <p id="adm-locked-msg">Checking your access…</p>
+      <a class="btn" href="#top">Go to the public site</a>
+    </div>
+    <div id="adm-app" hidden>
+      <div class="adm-tabs" role="tablist" aria-label="Admin sections">
+        <button role="tab" type="button" aria-selected="true" data-tab="calendar">Tour calendar</button>
+        <button role="tab" type="button" aria-selected="false" data-tab="speakers">Speakers</button>
+        <button role="tab" type="button" aria-selected="false" data-tab="announce">Announcement &amp; registration</button>
+        <button role="tab" type="button" aria-selected="false" data-tab="contacts">Contact details</button>
+      </div>
+      <div class="adm-panel" id="adm-panel"></div>
+    </div>
+  </div>
+  <div class="adm-save" id="adm-save" hidden>
+    <div class="wrap">
+      <button class="btn" type="button" id="adm-publish">Publish changes</button>
+      <button class="btn ghost" type="button" id="adm-reset">Discard changes</button>
+      <span class="status" id="adm-status" role="status" aria-live="polite">No unpublished changes.</span>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   // Capture the page source before anything renders, so a save can regenerate it.
   var HEAD_STYLE = (document.head.querySelector('style') || {}).textContent || '';
   var SRC = document.body.innerHTML;
-  var END = SRC.indexOf('<!--end-page-->');
-  if (END > -1) SRC = SRC.slice(0, END + '<!--end-page-->'.length);
+  var MARK = '<!--end-' + 'page-->';  // split so this line never matches itself
+  var END = SRC.lastIndexOf(MARK);
+  if (END > -1) SRC = SRC.slice(0, END + MARK.length);
+  var START = SRC.indexOf('<title>');
+  if (START > 0) SRC = SRC.slice(START);
 
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var STATUS = {confirmed:'Confirmed', talks:'In talks', planned:'Planned', done:'Completed'};
-  var data = [];
-  try { data = JSON.parse(document.getElementById('cal-data').textContent) || []; } catch(e) { data = []; }
+  var site = {};
+  try { site = JSON.parse(document.getElementById('site-data').textContent) || {}; } catch(e) { site = {}; }
+  site.calendar = site.calendar || []; site.speakers = site.speakers || [];
+  site.announcement = site.announcement || {show:false, text:'', link:'', linkText:''};
+  site.register = site.register || {url:'', label:'Register'};
+  site.contacts = site.contacts || {};
+  var data = site.calendar;
 
   function $(id){ return document.getElementById(id); }
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
@@ -699,7 +746,39 @@ section{position:relative}
 
   function centerNow(){ document.querySelectorAll('.track-wrap').forEach(function(w){ var c = w.querySelector('.mcell.now, .ev'); if(c && w.scrollWidth > w.clientWidth){ w.scrollLeft = Math.max(0, c.closest('.mcell').offsetLeft - w.clientWidth/2); } }); }
   function growFills(){ document.querySelectorAll('.mtrack .fill').forEach(function(f){ f.style.width = f.getAttribute('data-w') + '%'; }); }
-  function render(){ renderNext(); renderTimeline(); renderStops(); requestAnimationFrame(function(){ requestAnimationFrame(growFills); }); centerNow(); }
+
+  function photoSrc(p){
+    if(!p) return '';
+    if(p.indexOf('builtin:') === 0){ var im = document.querySelector('#photo-bank img[data-key="'+p.slice(8)+'"]'); return im ? im.getAttribute('src') : ''; }
+    return p;
+  }
+  var ICON_PERSON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 22c0-5 4-8.5 9-8.5s9 3.5 9 8.5z"/></svg>';
+  var ICON_Q = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5c-3.6 0-6.2 2.2-6.2 5.6h3.6c0-1.6 1.1-2.5 2.6-2.5s2.5.9 2.5 2.2c0 1.2-.7 1.8-2 2.6-1.8 1.1-2.6 2.3-2.6 4.4v.9h3.5v-.6c0-1.3.4-1.8 1.9-2.7 1.7-1 3.1-2.4 3.1-4.8 0-3.1-2.6-5.1-6.4-5.1zM12 17.6a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/></svg>';
+  function renderSpeakers(){
+    $('speakers-grid').innerHTML = site.speakers.map(function(s){
+      if(s.mystery) return '<div class="spk rv"><div class="ph mystery">'+ICON_Q+'</div><h3>Revealing soon</h3><span class="role">'+esc(s.role || 'Speaker')+'</span></div>';
+      var src = photoSrc(s.photo);
+      return '<div class="spk rv"><div class="ph">'+(src ? '<img src="'+esc(src)+'" alt="'+esc(s.name)+'">' : ICON_PERSON)+'</div><h3>'+esc(s.name)+'</h3><span class="role">'+esc(s.role)+'</span></div>';
+    }).join('');
+  }
+  function renderStamp(){ var n = site.speakers.length, el = document.querySelector('#stamp span'); if(el) el.textContent = n; $('stamp').hidden = !n; }
+  function renderContacts(){
+    var c = site.contacts, h = '';
+    if(c.phone) h += '<div class="contact"><div><div class="k">Phone</div><div class="v">'+esc(c.phone)+'</div></div><button class="copy" type="button" data-copy="'+esc(c.phone)+'">Copy</button></div>';
+    if(c.email) h += '<div class="contact"><div><div class="k">Email</div><div class="v">'+esc(c.email)+'</div></div><button class="copy" type="button" data-copy="'+esc(c.email)+'">Copy</button></div>';
+    if(c.website){ var href = /^https?:\/\//i.test(c.website) ? c.website : 'https://' + c.website; h += '<div class="contact"><div><div class="k">Website</div><div class="v"><a href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(c.website.replace(/^https?:\/\//i,''))+'</a></div></div></div>'; }
+    if(c.office) h += '<div class="contact"><div><div class="k">Office</div><div class="v">'+esc(c.office)+'</div></div></div>';
+    $('contacts').innerHTML = h;
+  }
+  function renderAnnounce(){
+    var a = site.announcement, el = $('announce');
+    el.hidden = !(a.show && a.text);
+    el.innerHTML = esc(a.text) + (a.link && /^https:\/\//i.test(a.link) ? ' <a href="'+esc(a.link)+'" target="_blank" rel="noopener">'+esc(a.linkText || 'Learn more')+' →</a>' : '');
+    var r = site.register, b = $('reg-btn');
+    b.hidden = !(r.url && /^https:\/\//i.test(r.url));
+    if(!b.hidden){ b.href = r.url; b.firstChild.nodeValue = (r.label || 'Register') + ' '; }
+  }
+  function render(){ renderAnnounce(); renderSpeakers(); renderStamp(); renderContacts(); renderNext(); renderTimeline(); renderStops(); requestAnimationFrame(function(){ requestAnimationFrame(growFills); }); centerNow(); }
   render();
 
   $('timeline').addEventListener('click', function(e){
@@ -781,62 +860,177 @@ section{position:relative}
   });
   function selectNear(b){ var v = b.parentNode.querySelector('.v'); var r = document.createRange(); r.selectNodeContents(v); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
 
-  // ---- Calendar editing (owner / editors, inside claude.ai) ----
-  var artifactApi = null, draft = [];
-  var editor = $('editor'), erows = $('erows'), statusEl = $('save-status');
-  function rowHtml(s, i){
-    var opts = Object.keys(STATUS).map(function(k){ return '<option value="'+k+'"'+(s.status===k?' selected':'')+'>'+STATUS[k]+'</option>'; }).join('');
-    return '<div class="erow" data-i="'+i+'">'
-      + '<div class="field"><label for="u-'+i+'">University</label><input id="u-'+i+'" data-k="university" value="'+esc(s.university)+'" required></div>'
-      + '<div class="field"><label for="sh-'+i+'">Short name</label><input id="sh-'+i+'" data-k="short" value="'+esc(s.short)+'" placeholder="e.g. Crawford"></div>'
-      + '<div class="field"><label for="d-'+i+'">Date</label><input id="d-'+i+'" type="date" data-k="date" value="'+esc(s.date)+'"></div>'
-      + '<div class="field"><label for="s-'+i+'">Status</label><select id="s-'+i+'" data-k="status">'+opts+'</select></div>'
-      + '<div class="field"><label for="v-'+i+'">Venue</label><input id="v-'+i+'" data-k="venue" value="'+esc(s.venue)+'"></div>'
-      + '<div class="field"><label for="c-'+i+'">City / State</label><input id="c-'+i+'" data-k="city" value="'+esc(s.city)+'"></div>'
-      + '<div class="field full"><label for="n-'+i+'">Note (optional)</label><input id="n-'+i+'" data-k="note" value="'+esc(s.note)+'" placeholder="e.g. Open to all Mass Communication students."></div>'
-      + '<div class="acts"><button class="btn danger small" type="button" data-del="'+i+'">Remove</button></div></div>';
+  // ---- Admin dashboard (#admin). Only owners and editors can open it or publish. ----
+  var adm = $('admin'), admApp = $('adm-app'), admLocked = $('adm-locked'), admPanel = $('adm-panel'), admStatus = $('adm-status');
+  var artifactApi = null, assetsApi = null, isAdmin = false, accessChecked = false;
+  var draft = null, dirty = false, curTab = 'calendar';
+  function clone(o){ return JSON.parse(JSON.stringify(o)); }
+  function setDirty(v){ dirty = v; admStatus.className = 'status'; admStatus.textContent = v ? 'You have unpublished changes.' : 'No unpublished changes.'; }
+
+  function fieldInput(id, label, path, value, type, extra){
+    return '<div class="field'+(extra||'')+'"><label for="'+id+'">'+label+'</label><input id="'+id+'" type="'+(type||'text')+'" data-path="'+path+'" value="'+esc(value)+'"></div>';
   }
-  function drawEditor(){ erows.innerHTML = draft.map(rowHtml).join(''); }
-  erows.addEventListener('input', function(e){ var row = e.target.closest('.erow'); var k = e.target.getAttribute('data-k'); if(row && k) draft[+row.getAttribute('data-i')][k] = e.target.value; });
-  erows.addEventListener('click', function(e){
-    var b = e.target.closest('[data-del]'); if(!b) return;
-    if(b.getAttribute('data-armed')){ draft.splice(+b.getAttribute('data-del'),1); drawEditor(); }
-    else { b.setAttribute('data-armed','1'); b.textContent = 'Click again to remove'; }
+  function statusSelect(id, path, val){
+    return '<div class="field"><label for="'+id+'">Status</label><select id="'+id+'" data-path="'+path+'">'
+      + Object.keys(STATUS).map(function(k){ return '<option value="'+k+'"'+(val===k?' selected':'')+'>'+STATUS[k]+'</option>'; }).join('') + '</select></div>';
+  }
+
+  var TABS = {
+    calendar: function(){
+      var h = '<h2>Tour calendar</h2><p class="hint">Each university appears on the public timeline and stop list. The countdown on the home screen always points at the next stop with a date that has not passed. Leave the date empty for a stop that is not scheduled yet.</p>';
+      draft.calendar.forEach(function(s, i){
+        h += '<div class="erow">'
+          + fieldInput('c-u-'+i, 'University', 'calendar.'+i+'.university', s.university)
+          + fieldInput('c-sh-'+i, 'Short name', 'calendar.'+i+'.short', s.short)
+          + fieldInput('c-d-'+i, 'Date', 'calendar.'+i+'.date', s.date, 'date')
+          + statusSelect('c-s-'+i, 'calendar.'+i+'.status', s.status)
+          + fieldInput('c-v-'+i, 'Venue', 'calendar.'+i+'.venue', s.venue)
+          + fieldInput('c-c-'+i, 'City / State', 'calendar.'+i+'.city', s.city)
+          + fieldInput('c-n-'+i, 'Note (optional)', 'calendar.'+i+'.note', s.note, 'text', ' full')
+          + '<div class="acts"><button class="btn danger small" type="button" data-del="calendar.'+i+'">Remove</button></div></div>';
+      });
+      return h + '<div><button class="btn ghost" type="button" data-add="calendar">Add a university</button></div>';
+    },
+    speakers: function(){
+      var h = '<h2>Speakers</h2><p class="hint">Shown in the order listed. Tick "Revealing soon" to show a mystery card instead of a name.' + (assetsApi ? ' Upload a portrait photo for each speaker.' : '') + '</p>';
+      draft.speakers.forEach(function(s, i){
+        var src = photoSrc(s.photo);
+        h += '<div class="erow sp">'
+          + '<div class="thumb">' + (src ? '<img src="'+esc(src)+'" alt="">' : 'No photo') + '</div>'
+          + fieldInput('s-n-'+i, 'Name', 'speakers.'+i+'.name', s.name)
+          + fieldInput('s-r-'+i, 'Role', 'speakers.'+i+'.role', s.role)
+          + '<div class="field check"><input id="s-m-'+i+'" type="checkbox" data-path="speakers.'+i+'.mystery"'+(s.mystery?' checked':'')+'><label for="s-m-'+i+'">Revealing soon</label></div>'
+          + '<div class="acts">'
+          + (assetsApi ? '<label class="btn ghost small" for="s-f-'+i+'">Upload photo</label><input id="s-f-'+i+'" type="file" accept="image/*" data-upload="'+i+'" hidden>' : '')
+          + (s.photo ? '<button class="btn ghost small" type="button" data-nophoto="'+i+'">Remove photo</button>' : '')
+          + (i>0 ? '<button class="btn ghost small" type="button" data-up="'+i+'">Move up</button>' : '')
+          + '<button class="btn danger small" type="button" data-del="speakers.'+i+'">Remove</button></div></div>';
+      });
+      return h + '<div><button class="btn ghost" type="button" data-add="speakers">Add a speaker</button></div>';
+    },
+    announce: function(){
+      var a = draft.announcement, r = draft.register;
+      return '<h2>Announcement bar</h2><p class="hint">A yellow bar across the top of the public page. Use it for short, timely news such as "Seats are almost full".</p>'
+        + '<div class="erow kv">'
+        + '<div class="field check"><input id="a-show" type="checkbox" data-path="announcement.show"'+(a.show?' checked':'')+'><label for="a-show">Show the announcement bar</label></div>'
+        + fieldInput('a-text', 'Message', 'announcement.text', a.text)
+        + fieldInput('a-link', 'Link (optional, starts with https://)', 'announcement.link', a.link, 'url')
+        + fieldInput('a-ltext', 'Link text', 'announcement.linkText', a.linkText)
+        + '</div>'
+        + '<h2 style="margin-top:12px">Registration</h2><p class="hint">When a link is set, a register button appears next to the countdown on the home screen. Leave it empty to hide the button.</p>'
+        + '<div class="erow kv">'
+        + fieldInput('r-url', 'Registration link (Google Form, Tally, Eventbrite…)', 'register.url', r.url, 'url')
+        + fieldInput('r-label', 'Button text', 'register.label', r.label)
+        + '</div>';
+    },
+    contacts: function(){
+      var c = draft.contacts;
+      return '<h2>Contact details</h2><p class="hint">Shown in the "Bring Tech &amp; Comms to your campus" section.</p><div class="erow kv">'
+        + fieldInput('k-p', 'Phone', 'contacts.phone', c.phone)
+        + fieldInput('k-e', 'Email', 'contacts.email', c.email, 'email')
+        + fieldInput('k-w', 'Website', 'contacts.website', c.website, 'url')
+        + fieldInput('k-o', 'Office address', 'contacts.office', c.office)
+        + '</div>';
+    }
+  };
+  var BLANK = {
+    calendar: function(){ return {id:'s'+Date.now().toString(36), university:'', short:'', date:'', status:'planned', venue:'', city:'', note:''}; },
+    speakers: function(){ return {id:'p'+Date.now().toString(36), name:'', role:'Speaker', photo:'', mystery:false}; }
+  };
+
+  function drawAdmin(){
+    [].forEach.call(document.querySelectorAll('.adm-tabs [role=tab]'), function(b){ b.setAttribute('aria-selected', b.getAttribute('data-tab')===curTab); });
+    admPanel.innerHTML = TABS[curTab]();
+  }
+  function setPath(path, val){
+    var p = path.split('.'), o = draft;
+    for(var i=0;i<p.length-1;i++) o = o[p[i]];
+    o[p[p.length-1]] = val;
+  }
+  document.querySelector('.adm-tabs').addEventListener('click', function(e){ var b = e.target.closest('[data-tab]'); if(b){ curTab = b.getAttribute('data-tab'); drawAdmin(); } });
+  admPanel.addEventListener('input', function(e){
+    var p = e.target.getAttribute('data-path'); if(!p) return;
+    setPath(p, e.target.type === 'checkbox' ? e.target.checked : e.target.value); setDirty(true);
   });
-  $('add-stop').addEventListener('click', function(){
-    draft.push({id:'s'+Date.now().toString(36), university:'', short:'', date:'', status:'planned', venue:'', city:'', note:''});
-    drawEditor(); var last = erows.lastElementChild; if(last) last.querySelector('input').focus();
+  admPanel.addEventListener('change', function(e){
+    var p = e.target.getAttribute('data-path');
+    if(p && e.target.type === 'checkbox'){ setPath(p, e.target.checked); setDirty(true); }
+    var up = e.target.getAttribute('data-upload');
+    if(up !== null && e.target.files && e.target.files[0]){
+      var file = e.target.files[0], i = +up;
+      admStatus.className = 'status'; admStatus.textContent = 'Uploading photo…';
+      assetsApi.upload(file).then(function(res){ draft.speakers[i].photo = res.url; setDirty(true); drawAdmin(); admStatus.textContent = 'Photo uploaded. Publish to show it on the site.'; },
+        function(){ admStatus.className = 'status err'; admStatus.textContent = 'The photo could not be uploaded. Try a smaller JPG or PNG.'; });
+    }
   });
-  $('edit-btn').addEventListener('click', function(){ draft = JSON.parse(JSON.stringify(sorted(data))); drawEditor(); statusEl.textContent=''; editor.hidden = false; editor.scrollIntoView({block:'start'}); });
-  $('cancel-btn').addEventListener('click', function(){ editor.hidden = true; });
-  editor.addEventListener('submit', function(e){
-    e.preventDefault();
-    var clean = draft.map(function(s){ return {id:s.id, university:(s.university||'').trim(), short:(s.short||'').trim(), date:s.date||'', status:s.status||'planned', venue:(s.venue||'').trim(), city:(s.city||'').trim(), note:(s.note||'').trim()}; });
-    if(clean.some(function(s){ return !s.university; })){ statusEl.className='status err'; statusEl.textContent = 'Each stop needs a university name. Fill it in or remove the empty row.'; return; }
-    if(!artifactApi){ statusEl.className='status err'; statusEl.textContent = 'Saving only works when this page is opened in Claude by an editor.'; return; }
-    var json = JSON.stringify(sorted(clean)).replace(/</g,'\\u003c');
-    var body = SRC.replace(/(<script type="application\/json" id="cal-data">)[\s\S]*?(<\/script>)/, function(_, a, b){ return a + json + b; });
+  admPanel.addEventListener('click', function(e){
+    var b;
+    if((b = e.target.closest('[data-add]'))){ var k = b.getAttribute('data-add'); draft[k].push(BLANK[k]()); setDirty(true); drawAdmin(); var rows = admPanel.querySelectorAll('.erow'); if(rows.length) rows[rows.length-1].querySelector('input').focus(); return; }
+    if((b = e.target.closest('[data-del]'))){
+      if(!b.getAttribute('data-armed')){ b.setAttribute('data-armed','1'); b.textContent = 'Click again to remove'; return; }
+      var parts = b.getAttribute('data-del').split('.'); draft[parts[0]].splice(+parts[1], 1); setDirty(true); drawAdmin(); return;
+    }
+    if((b = e.target.closest('[data-up]'))){ var i = +b.getAttribute('data-up'), arr = draft.speakers, t = arr[i-1]; arr[i-1] = arr[i]; arr[i] = t; setDirty(true); drawAdmin(); return; }
+    if((b = e.target.closest('[data-nophoto]'))){ draft.speakers[+b.getAttribute('data-nophoto')].photo = ''; setDirty(true); drawAdmin(); }
+  });
+  $('adm-reset').addEventListener('click', function(){ draft = clone(site); setDirty(false); drawAdmin(); });
+
+  function validate(d){
+    if(d.calendar.some(function(s){ return !String(s.university||'').trim(); })) return 'Every stop on the tour calendar needs a university name.';
+    if(d.speakers.some(function(s){ return !s.mystery && !String(s.name||'').trim(); })) return 'Every speaker needs a name, or tick "Revealing soon".';
+    var links = [d.register.url, d.announcement.link].filter(Boolean);
+    if(links.some(function(u){ return !/^https:\/\//i.test(u); })) return 'Links must start with https://';
+    return '';
+  }
+  $('adm-publish').addEventListener('click', function(){
+    var err = validate(draft);
+    if(err){ admStatus.className = 'status err'; admStatus.textContent = err; return; }
+    if(!artifactApi){ admStatus.className = 'status err'; admStatus.textContent = 'Publishing only works when this page is opened in Claude by the owner or an editor.'; return; }
+    draft.calendar = sorted(draft.calendar);
+    draft.updated = new Date().toISOString();
+    var json = JSON.stringify(draft).replace(/</g,'\\u003c');
+    var body = SRC.replace(/(<script type="application\/json" id="site-data">)[\s\S]*?(<\/script>)/, function(_, a, b){ return a + json + b; });
     var doc = '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + HEAD_STYLE + '</style></head><body>' + body + '</body></html>';
-    var btn = $('save-btn'); btn.disabled = true;
-    statusEl.className='status'; statusEl.textContent = 'Saving…';
+    var btn = $('adm-publish'); btn.disabled = true;
+    admStatus.className = 'status'; admStatus.textContent = 'Publishing…';
+    try { sessionStorage.setItem('tc-admin-return', '1'); } catch(e){}
     artifactApi.publish(doc).then(function(){
-      statusEl.className='status ok'; statusEl.textContent = 'Saved. The page is reloading with the new calendar.';
-    }, function(err){
+      admStatus.className = 'status ok'; admStatus.textContent = 'Published. The site is reloading with your changes.';
+    }, function(e){
       btn.disabled = false;
-      var code = err && err.code;
-      statusEl.className='status err';
-      statusEl.textContent = code==='conflict' ? 'Someone else saved first. The page will reload with their version; make your change again.'
-        : (code==='not_granted' || code==='not_writer') ? 'You can view this calendar but not change it. Ask the page owner for edit access.'
-        : 'Could not save the calendar. Check your connection and try again.';
+      var code = e && e.code;
+      admStatus.className = 'status err';
+      admStatus.textContent = code==='conflict' ? 'Someone else published first. The page will reload with their version; make your change again.'
+        : (code==='not_granted' || code==='not_writer') ? 'Your account can view this page but not change it. Ask the owner for edit access.'
+        : code==='rate_limited' ? 'Too many publishes in a short time. Wait a minute and try again.'
+        : 'The changes could not be published. Check your connection and try again.';
     });
   });
 
-  if(window.claude && window.claude.use){
-    Promise.all([window.claude.use('artifact'), window.claude.use('user')]).then(function(r){
-      artifactApi = r[0]; var user = r[1];
-      if(artifactApi && user && (user.isOwner() || user.canEdit())) $('cal-tools').hidden = false;
-    }, function(){});
+  function showAdmin(on){
+    adm.hidden = !on;
+    document.documentElement.style.overflow = on ? 'hidden' : '';
+    if(!on) return;
+    if(!accessChecked){ $('adm-locked-msg').textContent = 'Checking your access…'; admApp.hidden = true; admLocked.hidden = false; $('adm-save').hidden = true; return; }
+    admLocked.hidden = isAdmin; admApp.hidden = !isAdmin; $('adm-save').hidden = !isAdmin;
+    if(!isAdmin) $('adm-locked-msg').textContent = 'Open this link while signed in to Claude as the page owner or an editor. Visitors to the public site never see this dashboard.';
+    if(isAdmin){ if(!draft){ draft = clone(site); setDirty(false); } drawAdmin(); }
   }
+  function route(){ showAdmin(location.hash === '#admin'); }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('beforeunload', function(e){ if(dirty && !adm.hidden){ e.preventDefault(); e.returnValue = ''; } });
+
+  function finishCheck(){ accessChecked = true; route(); }
+  if(window.claude && window.claude.use){
+    Promise.all([window.claude.use('user'), window.claude.use('artifact'), window.claude.use('assets')]).then(function(r){
+      var user = r[0]; artifactApi = r[1]; assetsApi = r[2];
+      if(!user || !artifactApi){ finishCheck(); return; }
+      return Promise.all([user.isOwner(), user.canEdit()]).then(function(v){ isAdmin = !!(v[0] || v[1]); finishCheck(); });
+    }).catch(finishCheck);
+    setTimeout(function(){ if(!accessChecked) finishCheck(); }, 10000);
+  } else { finishCheck(); }
+  try { if(sessionStorage.getItem('tc-admin-return')){ sessionStorage.removeItem('tc-admin-return'); if(location.hash !== '#admin') location.hash = 'admin'; } } catch(e){}
+  route();
 })();
 </script>
 <!--end-page-->

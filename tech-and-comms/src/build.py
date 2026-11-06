@@ -1,7 +1,8 @@
 """Build tech-and-comms/index.html from src/template.html.
 
 Inlines images from ../assets as data URIs, writes the tour calendar from
-calendar.json, and fills photo slots from photos.json (slots without a photo
+site.json (calendar, speakers, announcement,
+registration link, contacts), and fills photo slots from photos.json (slots without a photo
 fall back to built-in illustrations). Run: python3 tech-and-comms/src/build.py
 """
 import base64
@@ -64,10 +65,10 @@ VIS_FALLBACK = [
 ]
 
 html = (SRC / "template.html").read_text()
-cal = json.loads((SRC / "calendar.json").read_text())
+site = json.loads((SRC / "site.json").read_text())
 photos = json.loads((SRC / "photos.json").read_text())
 
-html = html.replace("__CAL_DATA__", json.dumps(cal, ensure_ascii=False).replace("<", "\\u003c"))
+html = html.replace("__SITE_DATA__", json.dumps(site, ensure_ascii=False).replace("<", "\\u003c"))
 html = html.replace("__AST__", AST)
 for k, v in ICONS.items():
     html = html.replace(f"__I_{k}__", v)
