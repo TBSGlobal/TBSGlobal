@@ -1,0 +1,176 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Archivo Black";src:url(fonts/x/package/files/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:400;src:url(fonts/x/package/files/montserrat-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:700;src:url(fonts/x/package/files/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;src:url(fonts/x/package/files/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;font-style:italic;src:url(fonts/x/package/files/montserrat-latin-800-italic.woff2)}
+@font-face{font-family:"DM Serif Display";font-style:italic;src:url(fonts/x/package/files/dm-serif-display-latin-400-italic.woff2)}
+:root{--navy:#131838;--navy2:#222a5a;--blue:#5a7bfe;--soft:#dfe6ff;--yellow:#ffd60a;--paper:#f2f5fc;--grid:#e2e8f8;--muted:#4b537a}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden}
+body{background:var(--paper);font-family:Montserrat,sans-serif;color:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden;
+  background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:90px 90px}
+.abs{position:absolute}
+.hud{left:60px;right:60px;top:70px;display:flex;justify-content:space-between;font:700 26px/1 Montserrat;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.hud .rec{display:flex;align-items:center;gap:14px}
+.hud .dot{width:16px;height:16px;border-radius:50%;background:#e5484d}
+.corner{width:60px;height:60px;border-color:var(--navy);border-style:solid;opacity:.35}
+.c1{left:50px;top:140px;border-width:4px 0 0 4px}.c2{right:50px;top:140px;border-width:4px 4px 0 0}
+.c3{left:50px;bottom:120px;border-width:0 0 4px 4px}.c4{right:50px;bottom:120px;border-width:0 4px 4px 0}
+.counter{left:0;right:0;top:760px;text-align:center}
+.counter .lbl{font:800 30px Montserrat;letter-spacing:.3em;color:var(--muted)}
+.counter .num{font:400 230px/1 "Archivo Black";color:var(--navy);font-variant-numeric:tabular-nums;margin-top:20px}
+.card{background:#fff;border-radius:22px;padding:20px 26px;box-shadow:0 20px 40px -24px rgba(19,24,56,.5);font:600 28px/1.3 Montserrat;width:470px;display:flex;gap:18px;align-items:flex-start}
+.card b{display:block;font:800 22px Montserrat;color:var(--muted);letter-spacing:.04em;margin-bottom:4px}
+.card i{flex:none;width:18px;height:18px;border-radius:50%;margin-top:10px}
+.caption{left:80px;right:80px;text-align:center}
+.caption .s{font:italic 400 64px/1.15 "DM Serif Display";color:var(--muted)}
+.caption .b{font:400 92px/1.05 "Archivo Black";color:var(--navy);margin-top:14px}
+.dash{left:120px;right:120px;top:640px;height:640px;background:var(--navy);border-radius:36px;padding:50px;color:#fff;box-shadow:0 50px 90px -50px rgba(19,24,56,.8)}
+.dash .t{font:800 26px Montserrat;letter-spacing:.24em;color:#c9d2f7}
+.bars{position:absolute;left:50px;right:330px;bottom:60px;height:380px;display:flex;align-items:flex-end;gap:18px;border-bottom:4px solid var(--navy2)}
+.bars span{flex:1;background:var(--blue);border-radius:10px 10px 0 0}
+.bars span:nth-child(2n){background:#c9d2f7}
+.ring{position:absolute;right:50px;top:200px;width:240px;height:240px}
+.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font:400 64px "Archivo Black";color:var(--yellow)}
+.ring small{position:absolute;left:0;right:0;bottom:-56px;text-align:center;font:800 20px Montserrat;letter-spacing:.2em;color:#c9d2f7}
+.page{left:160px;right:160px;top:600px;height:700px;background:#fff;border-radius:16px;padding:70px 60px;box-shadow:0 30px 60px -40px rgba(19,24,56,.5);display:grid;gap:26px;align-content:start}
+.page i{display:block;height:20px;border-radius:10px;background:#e3e7f2}
+.page .h{height:34px;width:60%;background:#cfd6ea}
+.title{left:0;right:0;top:560px;text-align:center;font:400 220px/.95 "Archivo Black";color:var(--navy)}
+.title .amp{color:var(--blue)}
+.boxed{display:inline-block;position:relative;background:var(--blue);color:#fff;padding:0 24px;outline:5px solid var(--blue);outline-offset:12px;margin-top:40px}
+.boxed s{position:absolute;width:26px;height:26px;background:#fff;border:5px solid var(--blue)}
+.tag{left:50%;top:1150px;background:var(--yellow);color:var(--navy);font:italic 800 40px Montserrat;padding:22px 44px;white-space:nowrap;box-shadow:0 20px 40px -20px rgba(19,24,56,.5);clip-path:polygon(2% 0,100% 6%,98% 100%,0 92%)}
+.ast{width:300px;height:300px;color:var(--blue)}
+.info{left:90px;right:90px;top:640px;display:grid;gap:26px}
+.info .row{background:var(--navy);color:#fff;border-radius:26px;padding:34px 40px}
+.info .k{font:800 22px Montserrat;letter-spacing:.3em;color:#a9b6f5}
+.info .v{font:400 64px/1.1 "Archivo Black";margin-top:8px}
+.info .v.sm{font-size:48px}
+.info .open{font:700 34px/1.4 Montserrat;color:var(--navy);text-align:center;margin-top:20px}
+.info .open em{font:italic 400 44px "DM Serif Display"}
+.logo{display:flex;align-items:center;gap:22px;justify-content:center}
+.lm{width:110px;height:110px;border:6px solid var(--blue);display:grid;grid-template-columns:1fr 1fr;place-items:center;font:400 44px/1 "Archivo Black";color:var(--blue);padding:6px}
+.lt{font:600 26px/1.02 Montserrat;text-transform:uppercase;color:var(--navy)}
+.partner{left:60px;right:60px;bottom:170px;text-align:center;font:700 22px/1.5 Montserrat;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.flash{inset:0;background:#fff}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const W=1080,H=1920;
+const stage=document.getElementById('stage');
+const AST='<svg viewBox="-50 -50 100 100" width="100%" height="100%"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+// helpers
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);              // ease out cubic
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const POS='#2bb673',NEG='#e5484d',NEU='#9aa5cf';
+const SNIPS=[
+ ['@tolu.writes','This campaign is everywhere right now',POS],['@ada_reviews','Customer service took 3 days to reply',NEG],
+ ['@lagos_daily','Brand X announces new partnership',NEU],['@kemi.o','Who runs their PR? Brilliant work',POS],
+ ['@techng','The launch event was a mess honestly',NEG],['@ife_creates','Saw their ad on the BRT again',NEU],
+ ['@campus.gist','Free tickets for students? Count me in',POS],['@d.okafor','Their CEO interview was solid',POS],
+ ['@naija.biz','Price went up again this month',NEG],['@zainab.k','Just switched to them last week',NEU],
+ ['@media_watch','Trending at #3 in Lagos',POS],['@seyi_says','The rebrand is growing on me',POS],
+ ['@abuja.now','Long queues at the Ikeja outlet',NEG],['@ngozi.pr','Great crisis response today',POS],
+ ['@the.analyst','Share of voice up 18% this week',NEU],['@femi.dev','Their app keeps crashing',NEG],
+];
+const SLOTS=[[50,210],[560,250],[50,420],[560,460],[50,1150],[560,1190],[50,1360],[560,1400],[50,1570],[560,1610]];
+const cards=SNIPS.slice(0,10).map((s,i)=>({h:s[0],txt:s[1],c:s[2],t0:0.5+i*0.6,x:SLOTS[i][0]+(rnd()-.5)*30,y:SLOTS[i][1],r:(rnd()-.5)*7}));
+function count(t){ // mentions counter 0..12480 over 0.4..6.8s, accelerating
+  const k=lin(t,0.4,6.8); return Math.round(12480*Math.pow(k,2.2)); }
+function fmt(n){return n.toLocaleString('en-US')}
+function el(cls,html,style){return `<div class="abs ${cls}" style="${style||''}">${html}</div>`}
+
+function render(t){
+  let h='';
+  const hudTxt = t<18.5 ? `<span class="rec"><span class="dot" style="opacity:${(Math.floor(t*2)%2)?1:.25}"></span>Live · Social listening</span><span>00:${String(Math.floor(t)).padStart(2,'0')}:${String(Math.floor((t%1)*30)).padStart(2,'0')}</span>` : `<span>The Comms Boardroom</span><span>Tech &amp; Comms</span>`;
+  h+=el('hud',hudTxt);
+  h+=el('corner c1','')+el('corner c2','')+el('corner c3','')+el('corner c4','');
+
+  // SCENE 1+2: counter + mention cards (0 - 10.5)
+  if(t<11){
+    const out=lin(t,6.9,7.4);
+    cards.forEach((c,i)=>{ if(t<c.t0 || out>=1) return;
+      const k=eo(lin(t,c.t0,c.t0+.35)); const s=(.6+.4*back(clamp(k)))*(1-out*.5);
+      const dx=(c.x<300?-1:1)*eio(out)*300;
+      h+=el('card',`<i style="background:${c.c}"></i><div><b>${c.h}</b>${c.txt}</div>`,
+        `left:${c.x+dx}px;top:${c.y}px;opacity:${k*(1-out)};transform:rotate(${c.r}deg) scale(${s})`);
+    });
+    const cOp = t<7 ? eo(lin(t,0.1,0.6)) : 1-lin(t,6.9,7.2);
+    const n=count(t), col = t>5.6 ? 'var(--blue)':'var(--navy)';
+    h+=el('counter',`<div class="lbl">Mentions tracked</div><div class="num" style="color:${col}">${fmt(n)}</div>`,
+       `opacity:${cOp};transform:scale(${1+0.06*Math.sin(t*20)*lin(t,5,6.8)*(t<7)})`);
+    if(t>=7.2){
+      const a=eo(lin(t,7.2,7.7)), b=eo(lin(t,7.9,8.4)), o=1-lin(t,10,10.4);
+      h+=el('caption',`<div class="s" style="opacity:${a};transform:translateY(${(1-a)*30}px)">You just watched a brand<br>get talked about</div><div class="b" style="opacity:${b};transform:translateY(${(1-b)*40}px);font-size:130px;color:var(--blue)">12,480 times.</div>`,`top:760px;opacity:${o}`);
+    }
+  }
+  // SCENE 3: dashboard (10.4 - 14.8)
+  if(t>=10.4 && t<15){
+    const a=eo(lin(t,10.4,11.0)), o=1-lin(t,14.4,14.8);
+    const HS=[38,64,46,82,58,94,72];
+    const bars=HS.map((v,i)=>`<span style="height:${v*eo(lin(t,10.9+i*.12,11.7+i*.12))}%"></span>`).join('');
+    const pct=Math.round(68*eo(lin(t,11.2,12.6)));
+    const C=2*Math.PI*100, dash=C*pct/100;
+    const ring=`<div class="ring"><svg viewBox="0 0 240 240" width="240" height="240"><circle cx="120" cy="120" r="100" fill="none" stroke="#222a5a" stroke-width="26"/><circle cx="120" cy="120" r="100" fill="none" stroke="#ffd60a" stroke-width="26" stroke-linecap="round" stroke-dasharray="${dash} ${C}" transform="rotate(-90 120 120)"/></svg><div class="pct">${pct}%</div><small>Positive</small></div>`;
+    const glitch = t>14.2 ? `translateX(${(Math.sin(t*90)*14).toFixed(1)}px)` : '';
+    h+=el('dash',`<div class="t">Share of voice · sentiment · reach</div><div class="bars">${bars}</div>${ring}`,`opacity:${a*o};transform:scale(${.9+.1*a}) ${glitch}`);
+    const c1=eo(lin(t,11.4,11.9)), c2=eo(lin(t,12.0,12.5));
+    h+=el('caption',`<div class="s" style="opacity:${c1}">Someone's job is to</div><div class="b" style="opacity:${c2};transform:translateY(${(1-c2)*40}px)">measure every one.</div>`,`top:1400px;opacity:${o}`);
+  }
+  // SCENE 4: textbook (14.6 - 18.6)
+  if(t>=14.6 && t<18.8){
+    const a=eo(lin(t,14.6,15.1)), o=1-lin(t,18.2,18.6);
+    let lines='<i class="h"></i>'; for(let i=0;i<14;i++) lines+=`<i style="width:${70+((i*37)%30)}%"></i>`;
+    h+=el('page',lines,`opacity:${a*o};transform:rotate(${-2+2*(1-a)}deg) translateY(${(1-a)*60}px)`);
+    const c1=eo(lin(t,15.3,15.8)), c2=eo(lin(t,15.9,16.4));
+    h+=el('caption',`<div class="s" style="opacity:${c1}">Most Mass Comm students</div><div class="b" style="opacity:${c2};transform:translateY(${(1-c2)*40}px)">graduate without ever seeing this.</div>`,`top:1380px;opacity:${o}`);
+  }
+  // SCENE 5: "Let's change that." (18.6 - 21.6)
+  if(t>=18.6 && t<21.8){
+    const a=eo(lin(t,18.8,19.3)), o=1-lin(t,21.2,21.6);
+    h+=el('caption',`<div class="s" style="font-size:80px;color:var(--navy)">Let's change that.</div>`,`top:880px;opacity:${a*o};transform:scale(${.94+.06*a})`);
+  }
+  // SCENE 6: title (21.5 - 26.4)
+  if(t>=21.5 && t<26.6){
+    const o=1-lin(t,26.0,26.4);
+    const l1=back(clamp(lin(t,21.5,21.9))), l2=back(clamp(lin(t,21.75,22.2)));
+    const sq=`<s style="left:-26px;top:-26px"></s><s style="right:-26px;top:-26px"></s><s style="left:-26px;bottom:-26px"></s><s style="right:-26px;bottom:-26px"></s>`;
+    h+=el('title',`<div style="transform:translateY(${(1-l1)*-120}px);opacity:${clamp(l1)}">TECH <span class="amp">&amp;</span></div><div style="transform:scale(${.5+.5*l2});opacity:${clamp(l2)}"><span class="boxed">COMMS${sq}</span></div>`,`opacity:${o}`);
+    const tg=back(clamp(lin(t,22.5,23.0)));
+    h+=el('tag','Where Communications Meet Technology',`opacity:${clamp(tg)*o};transform:translateX(-50%) rotate(${-3-9*(1-tg)}deg) scale(${.8+.2*tg})`);
+    h+=el('ast',AST,`right:-60px;top:250px;transform:rotate(${t*40}deg);opacity:${.9*o}`);
+    h+=el('ast',AST,`left:-110px;top:1380px;transform:rotate(${-t*30}deg) scale(.7);opacity:${.35*o};filter:blur(4px)`);
+    const sub=eo(lin(t,23.3,23.8));
+    h+=el('caption',`<div class="s" style="font-size:54px">Topic 02 · Media monitoring<br>&amp; media intelligence</div>`,`top:1340px;opacity:${sub*o}`);
+  }
+  // SCENE 7: details + CTA (26.3 - 31)
+  if(t>=26.3){
+    const r=i=>eo(lin(t,26.4+i*.25,26.9+i*.25));
+    h+=el('ast',AST,`right:-120px;top:1500px;transform:rotate(${t*40}deg);opacity:.5`);
+    h+=el('title',`TECH <span class="amp">&amp;</span> COMMS`,`top:330px;font-size:96px;opacity:${r(0)}`);
+    h+=el('tag','Where Communications Meet Technology',`top:480px;font-size:34px;padding:16px 34px;opacity:${r(0)};transform:translateX(-50%) rotate(-3deg)`);
+    h+=`<div class="abs info">
+      <div class="row" style="opacity:${r(0)};transform:translateX(${(1-r(0))*-80}px)"><div class="k">Date</div><div class="v">26th Nov. 2026</div></div>
+      <div class="row" style="opacity:${r(1)};transform:translateX(${(1-r(1))*80}px)"><div class="k">Venue</div><div class="v sm">Legacy Hall,<br>Crawford University</div></div>
+      <div class="open" style="opacity:${r(2)}">Open to all Mass Communication students.<br><em>Seats are limited.</em></div>
+      <div class="logo" style="opacity:${r(3)};margin-top:30px"><span class="lm"><span>T</span><span>C</span><span>B</span><span>R</span></span><span class="lt">The<br>Comms<br>Board<br>Room</span></div>
+    </div>`;
+    h+=el('partner','In partnership with the Department of Mass Communication<br>&amp; the Crawford University Alumni Association',`opacity:${r(4)}`);
+  }
+  // flash at title hit
+  const f = Math.max(0, 1-Math.abs(t-21.5)/0.18);
+  if(f>0) h+=el('flash','',`opacity:${f*.9}`);
+  stage.innerHTML=h;
+}
+window.render=render;
+render(0);
+</script></body></html>
