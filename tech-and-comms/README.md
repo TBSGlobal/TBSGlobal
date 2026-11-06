@@ -10,7 +10,7 @@ Landing page for The Comms Boardroom's **Tech & Comms** tour (first stop: Crawfo
 - `src/photos.json` — optional stock photos (hero, topic panels, photo band). Put files in `assets/photos/`, list them with alt text and credit, and rebuild. Slots without a photo use built-in illustrations.
 - `assets/` — speaker photos and partner crests taken from the campaign design kit.
 
-To change the content in this repo, edit `src/site.json` and run:
+To change the content in this repo, edit `src/site.json` and run (add `--artifact` when building the copy published on claude.ai):
 
 ```bash
 python3 tech-and-comms/src/build.py
