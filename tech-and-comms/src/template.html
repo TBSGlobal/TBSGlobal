@@ -70,6 +70,8 @@ section{position:relative}
 .site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy)}
 .logo-mark{width:42px;height:42px;border:2px solid var(--blue);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;place-items:center;padding:3px;font-family:var(--f-display);color:var(--blue);font-size:17px;line-height:1;flex:none}
+.logo-img{height:48px;width:auto;display:block}
+.partner img.logo-partner{height:78px;mix-blend-mode:normal}
 .logo-text{font-weight:600;font-size:.7rem;line-height:1.02;letter-spacing:.02em;text-transform:uppercase}
 .nav{display:flex;gap:2px;align-items:center}
 .nav a{text-decoration:none;font-weight:600;font-size:.84rem;padding:8px 12px;color:var(--muted);position:relative}
@@ -411,8 +413,7 @@ section{position:relative}
 <header class="site-head" id="site-head">
   <div class="wrap">
     <a class="logo" href="#top" aria-label="The Comms Boardroom, back to top">
-      <span class="logo-mark" aria-hidden="true"><span>T</span><span>C</span><span>B</span><span>R</span></span>
-      <span class="logo-text">The<br>Comms<br>Board<br>Room</span>
+      <img class="logo-img" src="__IMG_LOGO__" alt="The Comms Boardroom">
     </a>
     <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="nav" id="nav" aria-label="Sections">
@@ -590,7 +591,7 @@ section{position:relative}
         <p class="lead">Together with the Department of Mass Communication and the Crawford University Alumni Association, we're bringing real-world PR, media intelligence and personal branding into the classroom.</p>
       </div>
       <div class="partners rv">
-        <div class="partner"><span class="logo-mark" aria-hidden="true"><span>T</span><span>C</span><span>B</span><span>R</span></span><div><b>The Comms Boardroom</b><span>Organiser</span></div></div>
+        <div class="partner"><img class="logo-partner" src="__IMG_LOGO__" alt="The Comms Boardroom logo"><div><b>The Comms Boardroom</b><span>Organiser</span></div></div>
         <div class="partner"><img src="__IMG_MACO__" alt="Association of Mass Communication Students crest"><div><b>Dept. of Mass Communication</b><span>Crawford University</span></div></div>
         <div class="partner"><img src="__IMG_UNICORN__" alt="Unicorn, Crawford University Alumni crest"><div><b>Crawford University Alumni Association</b><span>Unicorn</span></div></div>
       </div>
@@ -619,7 +620,7 @@ section{position:relative}
 
 <footer class="foot">
   <div class="wrap">
-    <span>© 2026 The Comms Boardroom Technologies (TCBR) · Lagos, Nigeria</span>
+    <span style="display:flex;align-items:center;gap:14px"><img src="__IMG_LOGO__" alt="" style="height:44px;width:auto">© 2026 The Comms Boardroom Technologies (TCBR) · Lagos, Nigeria</span>
     <span class="tag">See you at the next one</span>
   </div>
 </footer>
@@ -627,7 +628,7 @@ section{position:relative}
 <div class="admin" id="admin" hidden>
   <div class="adm-bar">
     <div class="wrap">
-      <h1>Tech &amp; Comms <small>Admin</small></h1>
+      <h1><img src="__IMG_LOGO_LIGHT__" alt="The Comms Boardroom" style="height:40px;width:auto">Tech &amp; Comms <small>Admin</small></h1>
       <a class="btn ghost small" href="#top" id="adm-exit">Back to the site</a>
     </div>
   </div>

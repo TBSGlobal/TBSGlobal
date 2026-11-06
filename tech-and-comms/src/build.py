@@ -97,7 +97,7 @@ if band:
 else:
     html = html.replace("__PHOTO_BAND__", "")
 
-for key, name in [("SAMUEL", "samuel.jpg"), ("ONAOPEMIPO", "onaopemipo.jpg"),
+for key, name in [("LOGO_LIGHT", "tcbr-logo-light.png"), ("LOGO", "tcbr-logo.png"), ("SAMUEL", "samuel.jpg"), ("ONAOPEMIPO", "onaopemipo.jpg"),
                   ("MACO", "maco.jpg"), ("UNICORN", "unicorn.jpg")]:
     html = html.replace(f"__IMG_{key}__", data_uri(name))
 
