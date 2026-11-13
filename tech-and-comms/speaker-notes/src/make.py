@@ -58,7 +58,7 @@ def esc_list(items):
 
 def page(s):
     facts = [("Date", EVENT["date"]), ("Venue", EVENT["venue"]), ("Your role", s["role"]), ("Your session", s["topic"]),
-             ("Length", s["length"] + " (final timings to be confirmed)"), ("Audience", EVENT["audience"]),
+             ("Length", s["length"]), ("Audience", EVENT["audience"]),
              ("Format", EVENT["format"]), ("Partners", EVENT["partners"])]
     h = [f"<!doctype html><html><head><meta charset='utf-8'><style>{FONT_CSS}{CSS}</style></head><body>",
          f"<p class='kicker'>Tech &amp; Comms · Speaker concept note · {s['kicker']}</p>",

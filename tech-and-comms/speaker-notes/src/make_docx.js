@@ -75,7 +75,7 @@ function letterhead() {
 function doc(s) {
   const E = C.EVENT;
   const facts = [['Date', E.date], ['Venue', E.venue], ['Your role', s.role], ['Your session', s.topic],
-    ['Length', s.length + ' (final timings to be confirmed)'], ['Audience', E.audience], ['Format', E.format], ['Partners', E.partners]];
+    ['Length', s.length], ['Audience', E.audience], ['Format', E.format], ['Partners', E.partners]];
   const body = [
     new Paragraph({ children: [new TextRun({ text: ('Tech & Comms · Speaker concept note · ' + s.kicker).toUpperCase(), bold: true, size: 15, color: BLUE, characterSpacing: 40 })], spacing: { after: 80 } }),
     new Paragraph({ heading: d.HeadingLevel.TITLE, children: [new TextRun(unesc(s.topic))] }),

@@ -25,16 +25,17 @@ function cell(children, w, o = {}) {
 
 // ---- programme rows: [minutes, item, who, note, kind]
 const ROWS = [
-  [7, 'Welcome, opening prayer and recognition of guests', 'Host: Samuel Ogundeji', 'Sets the tone: honest conversations, not a lecture. Explains how questions work (all held for the open Q&A at the end).', 'open'],
-  [5, 'Goodwill message', 'Head of Department, Mass Communication (or a representative)', 'Optional second message from the Crawford University Alumni Association, if time allows.', 'open'],
-  [5, 'Icebreaker: "School vs Reality" hands-up poll', 'Host', 'Quick statements; students raise hands or stand. See fun idea 2.', 'fun'],
-  [15, 'Talk 1: Communications: School vs Reality', 'Gabriel Ntoka', 'Topic 01.', 'talk'],
-  [15, 'Talk 2: Media Monitoring, Evaluation, Intelligence & Social Listening, and AI in Communications', 'Samuel Ogundeji', 'Topic 02. A team member introduces Samuel and keeps time during this talk.', 'talk'],
-  [3, 'Energiser: "Spot the fake headline"', 'Host', 'Two quick rounds on the screen. See fun idea 4.', 'fun'],
-  [15, 'Talk 3: Building a Personal Brand', 'Onaopemipo Famori', 'Topic 03. Ends with the one-week challenge.', 'talk'],
-  [25, 'Panel session', 'Barnabas (Jet Media) and Samuel Jegede (humanitarian communications); moderated by the host', 'Questions across all three topics: building a media business, and where communications can take you.', 'panel'],
-  [20, 'Open Q&A (in the hall)', 'All speakers and panelists; host moderates', 'Students ask from the floor with a roving microphone. Take questions in groups of three, keep answers short, and give the "Best question" prize.', 'qa'],
-  [10, 'Closing: recap, raffle, vote of thanks and group photo', 'Host; vote of thanks by a student representative', 'Recap the three takeaways, invite students to register their friends\' schools at tech-and-comms.vercel.app, draw the raffle, then the group photo.', 'close'],
+  [5, 'Welcome, opening prayer and recognition of guests', 'Host: Samuel Ogundeji', 'Sets the tone: honest conversations, not a lecture. Explains that all questions are held for the open Q&A at the end, and how the quiz draws work.', 'open'],
+  [2, 'Opening message', 'Head of Department, Mass Communication (or a representative)', 'A short welcome on behalf of the department.', 'open'],
+  [20, 'Talk 1: Communications: School vs Reality', 'Gabriel Ntoka', 'Topic 01.', 'talk'],
+  [2, 'Quiz draw: Topic 01', 'Host', 'Two students each draw a question slip from the Topic 01 bowl and answer for a prize.', 'fun'],
+  [20, 'Talk 2: Media Monitoring, Evaluation, Intelligence & Social Listening, and AI in Communications', 'Samuel Ogundeji', 'Topic 02. A team member introduces Samuel and keeps time during this talk.', 'talk'],
+  [2, 'Quiz draw: Topic 02', 'Team member', 'Two students draw from the Topic 02 bowl.', 'fun'],
+  [20, 'Talk 3: Building a Personal Brand', 'Onaopemipo Famori', 'Topic 03. Ends with the one-week challenge.', 'talk'],
+  [2, 'Quiz draw: Topic 03', 'Host', 'Two students draw from the Topic 03 bowl.', 'fun'],
+  [25, 'Panel session', 'Barnabas (You Media: the new media landscape) and Samuel Jegede (communications in humanitarian work); moderated by the host', 'From traditional media to You Media, and where a communications career can lead.', 'panel'],
+  [15, 'Open Q&A (in the hall)', 'All speakers and panelists; host moderates', 'Students ask from the floor with a roving microphone. Take questions in groups of three, keep answers short, and give the "Best question" prize.', 'qa'],
+  [7, 'Closing: recap, raffle, vote of thanks and group photo', 'Host; vote of thanks by a student representative', "Recap the takeaways, invite students to register their friends' schools at tech-and-comms.vercel.app, draw the raffle, then the group photo.", 'close'],
 ];
 const START = 10 * 60;   // 10:00 AM; change here if the start time moves
 const fmt = (m) => { const h = Math.floor(m / 60), mm = m % 60, h12 = ((h + 11) % 12) + 1; return `${h12}:${String(mm).padStart(2, '0')}`; };
@@ -54,7 +55,7 @@ function programmeTable() {
           P([T('Before the 2-hour programme. Music playing; students take photos at the backdrop and drop raffle slips.', { size: 16, color: MUTED })], { spacing: { after: 0 } })], W[2], { fill: SOFT }),
     cell([P([T('Ushers / TCBR team', { size: 17 })], { spacing: { after: 0 } })], W[3], { fill: SOFT })] })];
   ROWS.forEach(([m, item, who, note, kind]) => {
-    const tag = { talk: 'TALK', panel: 'PANEL', qa: 'Q&A', fun: 'FUN', open: '', close: '' }[kind];
+    const tag = { talk: 'TALK', panel: 'PANEL', qa: 'Q&A', fun: 'QUIZ', open: '', close: '' }[kind];
     rows.push(new TableRow({ cantSplit: true, children: [
       cell([P([T(`${fmt(t)}–${fmt(t + m)}`, { bold: true, size: 17, color: NAVY })], { spacing: { after: 0 } })], W[0], { fill: fill[kind] }),
       cell([P([T(String(m), { size: 17, color: MUTED })], { spacing: { after: 0 } })], W[1], { fill: fill[kind] }),
@@ -73,16 +74,12 @@ function programmeTable() {
 }
 
 const FUN = [
-  ['Tech & Comms photo wall', 'Before the start and after the close', 'A printed backdrop in the brand colours with the logo, "Where Communications Meet Technology" and the event hashtag, plus a few hand-held frames ("Future PR Lead", "Media Intelligence Analyst", "Building My Brand"). Gives students something to post the same day.'],
-  ['"School vs Reality" hands-up poll', 'Icebreaker, 5 mins', 'The host reads statements ("I have a LinkedIn profile", "I know what media monitoring is", "I have done an internship") and students raise hands or stand. It warms the room and shows the speakers who is in front of them.'],
-  ['Free LinkedIn headshot corner', 'Arrival and after the close', 'One photographer, a plain wall and a ring light. Students leave with a usable profile photo, which ties straight into Talk 3. Send photos by email or a shared Drive folder after the event.'],
-  ['"Spot the fake headline"', 'Energiser, 3 mins', 'Show two headlines on the screen (one real, one made up) and students vote by cheering. A fun lead-in to media literacy and the media intelligence talk.'],
-  ['Headline rewrite challenge', 'During or right after Talk 3', 'Students rewrite their LinkedIn headline on a card or in the event group chat; Onaopemipo picks the best three for a small prize.'],
-  ['Hashtag pulse on screen', 'Throughout', 'Students post with the event hashtag and the team shows a simple live count or word cloud on the screen during breaks. A live example of social listening from Talk 2.'],
+  ['Tech & Comms photo wall', 'Before the start and after the close', 'A printed backdrop in the brand colours with the logo, "Where Communications Meet Technology" and the event hashtag, plus a few hand-held frames ("Future PR Lead", "Building My Brand"). Gives students something to post the same day.'],
+  ['Free LinkedIn headshot corner', 'Arrival and after the close', 'One photographer, a plain wall and a ring light. Students leave with a usable profile photo, which ties straight into Talk 3.'],
   ['Raffle', 'Drawn at the close', 'Slips collected at arrival. Prize ideas: a one-on-one personal-brand or CV review, a mentorship call with a speaker, TCBR merchandise, or data bundles.'],
   ['"Best question" prize', 'Open Q&A', 'Speakers pick the best question from the floor. It encourages thoughtful questions and gets shy students talking.'],
-  ['"Next campus" wall', 'Arrival and close', 'A board where students write which school Tech & Comms should visit next, with a QR code to tech-and-comms.vercel.app to register. Feeds the registration drive.'],
-  ['Music and a hype playlist', 'Arrival, transitions and the close', 'Upbeat Afrobeats or amapiano between sessions keeps the energy up while speakers change over.'],
+  ['"Next campus" wall', 'Arrival and close', 'A board where students write which school Tech & Comms should visit next, with a QR code to tech-and-comms.vercel.app to register.'],
+  ['Music between sessions', 'Arrival, transitions and the close', 'Upbeat Afrobeats or amapiano while speakers change over keeps the energy up.'],
 ];
 
 function funTable() {
@@ -108,19 +105,26 @@ const body = [
   new Paragraph({ border: { top: { style: BorderStyle.SINGLE, size: 12, color: NAVY, space: 6 }, bottom: { style: BorderStyle.SINGLE, size: 4, color: LINE, space: 6 } }, spacing: { after: 160 },
     children: [T('Thursday, 26 November 2026', { bold: true, color: NAVY }), T('   ·   Legacy Hall, Crawford University   ·   2 hours', { color: MUTED })] }),
   P([T('Times assume a 10:00 AM start. If the start time changes, every item moves by the same amount. ', { size: 17, color: MUTED, italics: true }),
-     T('The three talks run back to back with no questions after each; all questions are taken from the floor in the open Q&A at the end.', { size: 17, color: MUTED, italics: true })], { spacing: { after: 160 } }),
+     T('There are no questions after individual talks; all questions are taken from the floor in the open Q&A at the end.', { size: 17, color: MUTED, italics: true })], { spacing: { after: 160 } }),
   programmeTable(),
   H('01', 'Notes for the day'),
   ...bullets([
-    'Talks are 15 minutes each. The speaker concept notes say "about 20 minutes, followed by questions"; please tell the speakers it is now 15 minutes, with questions held for the open Q&A.',
-    'Show a time card to each speaker at 5 minutes and 1 minute remaining.',
+    'Each talk is 20 minutes. Show the speaker a time card at 5 minutes and 1 minute remaining.',
+    'No questions after individual talks; all questions are taken from the floor in the open Q&A.',
     'Two roving microphones for the Q&A; ushers bring them to students. Repeat each question into the main microphone so everyone hears it.',
-    'A team member introduces Samuel Ogundeji before Talk 2 and keeps time while he speaks.',
-    'If the programme runs late, take time from the Q&A first, then the energiser, not from the talks or the panel.',
+    'A team member introduces Samuel Ogundeji before Talk 2, keeps time while he speaks and runs the Topic 02 quiz draw.',
+    'If the programme runs late, shorten the quiz draws to one student each, then trim the closing. Keep the talks, panel and Q&A whole.',
     'Load all slides on one laptop before the start and test the screen, clicker and microphones.',
   ]),
-  H('02', 'Fun things we could do'),
-  P('Pick the ones that fit the budget and the hall. Items 2 and 4 are already in the programme.'),
+  H('02', 'Quiz draws'),
+  P('After each talk, two students come forward and each draws a folded question slip from that topic\'s bowl. A correct answer wins a small prize; if they miss it, the question goes to the floor. The question cards and the host answer sheet are in a separate document, "Tech and Comms Quiz Cards".'),
+  ...bullets([
+    'Before the event: print the cards, cut along the lines, fold each slip and put each topic in its own labelled bowl (Topic 01, 02, 03). The You Media and humanitarian cards can be used as extra questions after the panel if time allows.',
+    'Prize ideas: TCBR stickers or merchandise, data bundles, or a free personal-brand or CV review.',
+    'Pick students from different parts of the hall so everyone stays involved.',
+  ]),
+  H('03', 'Other fun ideas (optional)'),
+  P('Extras that fit around the programme without taking time from it.'),
   funTable(),
 ];
 
