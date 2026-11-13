@@ -1,0 +1,221 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Archivo Black";src:url(fonts/x/package/files/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:400;src:url(fonts/x/package/files/montserrat-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:700;src:url(fonts/x/package/files/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;src:url(fonts/x/package/files/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;font-style:italic;src:url(fonts/x/package/files/montserrat-latin-800-italic.woff2)}
+@font-face{font-family:"DM Serif Display";font-style:italic;src:url(fonts/x/package/files/dm-serif-display-latin-400-italic.woff2)}
+:root{--navy:#131838;--navy2:#222a5a;--blue:#5a7bfe;--soft:#dfe6ff;--yellow:#ffd60a;--paper:#f2f5fc;--grid:#e2e8f8;--muted:#4b537a;--line:#d3dbf3}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden}
+body{background:var(--paper);font-family:Montserrat,sans-serif;color:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden;background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:90px 90px}
+.abs{position:absolute}
+/* floating topic cards */
+.fc{background:#fff;border-radius:22px;padding:22px 26px;width:330px;box-shadow:0 24px 50px -30px rgba(19,24,56,.5);font:700 24px/1.3 Montserrat;color:var(--navy)}
+.fc small{display:block;font:800 18px Montserrat;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* chat */
+.chat{left:110px;right:110px;top:250px;height:1400px;background:#fff;border-radius:44px;box-shadow:0 50px 100px -50px rgba(19,24,56,.55);overflow:hidden;display:flex;flex-direction:column}
+.ch-head{display:flex;align-items:center;gap:20px;padding:30px 34px;border-bottom:2px solid var(--grid)}
+.ch-head .back{font:700 40px Montserrat;color:var(--muted)}
+.ch-av{width:76px;height:76px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:400 32px "Archivo Black";color:var(--blue)}
+.ch-head b{display:block;font:800 32px Montserrat}
+.ch-head span{font:600 22px Montserrat;color:var(--muted)}
+.ch-head span.on{color:#2bb673}
+.ch-body{flex:1;background:#eef2fb;padding:24px 28px;display:flex;flex-direction:column;justify-content:flex-end;gap:16px;overflow:hidden}
+.ch-body>*{flex-shrink:0}
+.day{align-self:center;background:#fff;border-radius:999px;padding:8px 20px;font:700 20px Montserrat;color:var(--muted)}
+.msg{max-width:78%;padding:20px 26px;border-radius:30px;font:600 31px/1.35 Montserrat;transform-origin:bottom left}
+.msg.l{align-self:flex-start;background:#fff;border-bottom-left-radius:10px;color:var(--navy)}
+.msg.r{align-self:flex-end;background:var(--navy);color:#fff;border-bottom-right-radius:10px;transform-origin:bottom right}
+.typing{align-self:flex-start;background:#fff;border-radius:30px;padding:24px 30px;display:flex;gap:10px}
+.typing i{width:14px;height:14px;border-radius:50%;background:#9aa5cf}
+.photo{align-self:flex-start;width:520px;border-radius:26px;overflow:hidden;background:#fff;transform-origin:bottom left}
+.photo .img{height:300px;background:var(--navy);position:relative;overflow:hidden}
+.photo .img .hall{position:absolute;inset:0;background:linear-gradient(180deg,#222a5a 0%,#131838 60%)}
+.photo .img .scr{position:absolute;left:90px;right:90px;top:44px;height:130px;background:var(--blue);border-radius:10px;display:grid;place-items:center;font:400 34px "Archivo Black";color:#fff}
+.photo .img .row{position:absolute;left:0;right:0;height:46px;display:flex;justify-content:space-around;padding:0 20px}
+.photo .img .row i{width:46px;height:46px;border-radius:50% 50% 12px 12px;background:#0b0f26}
+.photo .cap{padding:16px 22px;font:700 22px Montserrat;color:var(--muted)}
+.link{align-self:flex-start;width:560px;border-radius:26px;overflow:hidden;background:#fff;transform-origin:bottom left;border:2px solid var(--grid)}
+.link .img{height:250px;background:var(--paper);display:grid;place-items:center;background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:40px 40px}
+.link .img img{width:380px}
+.link .txt{padding:18px 24px}
+.link .txt small{display:block;font:700 20px Montserrat;color:var(--muted)}
+.link .txt b{display:block;font:800 26px/1.3 Montserrat;margin-top:4px}
+.ch-input{display:flex;align-items:center;gap:18px;padding:22px 28px;border-top:2px solid var(--grid)}
+.ch-input div{flex:1;background:#eef2fb;border-radius:999px;padding:18px 26px;font:600 26px Montserrat;color:#9aa5cf}
+.ch-input i{width:60px;height:60px;border-radius:50%;background:var(--blue)}
+/* walkthrough */
+.wt{inset:0;background:var(--navy);color:#fff}
+.wt .grid{position:absolute;inset:0;opacity:.12;background-image:linear-gradient(#5a7bfe 2px,transparent 2px),linear-gradient(90deg,#5a7bfe 2px,transparent 2px);background-size:90px 90px}
+.wt .brand{left:90px;top:110px}
+.wt .brand img{height:90px}
+.st{left:90px;right:90px;top:300px}
+.st .k{font:800 26px Montserrat;letter-spacing:.3em;color:var(--yellow)}
+.st h2{font:400 100px/1 "Archivo Black";margin-top:18px}
+.st p{font:600 34px/1.4 Montserrat;color:#c9d2f7;margin-top:22px;max-width:820px}
+.dots{left:90px;bottom:130px;display:flex;gap:12px}
+.dots i{width:16px;height:16px;border-radius:999px;background:#3a4380}
+.dots i.on{width:56px;background:var(--yellow)}
+.card{left:90px;right:90px;top:800px;background:#fff;border-radius:34px;padding:44px;color:var(--navy);box-shadow:0 60px 100px -50px rgba(0,0,0,.6);display:grid;gap:22px}
+.card .bar{display:flex;justify-content:space-between;font:800 22px Montserrat;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fld{display:grid;gap:10px}
+.fld label{font:800 20px Montserrat;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.fld .in{border:3px solid var(--line);border-radius:16px;padding:22px 24px;font:600 34px Montserrat;min-height:86px;color:var(--navy)}
+.fld .in.focus{border-color:var(--blue)}
+.fld .in .ph{color:#9aa5cf}
+.caret{display:inline-block;width:3px;height:38px;background:var(--blue);vertical-align:-6px;margin-left:2px}
+.sugg{border:2px solid var(--line);border-radius:16px;overflow:hidden}
+.sugg div{padding:18px 24px;font:600 30px Montserrat;border-top:2px solid var(--grid)}
+.sugg div:first-child{border-top:0}
+.sugg div.hi{background:var(--soft);font-weight:800}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cons{display:flex;gap:18px;align-items:center;font:600 26px/1.35 Montserrat;color:var(--muted)}
+.cons i{flex:none;width:44px;height:44px;border-radius:10px;border:3px solid var(--line);display:grid;place-items:center;font-style:normal;font:800 30px Montserrat;color:#fff}
+.cons i.on{background:var(--blue);border-color:var(--blue)}
+.go{justify-self:start;background:var(--navy);color:#fff;border-radius:999px;padding:24px 40px;font:800 32px Montserrat}
+.thanks h3{font:400 52px/1.1 "Archivo Black"}
+.thanks p{font:600 30px/1.4 Montserrat;color:var(--muted)}
+.thanks .btns{display:flex;gap:16px;flex-wrap:wrap}
+.thanks .btns span{border-radius:999px;padding:22px 34px;font:800 28px Montserrat;border:3px solid var(--navy)}
+.thanks .btns span.p{background:var(--navy);color:#fff}
+.ping{background:#fff;color:var(--navy);border-radius:999px;padding:16px 26px;font:700 26px Montserrat;box-shadow:0 20px 40px -20px rgba(0,0,0,.5);display:flex;gap:12px;align-items:center}
+.ping i{width:16px;height:16px;border-radius:50%;background:#2bb673}
+.cursor{width:46px;height:46px}
+/* end card */
+.end{inset:0;background:var(--navy)}
+.dome{left:50%;width:2600px;height:2600px;border-radius:50%;background:var(--paper);transform:translateX(-50%);background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:90px 90px}
+.endc{left:80px;right:80px;top:560px;text-align:center;display:grid;gap:34px;justify-items:center}
+.endc img.wm{width:700px}
+.endc h2{font:400 96px/1.02 "Archivo Black";color:var(--navy)}
+.endc h2 em{font:italic 400 104px "DM Serif Display";color:var(--blue);display:block;margin-top:6px}
+.cta{background:var(--yellow);color:var(--navy);border-radius:999px;padding:30px 54px;font:800 40px Montserrat;box-shadow:0 26px 50px -24px rgba(19,24,56,.6)}
+.url{font:700 32px Montserrat;color:var(--muted);letter-spacing:.02em}
+.tcbr{left:0;right:0;bottom:150px;display:flex;justify-content:center}
+.tcbr img{height:110px}
+.flash{inset:0;background:#fff}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const stage=document.getElementById('stage');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const el=(cls,html,style)=>`<div class="abs ${cls}" style="${style||''}">${html}</div>`;
+const LOGO='assets/tech-and-comms-logo-transparent.png', TCBR='assets/tcbr-logo.png', TCBR_L='assets/tcbr-logo-light.png';
+const URL_TXT='tech-and-comms.vercel.app';
+
+// ---- chat script: [time, side, kind, content]
+const CHAT1=[
+ [0.5,'l','text','Just left Tech &amp; Comms at Crawford'],
+ [1.7,'l','text','They showed us how brands track every single mention online'],
+ [3.0,'l','photo',''],
+ [4.3,'l','text','I fixed my whole LinkedIn in the hall lol'],
+ [5.6,'r','text','Why does nothing like this ever come to our school??'],
+ [7.0,'l','text','They pick the next campus from registrations'],
+ [8.0,'l','link',''],
+ [9.5,'r','text','Wait, we just register?'],
+ [10.6,'l','text','1 minute. Then share it with your class'],
+];
+const CHAT2=[
+ [24.6,'r','text','Done. Sent it to our class group chat'],
+ [25.8,'r','text','Everyone\'s registering'],
+ [27.0,'l','text','Then Tech &amp; Comms could be at your campus next'],
+];
+function bubble(m,t){
+  const k=back(clamp(lin(t,m[0],m[0]+.35))), s=.85+.15*k, o=clamp(lin(t,m[0],m[0]+.15));
+  const st=`opacity:${o};transform:scale(${s})`;
+  if(m[2]==='text') return `<div class="msg ${m[1]}" style="${st}">${m[3]}</div>`;
+  if(m[2]==='photo') return `<div class="photo" style="${st}"><div class="img"><div class="hall"></div><div class="scr">TECH &amp; COMMS</div>
+     <div class="row" style="bottom:70px">${'<i></i>'.repeat(8)}</div><div class="row" style="bottom:16px">${'<i></i>'.repeat(8)}</div></div><div class="cap">Legacy Hall · Crawford University</div></div>`;
+  return `<div class="link" style="${st}"><div class="img"><img src="${LOGO}"></div><div class="txt"><small>${URL_TXT}</small><b>Tech &amp; Comms · Register your school</b></div></div>`;
+}
+function chat(list,t,typingName,dayTxt){
+  let body=`<div class="day">${dayTxt}</div>`;
+  let typing=false;
+  list.forEach(m=>{ if(t>=m[0]) body+=bubble(m,t); else if(m[1]==='l' && t>=m[0]-0.6) typing=true; });
+  if(typing){ const p=t*6; body+=`<div class="typing">${[0,1,2].map(i=>`<i style="opacity:${.35+.65*Math.max(0,Math.sin(p-i*.8))}"></i>`).join('')}</div>`; }
+  return `<div class="ch-head"><span class="back">‹</span><span class="ch-av">T</span><div><b>Tolu</b><span class="${typing?'':'on'}">${typing?'typing…':'online'}</span></div></div>
+    <div class="ch-body">${body}</div><div class="ch-input"><div>Message</div><i></i></div>`;
+}
+function floaters(t,op){
+  const F=[['Topic 01','Communication: school vs reality',-150,360,-8],['Topic 02','Media monitoring &amp; intelligence',830,560,7],['Topic 03','Your professional presence',-170,1180,6],['26 Nov · Crawford','Open to all Mass Comm students',850,1400,-6]];
+  return F.map((f,i)=>{const dy=Math.sin(t*.8+i)*14;return el('fc',`<small>${f[0]}</small>${f[1]}`,`left:${f[2]}px;top:${f[3]+dy}px;transform:rotate(${f[4]}deg);opacity:${op}`)}).join('');
+}
+function dots(n){return el('dots',[0,1,2].map(i=>`<i class="${i===n?'on':''}"></i>`).join(''))}
+function typed(s,t,a,b){return s.slice(0,Math.floor(lin(t,a,b)*s.length))}
+
+function render(t){
+  let h='';
+  // SCENE 1: chat (0 - 12.2)
+  if(t<12.4){
+    const a=eo(lin(t,0,0.4)), o=1-lin(t,11.8,12.2);
+    h+=floaters(t,.95*a*o);
+    h+=el('chat',chat(CHAT1,t,'Tolu','26 Nov · 11:48 PM'),`opacity:${a*o};transform:translateY(${(1-a)*60}px) scale(${1-.05*lin(t,11.8,12.2)})`);
+  }
+  // SCENE 2: walkthrough (12 - 24.4)
+  if(t>=12 && t<24.6){
+    const w=eio(lin(t,12,12.5)), o=1-lin(t,24.1,24.5);
+    h+=`<div class="abs wt" style="clip-path:inset(${(1-w)*100}% 0 0 0);opacity:${o}"><div class="grid"></div>`;
+    h+=el('brand',`<img src="${TCBR_L}">`);
+    let step, title, sub, card='';
+    if(t<16){ step=0; title='Pick your school'; sub='Open the Tech &amp; Comms site and start typing your university.';
+      const q=typed('University of La',t,12.9,14.0), sel=t>=14.8;
+      card=`<div class="bar"><span>Register your school</span><span>1 of 3</span></div>
+        <div class="fld"><label>University / institution</label><div class="in focus">${sel?'University of Lagos':(q||'<span class="ph">Start typing…</span>')}${t%1<.55&&!sel?'<span class="caret"></span>':''}</div></div>
+        ${t>13.4&&!sel?`<div class="sugg"><div class="${t>14.3?'hi':''}">University of Lagos</div><div>Lagos State University</div><div>Lagos State University of Science and Technology</div></div>`:''}
+        ${sel?'<div class="fld"><label>Department</label><div class="in">Mass Communication</div></div>':''}`;
+    } else if(t<20){ step=1; title='Add your details'; sub='Your name, level and a way to reach you. That\'s it.';
+      const nm=typed('Dami A.',t,16.4,17.2), ph=typed('0803 000 0000',t,17.5,18.4), lv=t>17.3;
+      const ticked=t>18.7, press=t>19.3? 1-.06*Math.sin(lin(t,19.3,19.6)*Math.PI):1;
+      card=`<div class="bar"><span>Register your school</span><span>2 of 3</span></div>
+        <div class="two"><div class="fld"><label>Full name</label><div class="in ${t<17.3?'focus':''}">${nm||'<span class="ph">Your name</span>'}</div></div>
+        <div class="fld"><label>Level</label><div class="in">${lv?'300L':'<span class="ph">Choose</span>'}</div></div></div>
+        <div class="fld"><label>Phone / WhatsApp</label><div class="in ${t>=17.5&&t<18.5?'focus':''}">${ph||'<span class="ph">080…</span>'}</div></div>
+        <div class="cons"><i class="${ticked?'on':''}">${ticked?'✓':''}</i>I agree The Comms Boardroom may contact me about Tech &amp; Comms.</div>
+        <span class="go" style="transform:scale(${press})">Register my school →</span>`;
+      if(t>18.9) h+=el('cursor',`<svg viewBox="0 0 24 24" width="46" height="46"><path d="M4 2l15 9-7 1.5L9 20z" fill="#fff" stroke="#131838" stroke-width="1.5"/></svg>`,`left:${330-80*eo(lin(t,18.9,19.3))}px;top:${1620-60*eo(lin(t,18.9,19.3))}px;z-index:5`);
+    } else { step=2; title='Share it with your class'; sub='Every classmate who registers moves your school up our list.';
+      const sh=t>21.6? 1-.06*Math.sin(lin(t,21.6,21.9)*Math.PI):1;
+      card=`<div class="bar"><span>You're registered</span><span>3 of 3</span></div>
+        <div class="thanks" style="display:grid;gap:22px"><h3>Thank you. University of Lagos is on our list.</h3><p>Share the link in your class group chat.</p>
+        <div class="btns"><span class="p" style="transform:scale(${sh})">Share on WhatsApp</span><span>Copy link</span></div></div>`;
+      ['Sent to 300L Mass Comm','Sent to Mass Comm Association','Sent to Class of 2027'].forEach((p,i)=>{
+        const k=back(clamp(lin(t,22.0+i*.5,22.4+i*.5)));
+        if(t>22.0+i*.5) h+=el('ping',`<i></i>${p}`,`left:${[120,300,160][i]}px;top:${1500+i*100}px;opacity:${clamp(k)};transform:translateY(${(1-clamp(k))*40}px) scale(${.85+.15*k});z-index:4`);
+      });
+    }
+    const sk=eo(lin(t,[12.3,16,20][step],[12.8,16.4,20.4][step]));
+    h+=el('st',`<div class="k">Step 0${step+1}</div><h2>${title}</h2><p>${sub}</p>`,`opacity:${sk};transform:translateY(${(1-sk)*30}px)`);
+    h+=el('card',card,`opacity:${eo(lin(t,12.5,13))};transform:translateY(${(1-eo(lin(t,12.5,13)))*80}px)`);
+    h+=dots(step)+'</div>';
+  }
+  // SCENE 3: back to the chat (24.3 - 29)
+  if(t>=24.3 && t<29.2){
+    const a=eo(lin(t,24.3,24.8)), o=1-lin(t,28.7,29.1);
+    h+=floaters(t,.9*a*o);
+    h+=el('chat',chat(CHAT2,t,'Tolu','Today'),`opacity:${a*o};transform:translateY(${(1-a)*60}px)`);
+  }
+  // SCENE 4: end card (28.8 - 35)
+  if(t>=28.8){
+    const d=eo(lin(t,28.8,29.8));
+    h+=`<div class="abs end">`;
+    h+=el('dome','',`top:${1920-d*1500}px`);
+    const r=i=>eo(lin(t,29.5+i*.3,30.0+i*.3));
+    h+=`<div class="abs endc">
+      <img class="wm" src="${LOGO}" style="opacity:${r(0)};transform:scale(${.9+.1*r(0)})">
+      <h2 style="opacity:${r(1)};transform:translateY(${(1-r(1))*30}px)">Your campus<em>could be next.</em></h2>
+      <span class="cta" style="opacity:${r(2)};transform:scale(${.9+.1*back(clamp(lin(t,30.1,30.6)))*(t>30.1?1:0)+(t>30.1?0:.1)})">Register your school →</span>
+      <span class="url" style="opacity:${r(3)}">${URL_TXT}</span></div>`;
+    h+=el('tcbr',`<img src="${TCBR}">`,`opacity:${r(4)}`);
+    h+=`</div>`;
+  }
+  stage.innerHTML=h;
+}
+window.render=render; render(0);
+</script></body></html>
