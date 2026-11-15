@@ -3,7 +3,7 @@ const SPONSORS = 'Tech & Comms is an initiative of The Comms Boardroom Technolog
 const ABOUT_TC = (before) => 'Tech & Comms is a campus seminar series and an initiative of The Comms Boardroom Technologies (TCBR). It takes working communications practitioners into Mass Communication departments to cover communications in the real world, media monitoring and media intelligence, and building a personal brand, with a panel and an open Q&A. The first edition ' + (before ? 'holds' : 'held') + ' at Crawford University on 26 November 2026 in partnership with the Department of Mass Communication and the Crawford University Alumni Association. The series is supported by Mr. Philip Odiakose of P+ Measurement Services and Zofu.Quest. TCBR plans to take Tech & Comms to five to ten universities in 2027, physically and virtually. Universities can register interest at tech-and-comms.vercel.app.';
 const ABOUT_TCBR = 'The Comms Boardroom Technologies (TCBR) is a Lagos-based communications technology company founded in January 2026. It works at the intersection of PR, data and strategy for African markets, with a focus on communications measurement and value. Its products include AutoMonitor [one-line description] and Boardroom Analytics [one-line description].';
 const CONTACT = 'Media contact: [Name], [Title], The Comms Boardroom Technologies · 08160122896 · info@thecommsboardroom.com · www.thecommsboardroom.com';
-const OUTLETS = 'Target outlets: BusinessDay, Punch, The Guardian, The Nation and Brand Communicator.';
+const OUTLETS = 'Target outlets: BusinessDay, Punch, ThisDay, The Nation and Brand Communicator.';
 
 module.exports = [
   {
