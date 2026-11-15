@@ -33,7 +33,9 @@ function doc(r) {
       children: [T('FOR TCBR ONLY · REMOVE BEFORE SENDING', { bold: true, size: 15, color: BLUE, characterSpacing: 30 })] }),
     new Paragraph({ keepNext: true, spacing: { after: 60 }, children: [T('Alternative headlines', { bold: true, size: 18, color: NAVY })] }),
     ...r.headlines.slice(1).map(h => new Paragraph({ keepNext: true, numbering: { reference: 'dots', level: 0 }, spacing: { after: 40 }, children: [T(h, { size: 18 })] })),
-    new Paragraph({ spacing: { before: 100 }, children: [T(r.model + ' Text highlighted in yellow must be filled in or confirmed.', { size: 17, color: MUTED, italics: true })] }),
+    new Paragraph({ keepNext: true, spacing: { before: 100, after: 40 }, children: [T('When to send: ', { bold: true, size: 18, color: NAVY }), T(r.send, { size: 18 })] }),
+    new Paragraph({ keepNext: true, spacing: { after: 40 }, children: [T(r.outlets, { size: 18 })] }),
+    new Paragraph({ spacing: { before: 60 }, children: [T(r.model + ' Text highlighted in yellow must be filled in or confirmed.', { size: 17, color: MUTED, italics: true })] }),
   ];
   return new Document({ creator: 'The Comms Boardroom', title: r.file,
     styles: { default: { document: { run: { font: FONT, size: 21, color: '1B2140' } } }, paragraphStyles: [
