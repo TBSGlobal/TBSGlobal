@@ -37,39 +37,28 @@ html,body{background:#fff}
 .partners .word{font-weight:800;color:var(--navy);white-space:nowrap}
 </style></head><body>
 
-<!-- ============ BACKDROP 7 ft x 5 ft (84 x 60 in) ============ -->
-<div class="page paper" id="backdrop" style="width:84in;height:60in;--gl:.06in;--gs:3in">
-  <div class="abs" style="inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(31,107,253,.13),transparent 55%)"></div>
-  <!-- step-and-repeat side columns -->
-  <div class="abs" id="repL" style="left:0;top:0;width:19in;height:60in"></div>
-  <div class="abs" id="repR" style="right:0;top:0;width:19in;height:60in"></div>
-  <!-- centre -->
-  <div class="abs" style="left:19in;width:46in;top:0;height:60in;background:linear-gradient(rgba(255,255,255,.0),rgba(255,255,255,.55))"></div>
-  <div class="abs ast" style="left:59.6in;top:11.4in;width:4.6in;height:4.6in;transform:rotate(14deg)">__AST__</div>
-  <div class="abs ast" style="left:21.5in;top:30in;width:4.6in;height:4.6in;opacity:.35">__AST__</div>
-  <div class="abs c" style="top:4in"><img src="kit/tcbr-logo.png" style="height:4.2in"></div>
-  <div class="abs c" style="top:9.6in;font:700 .95in M;letter-spacing:.3em;color:var(--muted);text-transform:uppercase">An initiative of The Comms Boardroom Technologies</div>
-  <div class="abs c" style="top:12.6in"><div class="logo" style="--s:7.6in">__LOGO__</div></div>
-  <div class="abs c" style="top:31.2in"><span class="tag" style="font-size:2.1in;padding:.55in 1.6in">Where communications meet technology</span></div>
-  <div class="abs c" style="top:37.6in;font:800 1.45in M;letter-spacing:.05em;text-transform:uppercase">26th November 2026 · Crawford University</div>
-  <div class="abs c" style="top:40.4in;font:400 1.6in S;font-style:italic;color:var(--blue)">#TechAndComms</div>
-  <div class="abs partners" style="left:20in;right:20in;top:46.5in;height:9.4in;border-radius:1.1in;padding:0 1.2in;gap:1in;box-shadow:0 .4in 1.2in -.6in rgba(13,20,64,.45)">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:.4in">
-      <span class="lbl" style="font-size:.62in">In partnership with</span>
-      <div style="display:flex;align-items:center;gap:.6in">
-        <img src="kit/maco.jpg" style="height:3.6in;flex:none">
-        <div class="dept" style="font-size:.78in;white-space:nowrap"><b>DEPARTMENT OF<br>MASS COMMUNICATION</b><span>CRAWFORD UNIVERSITY</span></div>
-        <img src="kit/unicorn.jpg" style="height:4.2in;flex:none">
-      </div>
-    </div>
-    <span class="rule" style="width:.06in;margin:1.4in 0"></span>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:.6in">
-      <span class="lbl" style="font-size:.62in">Sponsored by</span>
-      <div style="display:flex;align-items:center;gap:1.1in">
-        <span class="word" style="font-size:1.15in">P<span style="color:var(--blue)">+</span> Measurement</span>
-        <span class="word" style="font-size:1.15in">Zofu<span style="color:var(--blue)">.</span>Quest</span>
-      </div>
-    </div>
+<!-- ============ BACKDROP 7 ft x 5 ft (84 x 60 in): left = logo + partners, right = sticky-note prompts ============ -->
+<div class="page" id="backdrop" style="width:84in;height:60in">
+  <!-- LEFT -->
+  <div class="abs paper" style="left:0;top:0;width:51in;height:60in;--gl:.06in;--gs:3in">
+    <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(31,107,253,.16),transparent 55%)"></div>
+    <div class="abs ast" style="left:2.5in;top:2.5in;width:4in;height:4in;opacity:.25">__AST__</div>
+    <div class="abs ast" style="right:2.5in;bottom:2.5in;width:4in;height:4in;opacity:.25;transform:rotate(20deg)">__AST__</div>
+    <div class="abs" style="left:12in;top:16.5in;width:27in;height:27in;border-radius:50%;background:#fff;border:.35in solid var(--blue);box-shadow:0 .6in 1.6in -.8in rgba(13,20,64,.55)"></div>
+    <div class="abs" style="left:11.2in;top:15.7in;width:28.6in;height:28.6in;border-radius:50%;border:.08in dashed rgba(31,107,253,.5)"></div>
+    <div class="abs" style="left:12in;width:27in;top:22.6in;text-align:center"><div class="logo" style="--s:4.2in">__LOGO__</div></div>
+    <div class="abs" style="left:12in;width:27in;top:33.7in;text-align:center"><span class="tag" style="font-size:1.05in;padding:.28in .8in">Where comms meets tech</span></div>
+    <div class="abs" style="left:12in;width:27in;top:37.3in;text-align:center;font:800 .62in M;letter-spacing:.12em">26.11.2026 · CRAWFORD UNIVERSITY</div>
+    <div id="ring"></div>
+  </div>
+  <!-- divider -->
+  <div class="abs" style="left:51in;top:0;width:.5in;height:60in;background:var(--yellow)"></div>
+  <!-- RIGHT -->
+  <div class="abs" style="left:51.5in;top:0;right:0;height:60in;background:var(--navy);background-image:linear-gradient(rgba(255,255,255,.05) .05in,transparent .05in),linear-gradient(90deg,rgba(255,255,255,.05) .05in,transparent .05in);background-size:3in 3in">
+    <div class="abs" style="left:0;right:0;top:2in;text-align:center"><div class="logo white" style="--s:2.5in">__LOGO__</div></div>
+    <div class="abs" style="left:0;right:0;top:9.7in;text-align:center;font:800 1.1in M;color:#fff">Leave your mark <span class="serif" style="color:var(--yellow);font-size:1.15em">here.</span></div>
+    <div class="abs" style="left:0;right:0;top:11.3in;text-align:center;font:600 .62in M;color:rgba(255,255,255,.75)">Grab a sticky note, answer a prompt, stick it in the box.</div>
+    <div id="prompts"></div>
   </div>
 </div>
 
@@ -84,7 +73,7 @@ html,body{background:#fff}
   <!-- profile row -->
   <div class="abs" style="left:2.5in;right:2.5in;top:2.95in;height:2.7in;display:flex;align-items:center;gap:.5in">
     <div style="width:2.2in;height:2.2in;border-radius:50%;padding:.12in;background:conic-gradient(var(--blue),var(--yellow),var(--blue))"><div style="width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden"><img src="kit/tcbr-logo.png" style="width:82%"></div></div>
-    <div style="flex:1;line-height:1.2"><b style="font:800 .78in M;display:flex;align-items:center;gap:.18in">techandcomms <svg viewBox="0 0 24 24" style="width:.62in;height:.62in"><path fill="#1F6BFD" d="M12 1l2.6 2.2 3.4-.4.9 3.3 3 1.7-1.3 3.2 1.3 3.2-3 1.7-.9 3.3-3.4-.4L12 23l-2.6-2.2-3.4.4-.9-3.3-3-1.7L3.4 13 2.1 9.8l3-1.7.9-3.3 3.4.4z"/><path d="M7.5 12.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></b>
+    <div style="flex:1;line-height:1.2"><b style="font:800 .78in M;display:flex;align-items:center;gap:.18in">thecommsboardroom <svg viewBox="0 0 24 24" style="width:.62in;height:.62in"><path fill="#1F6BFD" d="M12 1l2.6 2.2 3.4-.4.9 3.3 3 1.7-1.3 3.2 1.3 3.2-3 1.7-.9 3.3-3.4-.4L12 23l-2.6-2.2-3.4.4-.9-3.3-3-1.7L3.4 13 2.1 9.8l3-1.7.9-3.3 3.4.4z"/><path d="M7.5 12.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></b>
       <span style="font:500 .56in M;color:var(--muted)">Crawford University · 26.11.2026</span></div>
     <span style="font:800 .58in M;background:var(--blue);color:#fff;border-radius:.3in;padding:.22in .6in">Follow</span>
   </div>
@@ -101,7 +90,7 @@ html,body{background:#fff}
   </div>
   <div class="abs" style="left:2.5in;right:2.5in;top:30in;font:500 .6in/1.42 M">
     <b style="font-weight:800">Liked by masscomm_crawford and 2,026 others</b><br>
-    <b style="font-weight:800">techandcomms</b> Where communications meet technology. I came, I learned, I'm ready. 🚀<br>
+    <b style="font-weight:800">thecommsboardroom</b> Where communications meet technology. I came, I learned, I'm ready. 🚀<br>
     <span style="color:var(--blue);font-weight:700">#TechAndComms #CrawfordUniversity #MassComm</span>
   </div>
   <!-- bottom nav -->
@@ -125,13 +114,26 @@ const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y
 const LOGO='<div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span>';
 document.body.innerHTML=document.body.innerHTML.replaceAll('__AST__',AST).replaceAll('__LOGO__',LOGO);
 
-// step-and-repeat columns on the backdrop
-for(const id of ['repL','repR']){const col=document.getElementById(id);let h='';
-  for(let r=0;r<8;r++){const y=r*7.6+0.9, alt=(r+(id=='repR'?1:0))%2;
-    h+=alt?`<div class="abs" style="left:0;right:0;top:${y}in;text-align:center"><div class="logo" style="--s:1.55in">${LOGO}</div></div>`
-          :`<div class="abs" style="left:0;right:0;top:${y+.6}in;text-align:center"><img src="kit/tcbr-logo.png" style="height:3.1in"></div>`;}
-  col.innerHTML=h;}
-
+// partner logos around the circle (left side of the backdrop)
+{const L=[['tcbr','<img src="kit/tcbr-logo.png" style="height:3.4in">'],['amacos','<img src="kit/maco.jpg" style="height:5in">'],
+  ['dept','<div style="font:800 .5in/1.2 M;color:#0D1440;text-align:center;white-space:nowrap">DEPARTMENT OF<br>MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div>'],
+  ['unicorn','<img src="kit/unicorn.jpg" style="height:5in">'],['pplus','<img src="kit/pplus.png" style="height:3.9in">'],['zofu','<img src="kit/zofu.png" style="height:2in">']];
+ let h='';const cx=25.5,cy=30,rx=19.6,ry=22.6,N=12;
+ for(let i=0;i<N;i++){const t=-Math.PI/2+i*2*Math.PI/N,x=cx+rx*Math.cos(t),y=cy+ry*Math.sin(t),w=8.8,hh=6;
+   h+=`<div class="abs" style="left:${x-w/2}in;top:${y-hh/2}in;width:${w}in;height:${hh}in;background:#fff;border-radius:.7in;display:grid;place-items:center;box-shadow:0 .3in .8in -.45in rgba(13,20,64,.5)">${L[i%6][1]}</div>`;}
+ document.getElementById('ring').innerHTML=h;}
+// sticky-note prompts (right side)
+{const P=[['Myth buster','The biggest myth about Mass Comm is\u2026'],['Future me','In 5 years, you\u2019ll find me\u2026'],
+  ['Human vs AI','One thing AI can never do better than me is\u2026'],['Life note','A lesson life taught me that school didn\u2019t\u2026']];
+ let h='';const W=13.9,X=[2,2+W+1.7],Y=[14.2,35.6];
+ P.forEach(([lab,q],i)=>{const x=X[i%2],y=Y[i>>1];
+  h+=`<div class="abs" style="left:${x}in;top:${y}in;width:${W}in">
+     <div style="display:flex;align-items:center;gap:.35in"><span style="width:1.3in;height:1.3in;border-radius:50%;background:var(--yellow);color:var(--navy);display:grid;place-items:center;font:400 .75in AB">${i+1}</span>
+       <span style="font:800 .58in M;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow)">${lab}</span></div>
+     <div style="margin-top:.35in;height:2.8in;font:700 .88in/1.2 M;color:#fff">${q}</div>
+     <div style="margin-top:.3in;height:15.2in;background:#fff;border-radius:.5in;box-shadow:inset 0 0 0 .12in rgba(31,107,253,.25);position:relative">
+       <span style="position:absolute;right:.5in;bottom:.4in;font:700 .45in M;letter-spacing:.2em;color:#c3cbe6">STICK IT HERE</span></div></div>`;});
+ document.getElementById('prompts').innerHTML=h;}
 // ---- fans: one affirmation per fan, shared back ----
 const FANS=[
   {k:'1', bg:'navy',  sec:'Public Relations',            t:'PR Lead',                 q:'Reputation is built every day, and I am the <em>builder</em>.'},
@@ -184,7 +186,7 @@ function fanBack(){const t=THEMES.paper;bgFan(t);
    <div class="abs c" style="top:5.85in;font:800 .13in M;letter-spacing:.14em">26TH NOV. 2026 · CRAWFORD UNIVERSITY</div>
    <div class="abs" style="left:2in;right:2in;top:6.2in;display:flex;align-items:center;justify-content:center;gap:.16in">
      <img src="kit/maco.jpg" style="height:.5in"><div style="font:800 .085in/1.2 M">MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div><img src="kit/unicorn.jpg" style="height:.5in"></div>
-   <div class="abs c" style="top:6.85in;font:700 .085in M;letter-spacing:.12em;color:#4b537a">SPONSORED BY <b style="color:#0D1440">P+ MEASUREMENT</b> · <b style="color:#0D1440">ZOFU.QUEST</b></div>`;}
+   <div class="abs" style="left:0;right:0;top:6.8in;display:flex;align-items:center;justify-content:center;gap:.2in"><span style="font:700 .075in M;letter-spacing:.12em;color:#4b537a">SPONSORED BY</span><img src="kit/pplus.png" style="height:.36in"><img src="kit/zofu.png" style="height:.2in"></div>`;}
 window.FANS=FANS;
 function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   if(id.startsWith('fan')){document.getElementById('fan').classList.add('on');const k=id.slice(3);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));}
