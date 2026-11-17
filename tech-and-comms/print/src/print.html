@@ -104,9 +104,22 @@ html,body{background:#fff}
 </div>
 
 <!-- ============ HAND FAN 8 in round (artwork 8.25 in incl. 1/8 in bleed) ============ -->
-<div class="page" id="fan" style="width:8.25in;height:8.25in">
+<!-- fan face 9 x 8.4 in + 1/8 in bleed all round = 9.25 x 8.65 in -->
+<div class="page" id="fan" style="width:9.25in;height:8.65in">
   <div class="abs" id="fanbg" style="inset:0"></div>
-  <div class="abs" id="fanface" style="inset:0"></div>
+  <div class="abs" id="fanface" style="left:.125in;top:.125in;width:9in;height:8.4in"></div>
+</div>
+<!-- mock-up: the fan cut to shape, with the handle -->
+<div class="page" id="fanmock" style="width:11in;height:14in;background:#e7e9f0">
+  <div class="abs" id="mockshadow" style="left:1in;top:.8in;width:9in;height:8.4in;filter:blur(.12in);background:rgba(13,20,64,.35);transform:translate(.08in,.14in)"></div>
+  <div class="abs" id="mockclip" style="left:.875in;top:.675in;width:9.25in;height:8.65in"></div>
+  <div class="abs" style="left:5.08in;top:6.75in;width:.84in;height:6.6in;background:linear-gradient(90deg,#e9ebef,#fff 40%,#f2f3f6);border-radius:.25in .25in .42in .42in;box-shadow:0 .06in .14in rgba(13,20,64,.3)"></div>
+  <div class="abs" style="left:5.35in;top:7.05in;width:.3in;height:.3in;border-radius:50%;background:radial-gradient(circle at 40% 35%,#d9dbe0,#8a8f99)"></div>
+  <svg class="abs" viewBox="0 0 24 24" style="left:5.32in;top:12.75in;width:.36in;height:.36in"><path fill="#c9ccd3" d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg>
+</div>
+<!-- cut-line template for the printer -->
+<div class="page" id="fancut" style="width:9.25in;height:8.65in;background:#fff">
+  <svg class="abs" id="cutsvg" style="inset:0;width:9.25in;height:8.65in" viewBox="-0.125 -0.125 9.25 8.65"></svg>
 </div>
 
 <script>
@@ -153,43 +166,67 @@ const THEMES={
   yellow:{bg:'#ffd60a',ink:'#0D1440',em:'#1F6BFD',small:'#3a3f5c',ast:'#1F6BFD',grid:'rgba(13,20,64,.07)',logo:''},
   paper:{bg:'#f2f5fc',ink:'#0D1440',em:'#1F6BFD',small:'#4b537a',ast:'#1F6BFD',grid:'#e2e8f8',logo:''},
 };
+// fan outline, in inches on the 9 x 8.4 in face (wider at the top, rounded corners, like a standard PP hand fan)
+const FAN_PATH='M 1.4 0.15 Q 4.5 -0.08 7.6 0.15 C 8.6 0.25 9 0.9 9 1.8 C 9 4 8.9 5.6 8.5 6.9 C 8.2 7.9 7.4 8.25 6.4 8.3 Q 4.5 8.45 2.6 8.3 C 1.6 8.25 0.8 7.9 0.5 6.9 C 0.1 5.6 0 4 0 1.8 C 0 0.9 0.4 0.25 1.4 0.15 Z';
+const pathPx=(d,dx,dy)=>d.replace(/-?\d*\.?\d+/g,(n,i,str)=>n).split(' ').map((tok,i,arr)=>tok).join(' ');
+function scalePath(d,k,ox,oy){let xy=0;return d.split(' ').map(t=>{if(isNaN(parseFloat(t)))return t;const v=parseFloat(t)*k+(xy++%2?oy:ox);return v.toFixed(2);}).join(' ');}
 function fanFront(f){const t=THEMES[f.bg];
   bgFan(t);
   const q=f.q.replace(/<em>(.*?)<\/em>/,`<span class="serif" style="color:${t.em};font-size:1.15em">$1</span>`);
   document.getElementById('fanface').innerHTML=`
-   <div class="abs ast" style="left:6.2in;top:.55in;width:1.1in;height:1.1in;color:${t.ast};transform:rotate(12deg)">${AST}</div>
-   <div class="abs" style="left:.75in;top:.8in;font:700 .15in M;letter-spacing:.28em;color:${t.small};text-transform:uppercase">${f.sec}</div>
-   <div class="abs" style="left:.75in;top:1.55in;font:400 .62in S;font-style:italic;color:${t.em};line-height:1">Future</div>
-   <div class="abs" id="ft" style="left:.75in;right:.75in;top:2.2in;font:400 1.02in/0.98 AB;color:${t.ink};text-transform:uppercase;letter-spacing:-.01em">${f.t}</div>
-   <div class="abs" id="fr" style="left:.75in;width:1.1in;height:.07in;background:${t.em}"></div>
-   <div class="abs" id="fq" style="left:.75in;right:.9in;font:700 .37in/1.3 M;color:${t.ink}">${q}</div>
-   <div class="abs" style="left:.75in;right:.75in;bottom:.7in;display:flex;align-items:flex-end;justify-content:space-between">
-     <div class="logo ${t.logo}" style="--s:.32in;text-align:left;${t.lv||''}">${LOGO}</div>
-     <div style="text-align:right;font:800 .12in/1.6 M;letter-spacing:.14em;color:${t.small}">26.11.2026<br>CRAWFORD UNIVERSITY</div></div>`;
-  // shrink the title until it fits in two lines, then stack the rule and quote under it
+   <div class="abs ast" style="left:6.75in;top:.6in;width:1.05in;height:1.05in;color:${t.ast};transform:rotate(12deg)">${AST}</div>
+   <div class="abs" style="left:.95in;top:.85in;font:700 .15in M;letter-spacing:.28em;color:${t.small};text-transform:uppercase">${f.sec}</div>
+   <div class="abs" style="left:.95in;top:1.35in;font:400 .6in S;font-style:italic;color:${t.em};line-height:1">Future</div>
+   <div class="abs" id="ft" style="left:.95in;right:.9in;top:1.98in;font:400 1.02in/0.98 AB;color:${t.ink};text-transform:uppercase;letter-spacing:-.01em">${f.t}</div>
+   <div class="abs" id="fr" style="left:.95in;width:1.1in;height:.07in;background:${t.em}"></div>
+   <div class="abs" id="fq" style="left:.95in;right:1.1in;font:700 .36in/1.3 M;color:${t.ink}">${q}</div>
+   <div class="abs" style="left:1.25in;top:6.55in"><div class="logo ${t.logo}" style="--s:.32in;text-align:left;${t.lv||''}">${LOGO}</div></div>
+   <div class="abs" style="right:1.25in;top:6.72in;text-align:right;font:800 .12in/1.6 M;letter-spacing:.14em;color:${t.small}">26.11.2026<br>CRAWFORD UNIVERSITY</div>`;
   const ft=document.getElementById('ft');let fs=1.02;
   while((ft.offsetHeight>2*fs*96*0.98+4||ft.scrollWidth>ft.clientWidth)&&fs>.4){fs-=.02;ft.style.fontSize=fs+'in';}
   const y=ft.offsetTop+ft.offsetHeight;
-  document.getElementById('fr').style.top=(y+.32*96)+'px';
-  document.getElementById('fq').style.top=(y+.62*96)+'px';}
+  document.getElementById('fr').style.top=(y+.3*96)+'px';
+  document.getElementById('fq').style.top=(y+.58*96)+'px';}
 function bgFan(t){document.getElementById('fanbg').style.cssText=`inset:0;background-color:${t.bg};background-image:linear-gradient(${t.grid} .02in,transparent .02in),linear-gradient(90deg,${t.grid} .02in,transparent .02in);background-size:.55in .55in;background-position:center`;}
 function fanBack(){const t=THEMES.paper;bgFan(t);
   document.getElementById('fanface').innerHTML=`
-   <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 40%,rgba(31,107,253,.14),transparent 60%)"></div>
-   <div class="abs c" style="top:.95in"><img src="kit/tcbr-logo.png" style="height:.48in"></div>
-   <div class="abs c" style="top:1.6in"><div class="logo" style="--s:.62in">${LOGO}</div></div>
-   <div class="abs c" style="top:3.15in"><span class="tag" style="font-size:.2in;padding:.09in .3in">Where communications meet technology</span></div>
-   <div class="abs c" style="top:3.82in;font:400 .3in S;font-style:italic;color:#1F6BFD">You got it right. Keep winning.</div>
-   <div class="abs" style="left:1.55in;right:1.55in;top:4.45in;display:flex;align-items:center;gap:.22in;background:#fff;border-radius:.16in;padding:.16in .2in;box-shadow:0 .08in .25in -.14in rgba(13,20,64,.5)">
-     <img src="kit/qr-site.svg" style="width:.95in;height:.95in">
+   <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 35%,rgba(31,107,253,.14),transparent 60%)"></div>
+   <div class="abs c" style="top:.5in"><img src="kit/tcbr-logo.png" style="height:.46in"></div>
+   <div class="abs c" style="top:1.1in"><div class="logo" style="--s:.56in">${LOGO}</div></div>
+   <div class="abs c" style="top:2.5in"><span class="tag" style="font-size:.19in;padding:.08in .3in">Where communications meet technology</span></div>
+   <div class="abs c" style="top:3.08in;font:400 .3in S;font-style:italic;color:#1F6BFD">You got it right. Keep winning.</div>
+   <div class="abs" style="left:1.75in;right:1.75in;top:3.65in;display:flex;align-items:center;gap:.22in;background:#fff;border-radius:.16in;padding:.15in .2in;box-shadow:0 .08in .25in -.14in rgba(13,20,64,.5)">
+     <img src="kit/qr-site.svg" style="width:.9in;height:.9in">
      <div style="font:500 .125in/1.4 M;color:#4b537a"><b style="display:block;font:800 .15in M;color:#0D1440;margin-bottom:.03in">Stay connected</b>Talks, slides and the next stop of the tour:<br><b style="color:#1F6BFD">tech-and-comms.vercel.app</b></div></div>
-   <div class="abs c" style="top:5.85in;font:800 .13in M;letter-spacing:.14em">26TH NOV. 2026 · CRAWFORD UNIVERSITY</div>
-   <div class="abs" style="left:2in;right:2in;top:6.2in;display:flex;align-items:center;justify-content:center;gap:.16in">
-     <img src="kit/maco.jpg" style="height:.5in"><div style="font:800 .085in/1.2 M">MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div><img src="kit/unicorn.jpg" style="height:.5in"></div>
-   <div class="abs" style="left:0;right:0;top:6.8in;display:flex;align-items:center;justify-content:center;gap:.2in"><span style="font:700 .075in M;letter-spacing:.12em;color:#4b537a">SPONSORED BY</span><img src="kit/pplus.png" style="height:.36in"><img src="kit/zofu.png" style="height:.2in"></div>`;}
+   <div class="abs c" style="top:5.12in;font:800 .13in M;letter-spacing:.14em">26TH NOV. 2026 · CRAWFORD UNIVERSITY</div>
+   <div class="abs" style="left:.9in;width:3.2in;top:5.6in;text-align:center">
+     <div style="font:700 .08in M;letter-spacing:.16em;color:#4b537a;margin-bottom:.08in">IN PARTNERSHIP WITH</div>
+     <div style="display:flex;align-items:center;justify-content:center;gap:.14in"><img src="kit/maco.jpg" style="height:.55in"><img src="kit/unicorn.jpg" style="height:.55in"></div>
+     <div style="font:800 .085in/1.25 M;margin-top:.06in">DEPT. OF MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div></div>
+   <div class="abs" style="right:.9in;width:3.2in;top:5.6in;text-align:center">
+     <div style="font:700 .08in M;letter-spacing:.16em;color:#4b537a;margin-bottom:.1in">SPONSORED BY</div>
+     <div style="display:flex;flex-direction:column;align-items:center;gap:.14in"><img src="kit/pplus.png" style="height:.5in"><img src="kit/zofu.png" style="height:.24in"></div></div>`;}
+function drawCut(){const svg=document.getElementById('cutsvg');
+  svg.innerHTML=`<rect x="-0.125" y="-0.125" width="9.25" height="8.65" fill="#f4f5f8"/>
+   <path d="${FAN_PATH}" fill="#fff" stroke="#e6007e" stroke-width="0.025"/>
+   <rect x="4.08" y="6.05" width="0.84" height="2.5" rx="0.25" fill="none" stroke="#9aa0ad" stroke-width="0.02" stroke-dasharray="0.08 0.06"/>
+   <circle cx="4.5" cy="6.4" r="0.15" fill="none" stroke="#9aa0ad" stroke-width="0.02"/>
+   <text x="4.5" y="3.6" text-anchor="middle" font-family="M" font-weight="800" font-size="0.32" fill="#e6007e">CUT LINE (magenta)</text>
+   <text x="4.5" y="4.05" text-anchor="middle" font-family="M" font-weight="600" font-size="0.17" fill="#4b537a">Face 9 × 8.4 in · artwork files are 9.25 × 8.65 in (1/8 in bleed all round)</text>
+   <text x="4.5" y="4.35" text-anchor="middle" font-family="M" font-weight="600" font-size="0.17" fill="#4b537a">Grey dashed: handle and rivet position (keep clear of text)</text>`;}
 window.FANS=FANS;
 function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
-  if(id.startsWith('fan')){document.getElementById('fan').classList.add('on');const k=id.slice(3);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));}
+  if(id==='fancut'){drawCut();document.getElementById('fancut').classList.add('on');}
+  else if(id.startsWith('mock')){const k=id.slice(4);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));
+    const fan=document.getElementById('fan'),clip=document.getElementById('mockclip');
+    clip.innerHTML=fan.innerHTML;clip.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    const d=scalePath(FAN_PATH,96,.125*96,.125*96);clip.style.clipPath=`path('${d}')`;
+    document.getElementById('mockshadow').style.clipPath=`path('${scalePath(FAN_PATH,96,0,0)}')`;
+    fan.classList.add('on');requestAnimationFrame(()=>{});
+    // measure in the real fan first, then show the mock
+    fan.classList.add('on');k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));clip.innerHTML=fan.innerHTML;clip.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    fan.classList.remove('on');document.getElementById('fanmock').classList.add('on');}
+  else if(id.startsWith('fan')){document.getElementById('fan').classList.add('on');const k=id.slice(3);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));}
   else document.getElementById(id).classList.add('on');}
 window.show=show;
 </script>
