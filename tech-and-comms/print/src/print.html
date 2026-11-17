@@ -1,0 +1,194 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:AB;src:url(kit/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:MB;src:url(kit/montserrat-latin-900-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(kit/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(kit/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(kit/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(kit/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:M;font-weight:800;font-style:italic;src:url(kit/montserrat-latin-800-italic.woff2)}
+@font-face{font-family:S;font-style:italic;src:url(kit/dm-serif-display-latin-400-italic.woff2)}
+:root{--navy:#0D1440;--blue:#1F6BFD;--soft:#dfe6ff;--yellow:#ffd60a;--paper:#f2f5fc;--grid:#e2e8f8;--muted:#4b537a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+.page{position:relative;overflow:hidden;font-family:M,sans-serif;color:var(--navy);display:none}
+.page.on{display:block}
+.abs{position:absolute}
+.paper{background-color:var(--paper);background-image:linear-gradient(var(--grid) var(--gl),transparent var(--gl)),linear-gradient(90deg,var(--grid) var(--gl),transparent var(--gl));background-size:var(--gs) var(--gs)}
+/* logo (same build as logo/src/logo.html) */
+.logo{display:inline-block;text-align:center;line-height:.98;font-family:MB;--navy-l:var(--navy);--box:#fff}
+.logo .l1{font-size:var(--s);color:var(--navy-l);letter-spacing:-.03em;white-space:nowrap}
+.logo .amp{color:var(--amp,var(--blue))}
+.logo .box{display:inline-block;position:relative;margin-top:calc(var(--s)*.06);background:var(--blue);color:var(--box);font-size:calc(var(--s)*1.02);padding:calc(var(--s)*.01) calc(var(--s)*.16) calc(var(--s)*.02);outline:calc(var(--s)*.022) solid var(--blue);white-space:nowrap}
+.logo .box i{position:absolute;width:calc(var(--s)*.13);height:calc(var(--s)*.13);background:#fff;border:calc(var(--s)*.025) solid var(--blue)}
+.logo .box i:nth-child(1){left:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}.logo .box i:nth-child(2){right:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}
+.logo .box i:nth-child(3){left:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}.logo .box i:nth-child(4){right:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}
+.logo.white{--navy-l:#fff}
+.ast{color:var(--blue)}.ast svg{width:100%;height:100%;display:block}
+.tag{display:inline-block;background:var(--yellow);color:var(--navy);font-family:M;font-style:italic;font-weight:800;transform:rotate(-3deg);clip-path:polygon(2% 0,100% 6%,98% 100%,0 92%)}
+.serif{font-family:S;font-style:italic;font-weight:400}
+.c{left:0;right:0;text-align:center}
+.partners{display:flex;align-items:center;justify-content:center;background:#fff}
+.partners .lbl{font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.partners .dept b{display:block;font-weight:800;line-height:1.15}
+.partners .dept span{display:block;font-weight:500;line-height:1.2}
+.partners .rule{align-self:stretch;background:#d5dbee}
+.partners .word{font-weight:800;color:var(--navy);white-space:nowrap}
+</style></head><body>
+
+<!-- ============ BACKDROP 7 ft x 5 ft (84 x 60 in) ============ -->
+<div class="page paper" id="backdrop" style="width:84in;height:60in;--gl:.06in;--gs:3in">
+  <div class="abs" style="inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(31,107,253,.13),transparent 55%)"></div>
+  <!-- step-and-repeat side columns -->
+  <div class="abs" id="repL" style="left:0;top:0;width:19in;height:60in"></div>
+  <div class="abs" id="repR" style="right:0;top:0;width:19in;height:60in"></div>
+  <!-- centre -->
+  <div class="abs" style="left:19in;width:46in;top:0;height:60in;background:linear-gradient(rgba(255,255,255,.0),rgba(255,255,255,.55))"></div>
+  <div class="abs ast" style="left:59.6in;top:11.4in;width:4.6in;height:4.6in;transform:rotate(14deg)">__AST__</div>
+  <div class="abs ast" style="left:21.5in;top:30in;width:4.6in;height:4.6in;opacity:.35">__AST__</div>
+  <div class="abs c" style="top:4in"><img src="kit/tcbr-logo.png" style="height:4.2in"></div>
+  <div class="abs c" style="top:9.6in;font:700 .95in M;letter-spacing:.3em;color:var(--muted);text-transform:uppercase">An initiative of The Comms Boardroom Technologies</div>
+  <div class="abs c" style="top:12.6in"><div class="logo" style="--s:7.6in">__LOGO__</div></div>
+  <div class="abs c" style="top:31.2in"><span class="tag" style="font-size:2.1in;padding:.55in 1.6in">Where communications meet technology</span></div>
+  <div class="abs c" style="top:37.6in;font:800 1.45in M;letter-spacing:.05em;text-transform:uppercase">26th November 2026 · Crawford University</div>
+  <div class="abs c" style="top:40.4in;font:400 1.6in S;font-style:italic;color:var(--blue)">#TechAndComms</div>
+  <div class="abs partners" style="left:20in;right:20in;top:46.5in;height:9.4in;border-radius:1.1in;padding:0 1.2in;gap:1in;box-shadow:0 .4in 1.2in -.6in rgba(13,20,64,.45)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.4in">
+      <span class="lbl" style="font-size:.62in">In partnership with</span>
+      <div style="display:flex;align-items:center;gap:.6in">
+        <img src="kit/maco.jpg" style="height:3.6in;flex:none">
+        <div class="dept" style="font-size:.78in;white-space:nowrap"><b>DEPARTMENT OF<br>MASS COMMUNICATION</b><span>CRAWFORD UNIVERSITY</span></div>
+        <img src="kit/unicorn.jpg" style="height:4.2in;flex:none">
+      </div>
+    </div>
+    <span class="rule" style="width:.06in;margin:1.4in 0"></span>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.6in">
+      <span class="lbl" style="font-size:.62in">Sponsored by</span>
+      <div style="display:flex;align-items:center;gap:1.1in">
+        <span class="word" style="font-size:1.15in">P<span style="color:var(--blue)">+</span> Measurement</span>
+        <span class="word" style="font-size:1.15in">Zofu<span style="color:var(--blue)">.</span>Quest</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ INSTAGRAM PLACARD 2 ft x 3 ft (24 x 36 in), cut-out 19 x 22 in ============ -->
+<div class="page" id="placard" style="width:24in;height:36in;background:#fff">
+  <!-- top bar -->
+  <div class="abs" style="left:0;right:0;top:0;height:2.6in;background:linear-gradient(100deg,var(--navy) 0%,#1a2a8c 45%,var(--blue) 100%);display:flex;align-items:center;justify-content:space-between;padding:0 1.1in">
+    <div class="ast" style="width:1.35in;height:1.35in;color:#fff">__AST__</div>
+    <img src="kit/logo-white.png" style="height:2.1in">
+    <svg viewBox="0 0 24 24" style="width:1.4in;height:1.4in" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+  </div>
+  <!-- profile row -->
+  <div class="abs" style="left:2.5in;right:2.5in;top:2.95in;height:2.7in;display:flex;align-items:center;gap:.5in">
+    <div style="width:2.2in;height:2.2in;border-radius:50%;padding:.12in;background:conic-gradient(var(--blue),var(--yellow),var(--blue))"><div style="width:100%;height:100%;border-radius:50%;background:#fff;display:grid;place-items:center;overflow:hidden"><img src="kit/tcbr-logo.png" style="width:82%"></div></div>
+    <div style="flex:1;line-height:1.2"><b style="font:800 .78in M;display:flex;align-items:center;gap:.18in">techandcomms <svg viewBox="0 0 24 24" style="width:.62in;height:.62in"><path fill="#1F6BFD" d="M12 1l2.6 2.2 3.4-.4.9 3.3 3 1.7-1.3 3.2 1.3 3.2-3 1.7-.9 3.3-3.4-.4L12 23l-2.6-2.2-3.4.4-.9-3.3-3-1.7L3.4 13 2.1 9.8l3-1.7.9-3.3 3.4.4z"/><path d="M7.5 12.2l3 3 6-6.2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></b>
+      <span style="font:500 .56in M;color:var(--muted)">Crawford University · 26.11.2026</span></div>
+    <span style="font:800 .58in M;background:var(--blue);color:#fff;border-radius:.3in;padding:.22in .6in">Follow</span>
+  </div>
+  <!-- cut-out -->
+  <div class="abs" id="hole" style="left:2.5in;top:6in;width:19in;height:22in;background:#fff;border:.045in dashed #e6007e"></div>
+  <div class="abs cutlabel" style="left:2.5in;top:6in;width:19in;height:22in;display:grid;place-items:center;text-align:center;font:700 .7in M;color:#e6007e;letter-spacing:.1em">CUT OUT<br>19 × 22 in</div>
+  <!-- action row -->
+  <div class="abs" style="left:2.5in;right:2.5in;top:28.35in;height:1.5in;display:flex;align-items:center;gap:.75in">
+    <svg viewBox="0 0 24 24" style="width:1.25in;height:1.25in"><path fill="#ff2d55" d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg>
+    <svg viewBox="0 0 24 24" style="width:1.2in;height:1.2in" fill="none" stroke="#0D1440" stroke-width="2" stroke-linejoin="round"><path d="M20.5 12a8.5 8.5 0 1 1-3.8-7.1A8.5 8.5 0 0 1 20.5 12z"/><path d="M20.5 12c0 2 .7 3.6 1.5 5l-4.6-1"/></svg>
+    <svg viewBox="0 0 24 24" style="width:1.15in;height:1.15in" fill="none" stroke="#0D1440" stroke-width="2" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+    <span style="flex:1;display:flex;justify-content:center;gap:.16in;margin-right:2.2in"><i style="width:.22in;height:.22in;border-radius:50%;background:var(--blue)"></i><i style="width:.22in;height:.22in;border-radius:50%;background:#c9d3f2"></i><i style="width:.22in;height:.22in;border-radius:50%;background:#c9d3f2"></i><i style="width:.22in;height:.22in;border-radius:50%;background:#c9d3f2"></i></span>
+    <svg viewBox="0 0 24 24" style="width:1.15in;height:1.15in" fill="none" stroke="#0D1440" stroke-width="2" stroke-linejoin="round"><path d="M5 2.5h14v19l-7-5-7 5z"/></svg>
+  </div>
+  <div class="abs" style="left:2.5in;right:2.5in;top:30in;font:500 .6in/1.42 M">
+    <b style="font-weight:800">Liked by masscomm_crawford and 2,026 others</b><br>
+    <b style="font-weight:800">techandcomms</b> Where communications meet technology. I came, I learned, I'm ready. 🚀<br>
+    <span style="color:var(--blue);font-weight:700">#TechAndComms #CrawfordUniversity #MassComm</span>
+  </div>
+  <!-- bottom nav -->
+  <div class="abs" style="left:0;right:0;bottom:0;height:2.6in;background:linear-gradient(100deg,var(--navy) 0%,#1a2a8c 45%,var(--blue) 100%);display:flex;align-items:center;justify-content:space-around;padding:0 .6in">
+    <svg viewBox="0 0 24 24" style="width:1.3in;height:1.3in" fill="#fff"><path d="M3 10.5 12 3l9 7.5V21h-6v-6H9v6H3z"/></svg>
+    <svg viewBox="0 0 24 24" style="width:1.3in;height:1.3in" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5.5 5.5"/></svg>
+    <span style="width:2.2in;height:2.2in;background:#fff;border-radius:.45in;display:grid;place-items:center"><svg viewBox="0 0 24 24" style="width:1.3in;height:1.3in" fill="none" stroke="#0D1440" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+    <svg viewBox="0 0 24 24" style="width:1.3in;height:1.3in" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20.5s-8-4.9-8-10.6A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.9c0 5.7-8 10.6-8 10.6z"/></svg>
+    <svg viewBox="0 0 24 24" style="width:1.3in;height:1.3in" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg>
+  </div>
+</div>
+
+<!-- ============ HAND FAN 8 in round (artwork 8.25 in incl. 1/8 in bleed) ============ -->
+<div class="page" id="fan" style="width:8.25in;height:8.25in">
+  <div class="abs" id="fanbg" style="inset:0"></div>
+  <div class="abs" id="fanface" style="inset:0"></div>
+</div>
+
+<script>
+const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+const LOGO='<div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span>';
+document.body.innerHTML=document.body.innerHTML.replaceAll('__AST__',AST).replaceAll('__LOGO__',LOGO);
+
+// step-and-repeat columns on the backdrop
+for(const id of ['repL','repR']){const col=document.getElementById(id);let h='';
+  for(let r=0;r<8;r++){const y=r*7.6+0.9, alt=(r+(id=='repR'?1:0))%2;
+    h+=alt?`<div class="abs" style="left:0;right:0;top:${y}in;text-align:center"><div class="logo" style="--s:1.55in">${LOGO}</div></div>`
+          :`<div class="abs" style="left:0;right:0;top:${y+.6}in;text-align:center"><img src="kit/tcbr-logo.png" style="height:3.1in"></div>`;}
+  col.innerHTML=h;}
+
+// ---- fans: one affirmation per fan, shared back ----
+const FANS=[
+  {k:'1', bg:'navy',  sec:'Public Relations',            t:'PR Lead',                 q:'Reputation is built every day, and I am the <em>builder</em>.'},
+  {k:'2', bg:'blue',  sec:'Advertising',                 t:'Creative Director',       q:'My ideas don\u2019t just sell. They <em>move</em> people.'},
+  {k:'3', bg:'yellow',sec:'Journalism',                  t:'Newsroom Editor',         q:'I chase the truth, and I tell it <em>well</em>.'},
+  {k:'4', bg:'paper', sec:'Broadcasting',                t:'Broadcast Icon',          q:'When I speak, a nation <em>listens</em>.'},
+  {k:'5', bg:'navy',  sec:'Media Monitoring & Evaluation',t:'Media Intelligence Analyst',q:'I don\u2019t just tell stories. I <em>measure</em> their impact.'},
+  {k:'6', bg:'blue',  sec:'Digital & New Media',         t:'Digital Strategist',      q:'Technology is my tool. Communication is my <em>power</em>.'},
+  {k:'7', bg:'yellow',sec:'Film & Multimedia',           t:'Film Director',           q:'I frame stories the world can\u2019t stop <em>watching</em>.'},
+  {k:'8', bg:'paper', sec:'Development Communication',   t:'Change Maker',            q:'My words open doors for people who <em>need</em> them.'},
+  {k:'9', bg:'navy',  sec:'Personal Branding',           t:'Brand Builder',           q:'I am building a name the world will <em>remember</em>.'},
+  {k:'10',bg:'blue',  sec:'Strategic Communication',     t:'Comms CEO',               q:'I belong in every <em>boardroom</em> I walk into.'},
+];
+const THEMES={
+  navy:{bg:'#0D1440',ink:'#fff',em:'#ffd60a',small:'rgba(255,255,255,.7)',ast:'#1F6BFD',grid:'rgba(255,255,255,.06)',logo:'white'},
+  blue:{bg:'#1F6BFD',ink:'#fff',em:'#ffd60a',small:'rgba(255,255,255,.8)',ast:'#0D1440',grid:'rgba(255,255,255,.1)',logo:'white',lv:'--blue:#0D1440;--amp:#ffd60a;'},
+  yellow:{bg:'#ffd60a',ink:'#0D1440',em:'#1F6BFD',small:'#3a3f5c',ast:'#1F6BFD',grid:'rgba(13,20,64,.07)',logo:''},
+  paper:{bg:'#f2f5fc',ink:'#0D1440',em:'#1F6BFD',small:'#4b537a',ast:'#1F6BFD',grid:'#e2e8f8',logo:''},
+};
+function fanFront(f){const t=THEMES[f.bg];
+  bgFan(t);
+  const q=f.q.replace(/<em>(.*?)<\/em>/,`<span class="serif" style="color:${t.em};font-size:1.15em">$1</span>`);
+  document.getElementById('fanface').innerHTML=`
+   <div class="abs ast" style="left:6.2in;top:.55in;width:1.1in;height:1.1in;color:${t.ast};transform:rotate(12deg)">${AST}</div>
+   <div class="abs" style="left:.75in;top:.8in;font:700 .15in M;letter-spacing:.28em;color:${t.small};text-transform:uppercase">${f.sec}</div>
+   <div class="abs" style="left:.75in;top:1.55in;font:400 .62in S;font-style:italic;color:${t.em};line-height:1">Future</div>
+   <div class="abs" id="ft" style="left:.75in;right:.75in;top:2.2in;font:400 1.02in/0.98 AB;color:${t.ink};text-transform:uppercase;letter-spacing:-.01em">${f.t}</div>
+   <div class="abs" id="fr" style="left:.75in;width:1.1in;height:.07in;background:${t.em}"></div>
+   <div class="abs" id="fq" style="left:.75in;right:.9in;font:700 .37in/1.3 M;color:${t.ink}">${q}</div>
+   <div class="abs" style="left:.75in;right:.75in;bottom:.7in;display:flex;align-items:flex-end;justify-content:space-between">
+     <div class="logo ${t.logo}" style="--s:.32in;text-align:left;${t.lv||''}">${LOGO}</div>
+     <div style="text-align:right;font:800 .12in/1.6 M;letter-spacing:.14em;color:${t.small}">26.11.2026<br>CRAWFORD UNIVERSITY</div></div>`;
+  // shrink the title until it fits in two lines, then stack the rule and quote under it
+  const ft=document.getElementById('ft');let fs=1.02;
+  while((ft.offsetHeight>2*fs*96*0.98+4||ft.scrollWidth>ft.clientWidth)&&fs>.4){fs-=.02;ft.style.fontSize=fs+'in';}
+  const y=ft.offsetTop+ft.offsetHeight;
+  document.getElementById('fr').style.top=(y+.32*96)+'px';
+  document.getElementById('fq').style.top=(y+.62*96)+'px';}
+function bgFan(t){document.getElementById('fanbg').style.cssText=`inset:0;background-color:${t.bg};background-image:linear-gradient(${t.grid} .02in,transparent .02in),linear-gradient(90deg,${t.grid} .02in,transparent .02in);background-size:.55in .55in;background-position:center`;}
+function fanBack(){const t=THEMES.paper;bgFan(t);
+  document.getElementById('fanface').innerHTML=`
+   <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 40%,rgba(31,107,253,.14),transparent 60%)"></div>
+   <div class="abs c" style="top:.95in"><img src="kit/tcbr-logo.png" style="height:.48in"></div>
+   <div class="abs c" style="top:1.6in"><div class="logo" style="--s:.62in">${LOGO}</div></div>
+   <div class="abs c" style="top:3.15in"><span class="tag" style="font-size:.2in;padding:.09in .3in">Where communications meet technology</span></div>
+   <div class="abs c" style="top:3.82in;font:400 .3in S;font-style:italic;color:#1F6BFD">You got it right. Keep winning.</div>
+   <div class="abs" style="left:1.55in;right:1.55in;top:4.45in;display:flex;align-items:center;gap:.22in;background:#fff;border-radius:.16in;padding:.16in .2in;box-shadow:0 .08in .25in -.14in rgba(13,20,64,.5)">
+     <img src="kit/qr-site.svg" style="width:.95in;height:.95in">
+     <div style="font:500 .125in/1.4 M;color:#4b537a"><b style="display:block;font:800 .15in M;color:#0D1440;margin-bottom:.03in">Stay connected</b>Talks, slides and the next stop of the tour:<br><b style="color:#1F6BFD">tech-and-comms.vercel.app</b></div></div>
+   <div class="abs c" style="top:5.85in;font:800 .13in M;letter-spacing:.14em">26TH NOV. 2026 · CRAWFORD UNIVERSITY</div>
+   <div class="abs" style="left:2in;right:2in;top:6.2in;display:flex;align-items:center;justify-content:center;gap:.16in">
+     <img src="kit/maco.jpg" style="height:.5in"><div style="font:800 .085in/1.2 M">MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div><img src="kit/unicorn.jpg" style="height:.5in"></div>
+   <div class="abs c" style="top:6.85in;font:700 .085in M;letter-spacing:.12em;color:#4b537a">SPONSORED BY <b style="color:#0D1440">P+ MEASUREMENT</b> · <b style="color:#0D1440">ZOFU.QUEST</b></div>`;}
+window.FANS=FANS;
+function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  if(id.startsWith('fan')){document.getElementById('fan').classList.add('on');const k=id.slice(3);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));}
+  else document.getElementById(id).classList.add('on');}
+window.show=show;
+</script>
+</body></html>
