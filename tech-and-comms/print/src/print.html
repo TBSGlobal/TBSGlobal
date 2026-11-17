@@ -44,12 +44,12 @@ html,body{background:#fff}
     <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(31,107,253,.16),transparent 55%)"></div>
     <div class="abs ast" style="left:2.5in;top:2.5in;width:4in;height:4in;opacity:.25">__AST__</div>
     <div class="abs ast" style="right:2.5in;bottom:2.5in;width:4in;height:4in;opacity:.25;transform:rotate(20deg)">__AST__</div>
-    <div class="abs" style="left:12in;top:16.5in;width:27in;height:27in;border-radius:50%;background:#fff;border:.35in solid var(--blue);box-shadow:0 .6in 1.6in -.8in rgba(13,20,64,.55)"></div>
-    <div class="abs" style="left:11.2in;top:15.7in;width:28.6in;height:28.6in;border-radius:50%;border:.08in dashed rgba(31,107,253,.5)"></div>
-    <div class="abs" style="left:12in;width:27in;top:22.6in;text-align:center"><div class="logo" style="--s:4.2in">__LOGO__</div></div>
-    <div class="abs" style="left:12in;width:27in;top:33.7in;text-align:center"><span class="tag" style="font-size:1.05in;padding:.28in .8in">Where comms meets tech</span></div>
-    <div class="abs" style="left:12in;width:27in;top:37.3in;text-align:center;font:800 .62in M;letter-spacing:.12em">26.11.2026 · CRAWFORD UNIVERSITY</div>
+    <div class="abs" style="left:0;width:51in;top:3.6in;text-align:center"><div class="logo" style="--s:3.3in">__LOGO__</div></div>
+    <div class="abs" style="left:0;width:51in;top:12.6in;text-align:center"><span class="tag" style="font-size:.95in;padding:.26in .75in">Where comms meets tech</span></div>
+    <div class="abs" style="left:0;width:51in;top:15.9in;text-align:center;font:800 .62in M;letter-spacing:.12em">26.11.2026 · CRAWFORD UNIVERSITY</div>
+    <div class="abs" style="left:0;width:51in;top:19.4in;text-align:center;font:700 .55in M;letter-spacing:.3em;color:var(--muted)">IN PARTNERSHIP WITH</div>
     <div id="ring"></div>
+    <div class="abs" style="left:0;width:51in;top:52.4in;text-align:center;font:400 1.5in S;font-style:italic;color:var(--blue)">#TechAndComms</div>
   </div>
   <!-- divider -->
   <div class="abs" style="left:51in;top:0;width:.5in;height:60in;background:var(--yellow)"></div>
@@ -115,12 +115,12 @@ const LOGO='<div class="l1">TECH <span class="amp">&amp;</span></div><span class
 document.body.innerHTML=document.body.innerHTML.replaceAll('__AST__',AST).replaceAll('__LOGO__',LOGO);
 
 // partner logos around the circle (left side of the backdrop)
-{const L=[['tcbr','<img src="kit/tcbr-logo.png" style="height:3.4in">'],['amacos','<img src="kit/maco.jpg" style="height:5in">'],
-  ['dept','<div style="font:800 .5in/1.2 M;color:#0D1440;text-align:center;white-space:nowrap">DEPARTMENT OF<br>MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div>'],
-  ['unicorn','<img src="kit/unicorn.jpg" style="height:5in">'],['pplus','<img src="kit/pplus.png" style="height:3.9in">'],['zofu','<img src="kit/zofu.png" style="height:2in">']];
- let h='';const cx=25.5,cy=30,rx=19.6,ry=22.6,N=12;
- for(let i=0;i<N;i++){const t=-Math.PI/2+i*2*Math.PI/N,x=cx+rx*Math.cos(t),y=cy+ry*Math.sin(t),w=8.8,hh=6;
-   h+=`<div class="abs" style="left:${x-w/2}in;top:${y-hh/2}in;width:${w}in;height:${hh}in;background:#fff;border-radius:.7in;display:grid;place-items:center;box-shadow:0 .3in .8in -.45in rgba(13,20,64,.5)">${L[i%6][1]}</div>`;}
+{const L=[['tcbr','<img src="kit/tcbr-logo.png" style="height:4.4in">'],['amacos','<img src="kit/maco.jpg" style="height:6.2in">'],
+  ['dept','<div style="font:800 .6in/1.25 M;color:#0D1440;text-align:center;white-space:nowrap">DEPARTMENT OF<br>MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div>'],
+  ['unicorn','<img src="kit/unicorn.jpg" style="height:6.2in">'],['pplus','<img src="kit/pplus.png" style="height:5in">'],['zofu','<img src="kit/zofu.png" style="height:2.5in">']];
+ let h='';const W=10.4,H=7.6,G=1.4,X0=(51-4*W-3*G)/2,ROWS=[[0,1,2,3],[4,5,0,1],[2,3,4,5]];
+ ROWS.forEach((r,ri)=>r.forEach((k,ci)=>{
+   h+=`<div class="abs" style="left:${X0+ci*(W+G)}in;top:${21.8+ri*(H+2.1)}in;width:${W}in;height:${H}in;background:#fff;border-radius:.7in;display:grid;place-items:center;box-shadow:0 .3in .8in -.45in rgba(13,20,64,.5)">${L[k][1]}</div>`;}));
  document.getElementById('ring').innerHTML=h;}
 // sticky-note prompts (right side)
 {const P=[['Myth buster','The biggest myth about Mass Comm is\u2026'],['Future me','In 5 years, you\u2019ll find me\u2026'],
