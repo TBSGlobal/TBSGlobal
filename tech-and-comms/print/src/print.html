@@ -40,16 +40,12 @@ html,body{background:#fff}
 <!-- ============ BACKDROP 7 ft x 5 ft (84 x 60 in): left = logo + partners, right = sticky-note prompts ============ -->
 <div class="page" id="backdrop" style="width:84in;height:60in">
   <!-- LEFT -->
-  <div class="abs paper" style="left:0;top:0;width:51in;height:60in;--gl:.06in;--gs:3in">
-    <div class="abs" style="inset:0;background:radial-gradient(circle at 50% 50%,rgba(31,107,253,.16),transparent 55%)"></div>
-    <div class="abs ast" style="left:2.5in;top:2.5in;width:4in;height:4in;opacity:.25">__AST__</div>
-    <div class="abs ast" style="right:2.5in;bottom:2.5in;width:4in;height:4in;opacity:.25;transform:rotate(20deg)">__AST__</div>
-    <div class="abs" style="left:0;width:51in;top:3.6in;text-align:center"><div class="logo" style="--s:3.3in">__LOGO__</div></div>
-    <div class="abs" style="left:0;width:51in;top:12.6in;text-align:center"><span class="tag" style="font-size:.95in;padding:.26in .75in">Where comms meets tech</span></div>
-    <div class="abs" style="left:0;width:51in;top:15.9in;text-align:center;font:800 .62in M;letter-spacing:.12em">26.11.2026 · CRAWFORD UNIVERSITY</div>
-    <div class="abs" style="left:0;width:51in;top:19.4in;text-align:center;font:700 .55in M;letter-spacing:.3em;color:var(--muted)">IN PARTNERSHIP WITH</div>
+  <div class="abs" style="left:0;top:0;width:51in;height:60in;background:#fff">
+    <div class="abs" style="left:0;width:51in;top:22.6in;text-align:center"><div class="logo" style="--s:3.5in">__LOGO__</div></div>
+    <div class="abs" style="left:0;width:51in;top:31.4in;text-align:center"><span class="tag" style="font-size:.9in;padding:.24in .7in">Where comms meets tech</span></div>
+    <div class="abs" style="left:0;width:51in;top:34.6in;text-align:center;font:800 .58in M;letter-spacing:.12em">26.11.2026 · CRAWFORD UNIVERSITY</div>
+    <div class="abs" style="left:0;width:51in;top:35.9in;text-align:center;font:400 1.05in S;font-style:italic;color:var(--blue)">#TechAndComms</div>
     <div id="ring"></div>
-    <div class="abs" style="left:0;width:51in;top:52.4in;text-align:center;font:400 1.5in S;font-style:italic;color:var(--blue)">#TechAndComms</div>
   </div>
   <!-- divider -->
   <div class="abs" style="left:51in;top:0;width:.5in;height:60in;background:var(--yellow)"></div>
@@ -127,13 +123,14 @@ const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y
 const LOGO='<div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span>';
 document.body.innerHTML=document.body.innerHTML.replaceAll('__AST__',AST).replaceAll('__LOGO__',LOGO);
 
-// partner logos around the circle (left side of the backdrop)
-{const L=[['tcbr','<img src="kit/tcbr-logo.png" style="height:4.4in">'],['amacos','<img src="kit/maco.jpg" style="height:6.2in">'],
-  ['dept','<div style="font:800 .6in/1.25 M;color:#0D1440;text-align:center;white-space:nowrap">DEPARTMENT OF<br>MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div>'],
-  ['unicorn','<img src="kit/unicorn.jpg" style="height:6.2in">'],['pplus','<img src="kit/pplus.png" style="height:5in">'],['zofu','<img src="kit/zofu.png" style="height:2.5in">']];
- let h='';const W=10.4,H=7.6,G=1.4,X0=(51-4*W-3*G)/2,ROWS=[[0,1,2,3],[4,5,0,1],[2,3,4,5]];
- ROWS.forEach((r,ri)=>r.forEach((k,ci)=>{
-   h+=`<div class="abs" style="left:${X0+ci*(W+G)}in;top:${21.8+ri*(H+2.1)}in;width:${W}in;height:${H}in;background:#fff;border-radius:.7in;display:grid;place-items:center;box-shadow:0 .3in .8in -.45in rgba(13,20,64,.5)">${L[k][1]}</div>`;}));
+// partner logos as a staggered step-and-repeat grid around the centre logo (left side of the backdrop)
+{const L=[['tcbr','<img src="kit/tcbr-logo.png" style="height:3in">'],['amacos','<img src="kit/maco.jpg" style="height:4.1in">'],
+  ['dept','<div style="font:800 .42in/1.25 M;color:#0D1440;text-align:center;white-space:nowrap">DEPARTMENT OF<br>MASS COMMUNICATION<br><span style="font-weight:500">CRAWFORD UNIVERSITY</span></div>'],
+  ['unicorn','<img src="kit/unicorn.jpg" style="height:4.3in">'],['pplus','<img src="kit/pplus.png" style="height:3.5in">'],['zofu','<img src="kit/zofu.png" style="height:1.7in">']];
+ let h='',n=0;const W=8.6,H=5;
+ for(let r=0;r<8;r++){const y=3.8+r*7.36,odd=r%2,xs=odd?[10.2,20.4,30.6,40.8]:[5.1,15.3,25.5,35.7,45.9];
+   xs.forEach((x,c)=>{const k=n++%6;if(Math.abs(x-25.5)<14.5&&y>19&&y<40)return;
+     h+=`<div class="abs" style="left:${x-W/2}in;top:${y-H/2}in;width:${W}in;height:${H}in;display:grid;place-items:center">${L[k][1]}</div>`;});}
  document.getElementById('ring').innerHTML=h;}
 // sticky-note prompts (right side)
 {const P=[['Myth buster','The biggest myth about Mass Comm is\u2026'],['Future me','In 5 years, you\u2019ll find me\u2026'],
