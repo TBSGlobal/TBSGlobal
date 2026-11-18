@@ -229,7 +229,7 @@ function drawCut(){const svg=document.getElementById('cutsvg');
    <text x="4.5" y="4.35" text-anchor="middle" font-family="M" font-weight="600" font-size="0.17" fill="#4b537a">Grey dashed: handle and rivet position (keep clear of text)</text>`;}
 window.FANS=FANS;
 // ---- 8 x 8 in square fan (Agba Creator) ----
-const AGBA={bg:'yellow',sec:'Content Creation',t:'Agba Creator',q:'My content doesn’t follow trends. It <em>sets</em> them.'};
+const AGBA={bg:'yellow',sec:'Creator of Realities',t:'Agba Creator',q:'I don’t wait for the future I want.<br>I <em>create</em> it.'};
 function scaleXY(d,kx,ky,ox,oy){let xy=0;return d.split(' ').map(t=>{if(isNaN(parseFloat(t)))return t;const v=xy++%2?parseFloat(t)*ky+oy:parseFloat(t)*kx+ox;return v.toFixed(3);}).join(' ');}
 const FAN8=scaleXY(FAN_PATH,8/9,8/8.4,0,0);
 function bg8(t){document.getElementById('fan8bg').style.cssText=`inset:0;background-color:${t.bg};background-image:linear-gradient(${t.grid} .02in,transparent .02in),linear-gradient(90deg,${t.grid} .02in,transparent .02in);background-size:.5in .5in;background-position:center`;}
