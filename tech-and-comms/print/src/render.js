@@ -10,6 +10,8 @@ const JOBS = [
   ['fanback', 'Hand Fan - Back (all fans)', 9.25, 8.65, 300],
   ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(k => ['fan' + k, `Hand Fan ${k} - Front`, 9.25, 8.65, 300]),
   ['fancut', 'Hand Fan - Cut Line Template', 9.25, 8.65, 150],
+  ['a8front', 'Agba Creator/Hand Fan 8x8 - Agba Creator - Front', 8.25, 8.25, 300],
+  ['a8back', 'Agba Creator/Hand Fan 8x8 - Back', 8.25, 8.25, 300],
   ['mockback', 'mock/Mockup - Back', 11, 14, 100, 'png'],
   ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(k => ['mock' + k, `mock/Mockup ${k}`, 11, 14, 100, 'png']),
 ];

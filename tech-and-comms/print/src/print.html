@@ -118,6 +118,22 @@ html,body{background:#fff}
   <svg class="abs" id="cutsvg" style="inset:0;width:9.25in;height:8.65in" viewBox="-0.125 -0.125 9.25 8.65"></svg>
 </div>
 
+<!-- ============ 8 x 8 in HAND FAN (Agba Creator): face 8 x 8 in + 1/8 in bleed = 8.25 x 8.25 in ============ -->
+<div class="page" id="fan8" style="width:8.25in;height:8.25in">
+  <div class="abs" id="fan8bg" style="inset:0"></div>
+  <div class="abs" id="fan8face" style="left:.125in;top:.125in;width:8in;height:8in"></div>
+</div>
+<div class="page" id="fan8mock" style="width:10in;height:13.4in;background:#e7e9f0">
+  <div class="abs" id="m8shadow" style="left:1in;top:.8in;width:8in;height:8in;filter:blur(.12in);background:rgba(13,20,64,.35);transform:translate(.08in,.14in)"></div>
+  <div class="abs" id="m8clip" style="left:.875in;top:.675in;width:8.25in;height:8.25in"></div>
+  <div class="abs" style="left:4.6in;top:6.55in;width:.8in;height:6.3in;background:linear-gradient(90deg,#e9ebef,#fff 40%,#f2f3f6);border-radius:.24in .24in .4in .4in;box-shadow:0 .06in .14in rgba(13,20,64,.3)"></div>
+  <div class="abs" style="left:4.86in;top:6.84in;width:.28in;height:.28in;border-radius:50%;background:radial-gradient(circle at 40% 35%,#d9dbe0,#8a8f99)"></div>
+  <svg class="abs" viewBox="0 0 24 24" style="left:4.83in;top:12.25in;width:.34in;height:.34in"><path fill="#c9ccd3" d="M12 21s-8.5-5.2-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.8 12 21 12 21z"/></svg>
+</div>
+<div class="page" id="fan8cut" style="width:8.25in;height:8.25in;background:#fff">
+  <svg class="abs" id="cut8svg" style="inset:0;width:8.25in;height:8.25in" viewBox="-0.125 -0.125 8.25 8.25"></svg>
+</div>
+
 <script>
 const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
 const LOGO='<div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span>';
@@ -212,7 +228,48 @@ function drawCut(){const svg=document.getElementById('cutsvg');
    <text x="4.5" y="4.05" text-anchor="middle" font-family="M" font-weight="600" font-size="0.17" fill="#4b537a">Face 9 × 8.4 in · artwork files are 9.25 × 8.65 in (1/8 in bleed all round)</text>
    <text x="4.5" y="4.35" text-anchor="middle" font-family="M" font-weight="600" font-size="0.17" fill="#4b537a">Grey dashed: handle and rivet position (keep clear of text)</text>`;}
 window.FANS=FANS;
+// ---- 8 x 8 in square fan (Agba Creator) ----
+const AGBA={bg:'yellow',sec:'Content Creation',t:'Agba Creator',q:'My content doesn’t follow trends. It <em>sets</em> them.'};
+function scaleXY(d,kx,ky,ox,oy){let xy=0;return d.split(' ').map(t=>{if(isNaN(parseFloat(t)))return t;const v=xy++%2?parseFloat(t)*ky+oy:parseFloat(t)*kx+ox;return v.toFixed(3);}).join(' ');}
+const FAN8=scaleXY(FAN_PATH,8/9,8/8.4,0,0);
+function bg8(t){document.getElementById('fan8bg').style.cssText=`inset:0;background-color:${t.bg};background-image:linear-gradient(${t.grid} .02in,transparent .02in),linear-gradient(90deg,${t.grid} .02in,transparent .02in);background-size:.5in .5in;background-position:center`;}
+function fan8Front(){const f=AGBA,t=THEMES[f.bg];bg8(t);
+  const q=f.q.replace(/<em>(.*?)<\/em>/,`<span class="serif" style="color:${t.em};font-size:1.15em">$1</span>`);
+  document.getElementById('fan8face').innerHTML=`
+   <div class="abs ast" style="left:5.95in;top:.55in;width:.98in;height:.98in;color:${t.ast};transform:rotate(12deg)">${AST}</div>
+   <div class="abs" style="left:.85in;top:.8in;font:700 .14in M;letter-spacing:.28em;color:${t.small};text-transform:uppercase">${f.sec}</div>
+   <div class="abs" style="left:.85in;top:1.25in;font:400 .5in S;font-style:italic;color:${t.em};line-height:1">Na me be the</div>
+   <div class="abs" id="f8t" style="left:.85in;right:.8in;top:1.8in;font:400 1.12in/0.96 AB;color:${t.ink};text-transform:uppercase;letter-spacing:-.01em">${f.t}</div>
+   <div class="abs" id="f8r" style="left:.85in;width:1in;height:.07in;background:${t.em}"></div>
+   <div class="abs" id="f8q" style="left:.85in;right:1in;font:700 .34in/1.3 M;color:${t.ink}">${q}</div>
+   <div class="abs" style="left:.85in;right:.85in;bottom:.75in;display:flex;align-items:flex-end;justify-content:space-between">
+     <div class="logo ${t.logo}" style="--s:.32in;text-align:left;${t.lv||''}">${LOGO}</div>
+     <div style="text-align:right;font:800 .12in/1.6 M;letter-spacing:.14em;color:${t.small}">26.11.2026<br>CRAWFORD UNIVERSITY</div></div>`;
+  const ft=document.getElementById('f8t');let fs=1.12;
+  while((ft.offsetHeight>2*fs*96*0.96+4||ft.scrollWidth>ft.clientWidth)&&fs>.4){fs-=.02;ft.style.fontSize=fs+'in';}
+  const y=ft.offsetTop+ft.offsetHeight;
+  document.getElementById('f8r').style.top=(y+.28*96)+'px';
+  document.getElementById('f8q').style.top=(y+.54*96)+'px';}
+function fan8Back(){document.getElementById('fan').classList.add('on');fanBack();
+  const html=document.getElementById('fanface').innerHTML.replace('left:.9in;width:3.2in','left:1.55in;width:3.2in').replace('right:.9in;width:3.2in','right:1.55in;width:3.2in');document.getElementById('fan').classList.remove('on');
+  bg8(THEMES.paper);
+  // the 9 x 8.4 in back, scaled evenly to 8 in wide and centred on the 8 x 8 in face
+  document.getElementById('fan8face').innerHTML=`<div class="abs" style="left:0;top:.42in;width:9in;height:8.4in;transform:scale(${8/9});transform-origin:0 0">${html}</div>`;}
+function drawCut8(){document.getElementById('cut8svg').innerHTML=`<rect x="-0.125" y="-0.125" width="8.25" height="8.25" fill="#f4f5f8"/>
+   <path d="${FAN8}" fill="#fff" stroke="#e6007e" stroke-width="0.025"/>
+   <rect x="3.6" y="5.76" width="0.8" height="2.4" rx="0.24" fill="none" stroke="#9aa0ad" stroke-width="0.02" stroke-dasharray="0.08 0.06"/>
+   <circle cx="4" cy="6.1" r="0.14" fill="none" stroke="#9aa0ad" stroke-width="0.02"/>
+   <text x="4" y="3.4" text-anchor="middle" font-family="M" font-weight="800" font-size="0.3" fill="#e6007e">CUT LINE (magenta)</text>
+   <text x="4" y="3.82" text-anchor="middle" font-family="M" font-weight="600" font-size="0.15" fill="#4b537a">Face 8 × 8 in · artwork 8.25 × 8.25 in (1/8 in bleed all round)</text>
+   <text x="4" y="4.1" text-anchor="middle" font-family="M" font-weight="600" font-size="0.15" fill="#4b537a">Grey dashed: handle and rivet position</text>`;}
+function show8(id){const p8=document.getElementById('fan8');
+  if(id==='a8cut'){drawCut8();document.getElementById('fan8cut').classList.add('on');return;}
+  p8.classList.add('on');(id.endsWith('back')?fan8Back:fan8Front)();
+  if(id.startsWith('a8mock')){const clip=document.getElementById('m8clip');clip.innerHTML=p8.innerHTML;clip.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    clip.style.clipPath=`path('${scaleXY(FAN8,96,96,12,12)}')`;document.getElementById('m8shadow').style.clipPath=`path('${scaleXY(FAN8,96,96,0,0)}')`;
+    p8.classList.remove('on');document.getElementById('fan8mock').classList.add('on');}}
 function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  if(id.startsWith('a8'))return show8(id);
   if(id==='fancut'){drawCut();document.getElementById('fancut').classList.add('on');}
   else if(id.startsWith('mock')){const k=id.slice(4);k==='back'?fanBack():fanFront(FANS.find(f=>f.k===k));
     const fan=document.getElementById('fan'),clip=document.getElementById('mockclip');
