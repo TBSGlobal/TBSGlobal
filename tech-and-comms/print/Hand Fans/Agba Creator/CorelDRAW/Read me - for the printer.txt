@@ -1,0 +1,13 @@
+Agba Creator hand fan - 8 x 8 in square
+
+Size: 8.25 x 8.25 in artwork = 8 x 8 in fan + 1/8 in bleed on every side. Trim to 8 x 8 in.
+Print the Front with the Back on the reverse.
+
+Opening in CorelDRAW (best first):
+1. SVG  - File > Import. Opens as editable shapes.
+2. PDF  - File > Open (or Import). Choose "Import text as curves" if asked.
+3. EPS  - File > Import.
+4. PNG (300 dpi) - use only if the vector files give trouble.
+
+All text is already converted to curves, so no fonts are needed.
+These files have no transparency effects, which is what caused the earlier "corrupted file" error.
