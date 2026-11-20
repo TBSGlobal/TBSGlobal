@@ -1,0 +1,231 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:AB;src:url(img/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:MB;src:url(img/montserrat-latin-900-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(img/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(img/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(img/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(img/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:M;font-weight:800;font-style:italic;src:url(img/montserrat-latin-800-italic.woff2)}
+@font-face{font-family:S;font-style:italic;src:url(img/dm-serif-display-latin-400-italic.woff2)}
+:root{--deep:#071566;--royal:#022394;--blue:#5379F6;--ink:#131838;--paper:#f2f5fc;--grid:#e2e8f8;--yellow:#ffd60a;--muted:#4b537a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#fff}
+.slide{position:absolute;inset:0;overflow:hidden;font-family:M,sans-serif;color:var(--ink);background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:120px 120px}
+.slide.dark{background-color:var(--deep);color:#fff;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px)}
+.abs{position:absolute}
+.c{left:0;right:0;text-align:center}
+.ast{color:var(--blue)}.ast svg{width:100%;height:100%;display:block}
+.blur{filter:blur(10px);opacity:.75}
+/* logo */
+.logo{display:inline-block;text-align:center;line-height:.98;font-family:MB;--l1:var(--ink);--bx:var(--blue)}
+.logo .l1{font-size:var(--s);color:var(--l1);letter-spacing:-.03em;white-space:nowrap}
+.logo .amp{color:var(--bx)}
+.logo .box{display:inline-block;position:relative;margin-top:calc(var(--s)*.06);background:var(--bx);color:#fff;font-size:calc(var(--s)*1.02);padding:calc(var(--s)*.01) calc(var(--s)*.16) calc(var(--s)*.02);outline:calc(var(--s)*.022) solid var(--bx);white-space:nowrap}
+.logo .box i{position:absolute;width:calc(var(--s)*.13);height:calc(var(--s)*.13);background:#fff;border:calc(var(--s)*.025) solid var(--bx)}
+.logo .box i:nth-child(1){left:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}.logo .box i:nth-child(2){right:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}
+.logo .box i:nth-child(3){left:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}.logo .box i:nth-child(4){right:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}
+.logo.white{--l1:#fff}
+.ribbon{display:inline-block;background:var(--yellow);color:var(--ink);font:italic 800 40px M;padding:16px 70px;transform:rotate(-2.5deg);clip-path:polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%)}
+.eyebrow{font:700 30px M;letter-spacing:.34em;text-transform:uppercase}
+.h1{font:400 120px/1 AB;letter-spacing:-.01em}
+.h2{font:400 86px/1.02 AB}
+.serif{font-family:S;font-style:italic;font-weight:400}
+.body{font:600 40px/1.4 M}
+.pill{display:inline-block;font:800 26px M;letter-spacing:.24em;text-transform:uppercase;padding:14px 34px;border-radius:999px;background:var(--royal);color:#fff}
+.pill.y{background:var(--yellow);color:var(--ink)}
+.card{border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(7,21,102,.55)}
+.card img{display:block;width:100%}
+.foot{left:0;right:0;bottom:0;height:96px;background:var(--royal);display:flex;align-items:center;justify-content:space-between;padding:0 70px;color:#fff;font:800 26px M;letter-spacing:.14em}
+.hl{background:var(--yellow);color:var(--ink);padding:0 10px}
+.box-white{background:#fff;border-radius:32px;box-shadow:0 40px 90px -50px rgba(7,21,102,.6)}
+</style></head><body>
+<div id="stage"></div>
+<script>
+const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+const LOGO=(s,cls='')=>`<div class="logo ${cls}" style="--s:${s}px"><div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span></div>`;
+const ASTS=`<div class="abs ast" style="right:-60px;top:110px;width:330px;height:330px;transform:rotate(14deg)">${AST}</div><div class="abs ast blur" style="left:-90px;bottom:120px;width:280px;height:280px">${AST}</div>`;
+const FOOT=(t='TECH & COMMS · 26TH NOV. 2026 · MULTIPURPOSE HALL, CRAWFORD UNIVERSITY')=>`<div class="abs foot"><span>${t}</span><span>#TECHANDCOMMS</span></div>`;
+const ASTL=`<div class="abs ast blur" style="left:-90px;bottom:120px;width:280px;height:280px">${AST}</div>`;
+const TOP=`<div class="abs" style="left:70px;top:56px">${LOGO(40)}</div>`;
+const TOPW=`<div class="abs" style="left:70px;top:56px">${LOGO(40,'white')}</div>`;
+
+// ----- slide builders -----
+const S={
+ welcome:()=>`<div class="slide">${ASTS}
+   <div class="abs c" style="top:120px"><span class="eyebrow" style="color:var(--muted)">Welcome to</span></div>
+   <div class="abs c" style="top:200px">${LOGO(190)}</div>
+   <div class="abs c" style="top:640px"><span class="ribbon" style="font-size:46px">Where comms meets tech</span></div>
+   <div class="abs c" style="top:790px;font:800 34px M;letter-spacing:.05em;white-space:nowrap">THURSDAY, 26TH NOVEMBER 2026 · MULTIPURPOSE HALL, CRAWFORD UNIVERSITY</div>
+   <div class="abs c" style="top:870px;font:400 56px S;font-style:italic;color:var(--royal)">#TechAndComms</div></div>`,
+ register:()=>`<div class="slide dark">${TOPW}<div class="abs ast" style="right:90px;top:90px;width:220px;height:220px;transform:rotate(14deg)">${AST}</div>
+   <div class="abs" style="left:150px;top:250px;width:1200px">
+     <span class="pill y">Before you sit down</span>
+     <div class="h1" style="margin-top:50px">Get your <span class="serif" style="color:var(--yellow);font-size:1.1em">certificate</span><br>of participation</div>
+     <div class="body" style="margin-top:50px;color:rgba(255,255,255,.85)">Register at the <b style="color:#fff">front desk</b> with your name exactly as you want it on the certificate.</div></div>
+   ${FOOT()}</div>`,
+ flyer:()=>`<div class="slide">${ASTS}
+   <div class="abs card" style="left:150px;top:70px;width:752px;height:940px"><img src="img/flyer.png"></div>
+   <div class="abs" style="left:1010px;top:200px;width:800px">
+     <span class="pill">Today's line-up</span>
+     <div class="h2" style="margin-top:44px">Three talks.<br>One panel.<br><span class="serif" style="color:var(--royal);font-size:1.12em">Your questions.</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">Communications: School vs Reality · Media Monitoring, Intelligence and AI in Comms · Building Your Professional Presence</div></div></div>`,
+ partners:()=>`<div class="slide">
+   <div class="abs card" style="left:150px;top:70px;width:752px;height:940px"><img src="img/partners.webp" style="height:100%;object-fit:cover"></div>
+   <div class="abs" style="left:1010px;top:250px;width:800px">
+     <span class="pill">Thank you</span>
+     <div class="h2" style="margin-top:44px">Our partners<br>and <span class="serif" style="color:var(--royal);font-size:1.12em">sponsors</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">Department of Mass Communication · AMACOS · Unicorn, Crawford University Alumni · P+ Measurement Services · Zofu</div></div>
+   ${ASTS}</div>`,
+ lineup:()=>{const c=['host','gabriel','onaopemipo','jegede','barnabas','kyrian'];
+   return `<div class="slide">${ASTL}<div class="abs" style="left:110px;top:40px;display:grid;grid-template-columns:repeat(3,320px);gap:26px">${c.map(k=>`<div class="card" style="border-radius:20px"><img src="img/${k}.png"></div>`).join('')}</div>
+   <div class="abs" style="left:1210px;top:300px;width:620px"><span class="pill">Meet the voices</span>
+     <div class="h2" style="margin-top:40px;font-size:76px">Host, speakers, panelists and <span class="serif" style="color:var(--royal);font-size:1.1em">compere</span></div></div></div>`;},
+ title:()=>`<div class="slide dark"><div class="abs ast" style="right:-40px;top:90px;width:330px;height:330px;transform:rotate(14deg)">${AST}</div>
+   <div class="abs c" style="top:150px"><span class="eyebrow" style="color:rgba(255,255,255,.7)">The Comms Boardroom Technologies presents</span></div>
+   <div class="abs c" style="top:250px">${LOGO(210,'white')}</div>
+   <div class="abs c" style="top:740px"><span class="ribbon" style="font-size:50px">Where comms meets tech</span></div>
+   <div class="abs c" style="top:900px;font:800 36px M;letter-spacing:.1em;color:rgba(255,255,255,.85)">26TH NOVEMBER 2026 · CRAWFORD UNIVERSITY</div></div>`,
+ hod:()=>`<div class="slide">${TOP}${ASTS}
+   <div class="abs" style="left:150px;top:300px;width:1500px">
+     <span class="pill">Opening message</span>
+     <div class="h1" style="margin-top:50px">Dr. Dayo Odigie</div>
+     <div class="body" style="margin-top:30px;color:var(--muted)">Head of Department, Mass Communication<br>Crawford University</div></div>${FOOT()}</div>`,
+ ann1:()=>`<div class="slide">${TOP}${ASTS}
+   <div class="abs" style="left:150px;top:200px"><span class="pill">Announcement</span></div>
+   <div class="abs" style="left:150px;top:300px;width:780px">
+     <div class="h2" style="font-size:72px">Certificates</div>
+     <div class="body" style="margin-top:30px;color:var(--muted)">Register at the <b style="color:var(--ink)">front desk</b> to get your certificate of participation. Spell your name exactly as you want it printed.</div></div>
+   <div class="abs box-white" style="left:1000px;top:280px;width:770px;padding:50px 56px">
+     <div class="h2" style="font-size:64px">How the raffle works</div>
+     <div style="margin-top:30px;font:600 34px/1.55 M">
+       <div><b style="color:var(--royal)">1.</b> Keep your raffle number</div>
+       <div><b style="color:var(--royal)">2.</b> If it's called, come up</div>
+       <div><b style="color:var(--royal)">3.</b> Answer one Mass Comm question</div>
+       <div><b style="color:var(--royal)">4.</b> Win a <span class="hl">hand fan + airtime</span></div></div></div>${FOOT()}</div>`,
+ upnext:(card,label,title,name)=>`<div class="slide">${ASTL}
+   <div class="abs card" style="left:150px;top:90px;width:720px"><img src="img/${card}.png"></div>
+   <div class="abs" style="left:980px;top:230px;width:830px">
+     <span class="pill y">Up next · ${label}</span>
+     <div class="h2" style="margin-top:44px;font-size:${title.length>40?68:82}px">${title}</div>
+     <div style="margin-top:44px;font:800 44px M;color:var(--royal)">${name}</div></div></div>`,
+ zofu:()=>`<div class="slide dark">${TOPW}
+   <div class="abs" style="left:150px;top:250px;width:1050px">
+     <span class="pill y">Free for every attendee</span>
+     <div class="h1" style="margin-top:50px;font-size:104px">Revamp your CV<br>with <span class="serif" style="color:var(--yellow);font-size:1.1em">Zofu Pro</span></div>
+     <div class="body" style="margin-top:44px;color:rgba(255,255,255,.85)">1 month of Zofu Pro free. AI that tailors your CV to every job you apply for.<br><b style="color:#fff">Your access code is revealed at the end. Stay till the close.</b></div></div>
+   <div class="abs box-white" style="right:150px;top:330px;width:480px;height:300px;display:grid;place-items:center"><img src="img/zofu-logo.png" style="width:380px"></div>
+   ${FOOT()}</div>`,
+ survey:()=>`<div class="slide">${TOP}${ASTS}
+   <div class="abs" style="left:150px;top:260px;width:1000px">
+     <span class="pill">3 minutes · anonymous</span>
+     <div class="h1" style="margin-top:50px">Scan for our<br><span class="serif" style="color:var(--royal);font-size:1.1em">student survey</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">What are you learning, and what do you wish you were learning? Your answers help shape a curriculum that matches the industry.</div></div>
+   <div class="abs box-white" style="left:1230px;top:220px;width:560px;padding:40px;text-align:center"><img src="img/qr-survey.png" style="width:480px;display:block"><div style="margin-top:16px;font:700 26px M;color:var(--muted)">tech-and-comms.vercel.app/survey</div></div>${FOOT()}</div>`,
+ round:(n,fields)=>`<div class="slide dark"><div class="abs ast" style="right:-40px;top:90px;width:330px;height:330px;transform:rotate(14deg)">${AST}</div>
+   <div class="abs c" style="top:190px"><span class="pill y">Raffle draw</span></div>
+   <div class="abs c" style="top:300px;font:400 220px/1 AB">Round ${n}</div>
+   <div class="abs c" style="top:600px;font:600 40px M;color:rgba(255,255,255,.85)">5 questions · ${fields}</div>
+   <div class="abs c" style="top:720px;font:400 60px S;font-style:italic;color:var(--yellow)">Get it right. Win a hand fan + airtime.</div></div>`,
+ q:(i,field,question)=>`<div class="slide">${TOP}
+   <div class="abs" style="left:150px;top:190px"><span class="pill">Question ${i} · ${field}</span></div>
+   <div class="abs" style="left:150px;top:310px;width:1050px;font:400 ${question.length>110?66:78}px/1.15 AB">${question}</div>
+   <div class="abs" style="left:1300px;top:170px;width:500px;transform:rotate(3deg)"><div class="card"><img src="img/fan${i}.png"></div><div style="text-align:center;margin-top:24px;font:800 26px M;letter-spacing:.2em;color:var(--muted)">THE PRIZE + AIRTIME</div></div>${FOOT()}</div>`,
+ a:(i,field,question,answer)=>`<div class="slide">${TOP}
+   <div class="abs" style="left:150px;top:190px"><span class="pill">Question ${i} · ${field}</span></div>
+   <div class="abs" style="left:150px;top:300px;width:1050px;font:600 40px/1.35 M;color:var(--muted)">${question}</div>
+   <div class="abs" style="left:150px;top:520px;width:1050px"><span class="pill y">Answer</span><div style="margin-top:30px;font:400 ${answer.length>60?66:80}px/1.12 AB;color:var(--royal)">${answer}</div></div>
+   <div class="abs" style="left:1300px;top:170px;width:500px;transform:rotate(3deg)"><div class="card"><img src="img/fan${i}.png"></div></div>${FOOT()}</div>`,
+ winner:()=>`<div class="slide dark"><div class="abs ast" style="left:120px;top:120px;width:240px;height:240px">${AST}</div><div class="abs ast" style="right:140px;bottom:200px;width:300px;height:300px;transform:rotate(20deg)">${AST}</div>
+   <div class="abs c" style="top:240px;font:400 260px/1 AB;color:var(--yellow)">WINNER!</div>
+   <div class="abs c" style="top:560px;font:400 70px S;font-style:italic">You got it right. Keep winning.</div>
+   <div class="abs c" style="top:700px;font:700 40px M;color:rgba(255,255,255,.85)">Collect your hand fan and airtime by the stage</div></div>`,
+ ann4:()=>`<div class="slide">${TOP}${ASTS}
+   <div class="abs" style="left:150px;top:230px;width:1050px">
+     <span class="pill">From our sponsor P+ Measurement</span>
+     <div class="h1" style="margin-top:50px;font-size:104px"><span class="hl">[Discount]</span> off<br><span class="serif" style="color:var(--royal);font-size:1.05em">[Book title]</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">by [Author] · claim it: [code, link or front desk] · until [end date]</div></div>
+   <div class="abs box-white" style="right:150px;top:250px;width:470px;padding:40px;text-align:center"><img src="img/pplus-logo.png" style="width:330px"><div style="margin-top:30px;height:300px;border:4px dashed #c3cbe6;border-radius:20px;display:grid;place-items:center;font:700 30px M;color:#9aa3c7">[Book cover]</div></div>${FOOT()}</div>`,
+ panel:()=>`<div class="slide">${ASTL}
+   <div class="abs card" style="left:110px;top:150px;width:540px"><img src="img/jegede.png"></div>
+   <div class="abs card" style="left:680px;top:150px;width:540px"><img src="img/barnabas.png"></div>
+   <div class="abs" style="left:1300px;top:200px;width:540px">
+     <span class="pill y">Up next · Panel</span>
+     <div class="h2" style="margin-top:40px;font-size:68px">You Media: the new normal in the media landscape</div>
+     <div style="margin-top:40px;font:600 34px/1.4 M;color:var(--muted)">With Samuel Jegede (humanitarian communications) and Barnabas Inumidun</div></div></div>`,
+ qa:()=>`<div class="slide dark">${TOPW}
+   <div class="abs" style="left:150px;top:250px;width:1050px">
+     <span class="pill y">Open Q&amp;A</span>
+     <div class="h1" style="margin-top:50px">Ask your<br><span class="serif" style="color:var(--yellow);font-size:1.1em">question</span></div>
+     <div class="body" style="margin-top:44px;color:rgba(255,255,255,.85)">Raise your hand for the microphone. The speakers pick the <b style="color:#fff">best question</b>, which wins the Agba Creator fan.</div></div>
+   <div class="abs" style="right:150px;top:200px;width:520px;transform:rotate(3deg)"><div class="card"><img src="img/fan-agba.png"></div></div>${FOOT()}</div>`,
+ code:()=>`<div class="slide dark">${TOPW}
+   <div class="abs c" style="top:200px"><span class="pill y">Zofu Pro · 1 month free</span></div>
+   <div class="abs c" style="top:320px;font:700 40px M;color:rgba(255,255,255,.85)">Your access code</div>
+   <div class="abs c" style="top:400px"><span style="display:inline-block;background:#fff;color:var(--deep);font:400 150px/1 AB;padding:50px 90px;border-radius:30px;letter-spacing:.06em">[CODE]</span></div>
+   <div class="abs c" style="top:720px;font:600 38px/1.5 M;color:rgba(255,255,255,.85)">Redeem at <b style="color:#fff">zofu.quest</b> by [date]<br>For people in this hall only. Please don't post it.</div></div>`,
+ thanks:()=>`<div class="slide">
+   <div class="abs" style="left:150px;top:230px;width:800px">
+     <div class="h1">Thank <span class="serif" style="color:var(--royal);font-size:1.1em">you!</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">To our speakers, panelists, compere, partners and sponsors, and to every student in this hall.</div>
+     <div style="margin-top:50px">${LOGO(70)}</div></div>
+   <div class="abs card" style="left:1010px;top:70px;width:752px;height:940px"><img src="img/partners.webp" style="height:100%;object-fit:cover"></div></div>`,
+ nextcampus:()=>`<div class="slide">${TOP}${ASTS}
+   <div class="abs" style="left:150px;top:220px;width:1020px">
+     <span class="pill">Tech &amp; Comms 2027</span>
+     <div class="h1" style="margin-top:50px;font-size:96px">Which university<br>should we visit <span class="serif" style="color:var(--royal);font-size:1.1em">next?</span></div>
+     <div class="body" style="margin-top:44px;color:var(--muted)">Scan to register your school. We're going to 5 to 10 universities across Africa in 2027.</div></div>
+   <div class="abs box-white" style="left:1230px;top:230px;width:560px;padding:40px;text-align:center"><img src="img/qr-site.png" style="width:480px;display:block"><div style="margin-top:16px;font:700 26px M;color:var(--muted)">tech-and-comms.vercel.app</div></div>${FOOT()}</div>`,
+ photo:()=>`<div class="slide dark"><div class="abs ast" style="right:-40px;top:90px;width:330px;height:330px;transform:rotate(14deg)">${AST}</div>
+   <div class="abs c" style="top:220px"><span class="pill y">Before you leave</span></div>
+   <div class="abs c" style="top:340px;font:400 130px/1.05 AB">Group photo<br>at the <span class="serif" style="color:var(--yellow);font-size:1.1em">backdrop</span></div>
+   <div class="abs c" style="top:700px;font:600 42px/1.5 M;color:rgba(255,255,255,.85)">Add your sticky note to the prompt wall, grab a picture with the Instagram frame,<br>and register for your certificate at the front desk.</div></div>`,
+ end:()=>`<div class="slide">${ASTS}
+   <div class="abs c" style="top:190px">${LOGO(170)}</div>
+   <div class="abs c" style="top:600px;font:400 90px S;font-style:italic;color:var(--royal)">See you online.</div>
+   <div class="abs c" style="top:740px;font:800 50px M;letter-spacing:.06em">#TechAndComms</div>
+   <div class="abs c" style="top:830px;font:600 32px M;color:var(--muted)">tech-and-comms.vercel.app · The Comms Boardroom Technologies</div></div>`,
+ brb:()=>`<div class="slide dark"><div class="abs c" style="top:220px">${LOGO(120,'white')}</div>
+   <div class="abs c" style="top:600px;font:400 110px AB">We'll be right back</div>
+   <div class="abs c" style="top:760px;font:400 54px S;font-style:italic;color:var(--yellow)">Stay with us. Where comms meets tech.</div></div>`,
+};
+
+const QUIZ=[
+ ['Public Relations','In the RACE model of public relations, what do the four letters stand for?','Research, Action, Communication, Evaluation'],
+ ['Advertising','What does the advertising model AIDA stand for?','Attention, Interest, Desire, Action'],
+ ['Journalism','What are the "5 Ws and H" every news story should answer?','Who, What, When, Where, Why and How'],
+ ['Broadcasting','Which government body regulates radio and television broadcasting in Nigeria?','The National Broadcasting Commission (NBC)'],
+ ['Media Monitoring & Evaluation','Which global principles for measuring PR and communication, first agreed in 2010, are named after a Spanish city?','The Barcelona Principles'],
+ ['Digital & New Media','What does SEO stand for?','Search Engine Optimisation'],
+ ['Film & Multimedia','In film production, what is a storyboard?','Drawings that plan each shot or scene before filming'],
+ ['Development Communication','What do the letters SDGs stand for, and how many goals are there?','Sustainable Development Goals. There are 17.'],
+ ['Personal Branding','On LinkedIn, what is the short line under your name that tells people what you do called?','Your headline'],
+ ['Strategic Communication','What does SWOT stand for?','Strengths, Weaknesses, Opportunities, Threats'],
+];
+const qa=(i)=>[[`Raffle Q${i+1} - ${QUIZ[i][0]}`,()=>S.q(i+1,QUIZ[i][0],QUIZ[i][1])],[`Raffle Q${i+1} - Answer`,()=>S.a(i+1,QUIZ[i][0],QUIZ[i][1],QUIZ[i][2])]];
+// [section, name, builder]
+const SLIDES=[
+ ['Arrival loop','Welcome',S.welcome],['Arrival loop','Register for your certificate',S.register],['Arrival loop','Flyer - todays line-up',S.flyer],
+ ['Arrival loop','Meet the voices',S.lineup],['Arrival loop','Partners and sponsors',S.partners],
+ ['Opening','Title',S.title],['Opening','Opening message - HOD',S.hod],['Opening','A1 - Certificates and how the raffle works',S.ann1],
+ ['Talk 1','Up next - Gabriel Ntoka',()=>S.upnext('gabriel','Talk 1','Communications: School vs Reality','Gabriel Ntoka')],
+ ['After Talk 1','A2 - Zofu CV revamp',S.zofu],
+ ['Talk 2','Up next - Samuel Ogundeji',()=>S.upnext('host','Talk 2','Media Monitoring, Intelligence and AI in Comms','Samuel Ogundeji')],
+ ['After Talk 2','A3 - Survey QR code',S.survey],
+ ['Raffle round 1','Round 1',()=>S.round(1,'PR · Advertising · Journalism · Broadcasting · Media Monitoring')],
+ ...[0,1,2,3,4].flatMap(i=>qa(i).map(([n,b])=>['Raffle round 1',n,b])),['Raffle round 1','Winner',S.winner],
+ ['Talk 3','Up next - Onaopemipo Famori',()=>S.upnext('onaopemipo','Talk 3','Building Your Professional Presence','Onaopemipo Famori')],
+ ['After Talk 3','A4 - P+ Measurement book offer',S.ann4],
+ ['Panel','Up next - Panel',S.panel],
+ ['Raffle round 2','Round 2',()=>S.round(2,'Digital · Film · Development · Personal Branding · Strategy')],
+ ...[5,6,7,8,9].flatMap(i=>qa(i).map(([n,b])=>['Raffle round 2',n,b])),['Raffle round 2','Winner',S.winner],
+ ['Q&A','Ask your question',S.qa],
+ ['Closing','A5 - Zofu code (hall only)',S.code],['Closing','Thank you',S.thanks],['Closing','Which university next',S.nextcampus],
+ ['Closing','Group photo and prompt wall',S.photo],['Closing','See you online',S.end],
+ ['Backup','We will be right back',S.brb],
+];
+window.SLIDES=SLIDES.map(([s,n])=>[s,n]);
+window.show=i=>{document.getElementById('stage').innerHTML=SLIDES[i][2]();};
+</script></body></html>

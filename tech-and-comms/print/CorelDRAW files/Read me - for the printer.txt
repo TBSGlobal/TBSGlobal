@@ -1,0 +1,12 @@
+Tech & Comms print files, ready for CorelDRAW
+
+Each design comes as SVG and EPS. Open in CorelDRAW with File > Import (or File > Open).
+All text is already converted to curves, so no fonts are needed.
+The PDF files in the main folder are also print-ready and open in CorelDRAW the same way.
+
+Sizes
+- Backdrop Banner: 7 ft wide x 5 ft tall (84 x 60 in)
+- Instagram Placard: 2 ft x 3 ft (24 x 36 in). The pink dashed rectangle is the cut-out (19 x 22 in); it is a cutting guide, do not print it.
+- Hand Fans: face 9 x 8.4 in. Artwork is 9.25 x 8.65 in (1/8 in bleed all round).
+  Cut to the shape in "Hand Fan - Cut Line Template". The grey dashed area shows the handle and rivet.
+  10 different fronts, one shared back. Print each front with the back on the reverse.

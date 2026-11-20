@@ -1,0 +1,2750 @@
+{
+ "Advertising": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 111",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 121",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ADV 111",
+   "title": "Introduction to Advertising & Marketing Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ADV 121",
+   "title": "Introduction to Strategic Planning",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ADV 112",
+   "title": "Advertising, Marketing & Society",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ADV 122",
+   "title": "Advertising Development in Marketing Communications",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic & Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 211",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 211",
+   "title": "Fundamentals of Integrated Marketing Communication",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 221",
+   "title": "Digital Marketing",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 212",
+   "title": "Copy Writing & Media Planning",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 222",
+   "title": "Brand Development",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 213",
+   "title": "Consumer Insights",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 223",
+   "title": "Creative Content Marketing for Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 214",
+   "title": "Business Writing & Presentation Skills",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolutions",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 311",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 321",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 312",
+   "title": "Data Analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 311",
+   "title": "Advertising & Market Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 321",
+   "title": "Advertising Production Techniques (Multimedia/Interactive)",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 312",
+   "title": "Media Planning, Buying & Execution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 322",
+   "title": "Brands and Brand Building",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 323",
+   "title": "Art Direction and Design",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 314",
+   "title": "Advertising Campaign & Execution Workshop",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 315",
+   "title": "Power, Personal Influence & Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 325",
+   "title": "Quantitative Thinking in Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 316",
+   "title": "Entrepreneurship in Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ADV 326",
+   "title": "Internship",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 411",
+   "title": "Critical Issues in Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 421",
+   "title": "Economics and Management of Advertising Agency",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 412",
+   "title": "Advertising Laws and Ethics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 422",
+   "title": "Social Marketing",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 413",
+   "title": "Seminar in Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 423",
+   "title": "Case Studies in advertising",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ADV 424",
+   "title": "Advertising Project (Phase I & II)",
+   "units": 3,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Broadcasting": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "BCJ 104",
+   "title": "Study Skills in Mass Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 207",
+   "title": "Introduction to Telecommunication and Broadcasting",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 209",
+   "title": "Introduction to Radio Production",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 211",
+   "title": "Introduction to TV Production",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 206",
+   "title": "Introduction to Film Production",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 208",
+   "title": "Writing for the Broadcast Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 218",
+   "title": "Introduction to General Phonetics and Phonology",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "BCJ 220",
+   "title": "Introduction to Print and Photojournalism",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolutions",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 307",
+   "title": "Techniques of Television News Writing, Reporting and Production",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 309",
+   "title": "Media Management and Operations",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 315",
+   "title": "Television Programme Writing and Production",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 317",
+   "title": "Broadcast Commentary and Critical Writing",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 319",
+   "title": "Public Affairs Broadcasting",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 321",
+   "title": "Educational Broadcasting I",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 306",
+   "title": "Online Broadcasting (Webcasting, Podcasting and Streaming)",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 308",
+   "title": "Techniques of Radio News writing, Reporting and Production",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 310",
+   "title": "Foundation of Broadcasting",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "BCJ 312",
+   "title": "Internship: Attachment to a Broadcasting Agency",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 401",
+   "title": "Mass Media Law and Ethics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 403",
+   "title": "Emerging Global Trends in Broadcasting",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 405",
+   "title": "Advanced Project in Radio Production",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 407",
+   "title": "Advanced Techniques of Video/Sound Editing and Post Production",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 409",
+   "title": "Drama and Documentary Writing and Production",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 411",
+   "title": "Principles and Practice of Live Broadcast",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 402",
+   "title": "Data Analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 404",
+   "title": "Advanced Project in TV Production",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 406",
+   "title": "Advanced Techniques in Announcing and Presentation",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 408",
+   "title": "Advanced Script Writing for the Broadcast Media (TV, Film, New Media and Radio)",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 410",
+   "title": "Fundamentals of Graphics for TV and Online Media",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "BCJ 412",
+   "title": "Research Project in Radio/TV Broadcasting",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Development Communication Studies": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 101",
+   "title": "Foundations of Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 102",
+   "title": "Ethics of Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 103",
+   "title": "History of Development",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 104",
+   "title": "Sociology of Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 105",
+   "title": "Fundamentals of Development Communication Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "DCS 106",
+   "title": "Introduction to Communication for Development",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 202",
+   "title": "Introduction to Behaviour Change Communication",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 203",
+   "title": "Theories of Development Communication Technology for Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 205",
+   "title": "Participatory Communication Strategies for Development",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 206",
+   "title": "Writing for Development Purposes",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 207",
+   "title": "Community Media for Development",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "DCS 208",
+   "title": "Studies in Cinematography and Film Development",
+   "units": 3,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 301",
+   "title": "Communication and Development Issues",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 302",
+   "title": "Health Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 303",
+   "title": "Development Communication Strategies",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 304",
+   "title": "Message Design and Production for Development",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 305",
+   "title": "Community Theatre for Development",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 306",
+   "title": "Community Development Practicum",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 307",
+   "title": "Agricultural Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 308",
+   "title": "Design and Development of Training Materials",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "DCS 309",
+   "title": "Theatre for Development in Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 401",
+   "title": "Entrepreneurship Education in Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 402",
+   "title": "Communication for Behaviour and Social Change",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 403",
+   "title": "Final Project Work",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 404",
+   "title": "Development Project Monitoring and Evaluation",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 405",
+   "title": "Cultural Studies for Development Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "DCS 406",
+   "title": "Conflict and Peace Building Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Film and Multimedia": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian peoples & culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to human communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "FMM 101",
+   "title": "History of film & multimedia",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "FMM 102",
+   "title": "Film, multimedia & culture I",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic & Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 201",
+   "title": "Film analysis & criticism",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 202",
+   "title": "Digital literacy",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 203",
+   "title": "Economics & management of film & multimedia",
+   "units": 3,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 204",
+   "title": "Film, multimedia & culture II",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 205",
+   "title": "Elements of film production",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "FMM 206",
+   "title": "Elements of multimedia production",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace & conflict resolution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of communication research communication research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 301",
+   "title": "Film scripting & directing I",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 302",
+   "title": "Digital storytelling I",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 303",
+   "title": "Cinematography, motion picture sound & digital technology I",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 304",
+   "title": "Cinematography, motion picture sound & digital technology II",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 305",
+   "title": "Film & multimedia production design & editing I",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 306",
+   "title": "Film & multimedia production design & editing II",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 307",
+   "title": "Capstone projects I: Film & multimedia",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 308",
+   "title": "Capstone projects II: Film & multimedia",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "FMM 310",
+   "title": "Internship",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication & society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 401",
+   "title": "Film scripting & directing II",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 402",
+   "title": "Digital storytelling II",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 403",
+   "title": "Cinematography, motion picture sound & digital technology III",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 404",
+   "title": "Cinematography, motion picture sound & digital technology IV",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 405",
+   "title": "Film & multimedia production design & editing III",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 406",
+   "title": "Film & multimedia production design & editing IV",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 407",
+   "title": "Capstone projects III: Film & multimedia",
+   "units": 3,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 408",
+   "title": "Capstone projects IV: Film & multimedia",
+   "units": 3,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "FMM 410",
+   "title": "Final project.",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Information and Media Studies": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 111",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 112",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ISM 111",
+   "title": "Introduction to Information science",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ISM 112",
+   "title": "Basic Computer Tools",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ISM 113",
+   "title": "Computer Aided Design in Media Production",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "ISM 121",
+   "title": "Web-based Technologies & Multimedia Total 16",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 211",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 211",
+   "title": "Introduction to Image Processing & Application",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 212",
+   "title": "Applied Computer Graphics",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 213",
+   "title": "Fundamentals of Film & Cinematography",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 214",
+   "title": "Introduction to Academic Information Resources",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 221",
+   "title": "Media Production Process",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "1SM 223",
+   "title": "Introduction to Multimedia Scripting",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ISM 224",
+   "title": "Introduction to online and investigative Journalism Total 20",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 311",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 312",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 313",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 311",
+   "title": "Interactive & Motion Graphics",
+   "units": 3,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 312",
+   "title": "Computer Animation Production",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 313",
+   "title": "Introduction to Social Media Network",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 314",
+   "title": "E-commerce/Business Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 321",
+   "title": "Fundamentals of Television & Display Technologies",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 322",
+   "title": "E-publishing (Digital Media Production)",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 323",
+   "title": "Digital Audio & Video System Technology",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ISM 324",
+   "title": "SIWES Total 29",
+   "units": 4,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 411",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 412",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 411",
+   "title": "Media Economics and Management",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 412",
+   "title": "Media Ethics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 413",
+   "title": "Media Law & Policy",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 414",
+   "title": "3D Modelling & Technology and Digital Rendering",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 421",
+   "title": "New Media, Politics and Democracy",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 422",
+   "title": "ICT and Development",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 423",
+   "title": "Entrepreneurship",
+   "units": 3,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "ISM 429",
+   "title": "Project Total 23",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Journalism and Media Studies": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian People and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "JMS 101",
+   "title": "Introduction to Journalism and Media Studies",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "JMS 102",
+   "title": "Basic Reporting Techniques",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "JMS 103",
+   "title": "Traditional African Communication System",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 201",
+   "title": "News Writing & Reporting",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 202",
+   "title": "Photo Journalism I",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 203",
+   "title": "Photo Journalism II",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 204",
+   "title": "Writing for the Print Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 205",
+   "title": "Editing and Infographic in Journalism",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "JMS 206",
+   "title": "Feature Writing",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolutions",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 301",
+   "title": "Newspaper Production",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 302",
+   "title": "Journalism and Politics",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 303",
+   "title": "Scientific and Data Journalism",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 304",
+   "title": "Investigative Journalism",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 305",
+   "title": "Multimedia and Online Journalism",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 306",
+   "title": "Foreign Correspondence",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 307",
+   "title": "Media Entrepreneurship",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 308",
+   "title": "Trends and Issues in Journalism and Media Studies",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "JMS 309",
+   "title": "Media Attachment",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 401",
+   "title": "Magazine Production",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 402",
+   "title": "Critical Review and Writing",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 403",
+   "title": "Rural Community Newspaper",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 404",
+   "title": "Specialised Reporting",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 405",
+   "title": "Editorial Writing",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 406",
+   "title": "Media, Economics and Management",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 407",
+   "title": "Comparative Media System",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 408",
+   "title": "Media Law",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 409",
+   "title": "Media Ethics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 410",
+   "title": "Journalism for Development",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "JMS 499",
+   "title": "Original Research Project",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Mass Communication": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 101",
+   "title": "Foundations of Broadcasting and Film",
+   "units": 3,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 102",
+   "title": "Principles of Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 103",
+   "title": "Introduction to Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 104",
+   "title": "Introduction to News Writing",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 105",
+   "title": "Introduction to Book Publishing",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 106",
+   "title": "African Communication Systems",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "MCM 107",
+   "title": "Introduction to Photojournalism",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 201",
+   "title": "Critical and Reviewing Writing",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 202",
+   "title": "Editing and Graphics of Communication",
+   "units": 3,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 203",
+   "title": "Feature Writing Majo r",
+   "units": 3,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 204",
+   "title": "Advanced and Specialized Reporting Majo r",
+   "units": 3,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 205",
+   "title": "Techniques in Book publishing Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 206",
+   "title": "Manuscript Editing, Layout and Design in Book Publishing Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 207",
+   "title": "Radio/TV News Reporting and production dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 208",
+   "title": "Radio/Television Programme Writing dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 209",
+   "title": "Drama, Film and Documentary Production dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 210",
+   "title": "Presentation and Performance dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 211",
+   "title": "Basics of Screenwriting and Film Animation dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 212",
+   "title": "Marketing Foundations for Public Relations and Advertising D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 213",
+   "title": "Writing for Public Relations D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 214",
+   "title": "Advert Copy Writing D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 215",
+   "title": "Advertising Media Planning D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "MCM 216",
+   "title": "Fundamentals of Media Relations D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 301",
+   "title": "Mass Communication and Politics",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 302",
+   "title": "Online Journalism",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 303",
+   "title": "Gender and Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 304",
+   "title": "Foreign Correspondence Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 305",
+   "title": "Newspaper /Magazine Management and Majo Production r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 306",
+   "title": "Investigative Journalism nalis m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 307",
+   "title": "Photojournalism Research and Management Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 308",
+   "title": "Broadcast Programming, Management and Operations dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 309",
+   "title": "Commentary, Critical Writing and Public Affairs Broadcasting dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 310",
+   "title": "International and Foreign Broadcasting dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 311",
+   "title": "Film Production and Screen Directing dcas t/Fil m Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 312",
+   "title": "Organisation and Management of Advertising and PR Agencies D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 313",
+   "title": "Advertising and PR Research D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 314",
+   "title": "International Public Relations and Advertising D Majo r",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "MCM 315",
+   "title": "Consumer Affairs D Majo r Units",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 401",
+   "title": "& 402 Original Research Project",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 403",
+   "title": "Media attachment",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 404",
+   "title": "Mass Media Ethics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 405",
+   "title": "Mass Media Law",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 406",
+   "title": "Communication for Development",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 407",
+   "title": "Message Design for Development",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "MCM 408",
+   "title": "Community Media and Relations",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Public Relations": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 112",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Human Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "PRS 111",
+   "title": "Introduction to Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "PRS 112",
+   "title": "History of Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 201",
+   "title": "Principle of Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 202",
+   "title": "Media Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 203",
+   "title": "Digital and Social Media for Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 204",
+   "title": "Writing for Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 205",
+   "title": "Public Relations for not-for -Profit sector",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 206",
+   "title": "Public Relations and the Society",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 207",
+   "title": "Marketing and Advertising in Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 209",
+   "title": "Public Relations in a Multi-cultural Society",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolution",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data Analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 301",
+   "title": "Public Relations Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 303",
+   "title": "Brand Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 304",
+   "title": "Corporate Social Responsibility",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 305",
+   "title": "Financial Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 306",
+   "title": "Crisis Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 307",
+   "title": "SIWES",
+   "units": 4,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 308",
+   "title": "PR for Business Organisations",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 309",
+   "title": "Stakeholders and Community Relations",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 310",
+   "title": "Political Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 311",
+   "title": "Media and Communication Planning and Strategy",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 401",
+   "title": "Public Relations Campaign Planning and Execution",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 402",
+   "title": "International Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 403",
+   "title": "Ethics and Professionalism in PR",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 404",
+   "title": "Public Relations Production Techniques (Multimedia/Interactive)",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 405",
+   "title": "Entrepreneurship in Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 409",
+   "title": "Comparative Public Relations Systems",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 410",
+   "title": "Public Relations Law",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "PRS 499",
+   "title": "Final Year Project",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  }
+ ],
+ "Strategic Communication": [
+  {
+   "code": "GST 111",
+   "title": "Communication in English",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 211",
+   "title": "Nigerian Peoples and Culture",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 101",
+   "title": "Introduction to Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "CMS 102",
+   "title": "Writing for the Media",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "STC 101",
+   "title": "Introduction to Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "STC 102",
+   "title": "Critical Web Literacy",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "STC 104",
+   "title": "Introduction to Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "100"
+  },
+  {
+   "code": "GST 212",
+   "title": "Philosophy, Logic and Human Existence",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ENT 211",
+   "title": "Entrepreneurship and Innovation",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "CMS 201",
+   "title": "History of Nigerian Media",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "STC 201",
+   "title": "Introduction to academic information resources",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "STC 202",
+   "title": "Writing for of Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "STC 203",
+   "title": "Strategic Political Communication",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "STC 204",
+   "title": "Strategic Content Creation:",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "STC 205",
+   "title": "Introduction to Digital Media Skills",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 200",
+   "title": "Media Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "PRS 201",
+   "title": "Principles of Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "ADV 210",
+   "title": "Principles of Advertising",
+   "units": 2,
+   "status": "C",
+   "level": "200"
+  },
+  {
+   "code": "GST 312",
+   "title": "Peace and Conflict Resolutions",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "ENT 312",
+   "title": "Venture Creation",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 301",
+   "title": "Theories of Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 302",
+   "title": "Foundation of Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 303",
+   "title": "Data analysis in Communication Research",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 301",
+   "title": "Issues in Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 303",
+   "title": "Research Methods in Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 306",
+   "title": "Special Topics in Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 307",
+   "title": "Digital Marketing for Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 308",
+   "title": "Persuasion and Message Design in Strategic Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "STC 310",
+   "title": "Strategic Campaign Management",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 303",
+   "title": "Brand Communication",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "PRS 311",
+   "title": "Media Planning and Strategy",
+   "units": 2,
+   "status": "C",
+   "level": "300"
+  },
+  {
+   "code": "CMS 401",
+   "title": "International Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 402",
+   "title": "Communication and Society",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 402",
+   "title": "Practicum/Portfolio in Strategic Communication",
+   "units": 4,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 403",
+   "title": "Digital Strategic Communication Analytics",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 409",
+   "title": "Media, Propaganda and Public Opinion:",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 410",
+   "title": "Corporate Organizational Communication",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 412",
+   "title": "Corporate and Industrial Public Relations",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "STC 499",
+   "title": "Original Research Project",
+   "units": 6,
+   "status": "C",
+   "level": "400"
+  },
+  {
+   "code": "CMS 406",
+   "title": "Comm for Development",
+   "units": 2,
+   "status": "C",
+   "level": "400"
+  }
+ ]
+}

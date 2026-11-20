@@ -1,0 +1,244 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Archivo Black";src:url(fonts/x/package/files/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:400;src:url(fonts/x/package/files/montserrat-latin-400-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:700;src:url(fonts/x/package/files/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;src:url(fonts/x/package/files/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:"Montserrat";font-weight:800;font-style:italic;src:url(fonts/x/package/files/montserrat-latin-800-italic.woff2)}
+@font-face{font-family:"DM Serif Display";font-style:italic;src:url(fonts/x/package/files/dm-serif-display-latin-400-italic.woff2)}
+:root{--navy:#131838;--navy2:#222a5a;--blue:#5a7bfe;--soft:#dfe6ff;--yellow:#ffd60a;--paper:#f2f5fc;--grid:#e2e8f8;--muted:#4b537a}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden}
+body{background:var(--paper);font-family:Montserrat,sans-serif;color:var(--navy)}
+#stage{position:absolute;inset:0;overflow:hidden;
+  background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:90px 90px}
+.abs{position:absolute}
+.hud{left:60px;right:60px;top:70px;display:flex;justify-content:space-between;font:700 26px/1 Montserrat;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.hud .rec{display:flex;align-items:center;gap:14px}
+.hud .dot{width:16px;height:16px;border-radius:50%;background:#e5484d}
+.corner{width:60px;height:60px;border-color:var(--navy);border-style:solid;opacity:.35}
+.c1{left:50px;top:140px;border-width:4px 0 0 4px}.c2{right:50px;top:140px;border-width:4px 4px 0 0}
+.c3{left:50px;bottom:120px;border-width:0 0 4px 4px}.c4{right:50px;bottom:120px;border-width:0 4px 4px 0}
+.counter{left:0;right:0;top:760px;text-align:center}
+.counter .lbl{font:800 30px Montserrat;letter-spacing:.3em;color:var(--muted)}
+.counter .num{font:400 230px/1 "Archivo Black";color:var(--navy);font-variant-numeric:tabular-nums;margin-top:20px}
+.card{background:#fff;border-radius:22px;padding:20px 26px;box-shadow:0 20px 40px -24px rgba(19,24,56,.5);font:600 28px/1.3 Montserrat;width:470px;display:flex;gap:18px;align-items:flex-start}
+.card b{display:block;font:800 22px Montserrat;color:var(--muted);letter-spacing:.04em;margin-bottom:4px}
+.card i{flex:none;width:18px;height:18px;border-radius:50%;margin-top:10px}
+.caption{left:80px;right:80px;text-align:center}
+.caption .s{font:italic 400 64px/1.15 "DM Serif Display";color:var(--muted)}
+.caption .b{font:400 92px/1.05 "Archivo Black";color:var(--navy);margin-top:14px}
+.dash{left:120px;right:120px;top:640px;height:640px;background:var(--navy);border-radius:36px;padding:50px;color:#fff;box-shadow:0 50px 90px -50px rgba(19,24,56,.8)}
+.dash .t{font:800 26px Montserrat;letter-spacing:.24em;color:#c9d2f7}
+.bars{position:absolute;left:50px;right:330px;bottom:60px;height:380px;display:flex;align-items:flex-end;gap:18px;border-bottom:4px solid var(--navy2)}
+.bars span{flex:1;background:var(--blue);border-radius:10px 10px 0 0}
+.bars span:nth-child(2n){background:#c9d2f7}
+.ring{position:absolute;right:50px;top:200px;width:240px;height:240px}
+.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font:400 64px "Archivo Black";color:var(--yellow)}
+.ring small{position:absolute;left:0;right:0;bottom:-56px;text-align:center;font:800 20px Montserrat;letter-spacing:.2em;color:#c9d2f7}
+.page{left:160px;right:160px;top:600px;height:700px;background:#fff;border-radius:16px;padding:70px 60px;box-shadow:0 30px 60px -40px rgba(19,24,56,.5);display:grid;gap:26px;align-content:start}
+.page i{display:block;height:20px;border-radius:10px;background:#e3e7f2}
+.page .h{height:34px;width:60%;background:#cfd6ea}
+.title{left:0;right:0;top:560px;text-align:center;font:400 220px/.95 "Archivo Black";color:var(--navy)}
+.title .amp{color:var(--blue)}
+.boxed{display:inline-block;position:relative;background:var(--blue);color:#fff;padding:0 24px;outline:5px solid var(--blue);outline-offset:12px;margin-top:40px}
+.boxed s{position:absolute;width:26px;height:26px;background:#fff;border:5px solid var(--blue)}
+.tag{left:50%;top:1150px;background:var(--yellow);color:var(--navy);font:italic 800 40px Montserrat;padding:22px 44px;white-space:nowrap;box-shadow:0 20px 40px -20px rgba(19,24,56,.5);clip-path:polygon(2% 0,100% 6%,98% 100%,0 92%)}
+.ast{width:300px;height:300px;color:var(--blue)}
+.info{left:90px;right:90px;top:640px;display:grid;gap:26px}
+.info .row{background:var(--navy);color:#fff;border-radius:26px;padding:34px 40px}
+.info .k{font:800 22px Montserrat;letter-spacing:.3em;color:#a9b6f5}
+.info .v{font:400 64px/1.1 "Archivo Black";margin-top:8px}
+.info .v.sm{font-size:48px}
+.info .open{font:700 34px/1.4 Montserrat;color:var(--navy);text-align:center;margin-top:20px}
+.info .open em{font:italic 400 44px "DM Serif Display"}
+.logo{display:flex;align-items:center;gap:22px;justify-content:center}
+.lm{width:110px;height:110px;border:6px solid var(--blue);display:grid;grid-template-columns:1fr 1fr;place-items:center;font:400 44px/1 "Archivo Black";color:var(--blue);padding:6px}
+.lt{font:600 26px/1.02 Montserrat;text-transform:uppercase;color:var(--navy)}
+.partner{left:60px;right:60px;bottom:170px;text-align:center;font:700 22px/1.5 Montserrat;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.flash{inset:0;background:#fff}
+/* topic 01 */
+.exam{left:90px;right:90px;top:300px;background:#fff;border-radius:28px;padding:44px;box-shadow:0 30px 60px -36px rgba(19,24,56,.55);display:grid;gap:22px}
+.exam .eh{display:flex;justify-content:space-between;font:800 22px Montserrat;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.exam .eh .red{color:#e5484d}
+.exam .q{font:700 40px/1.3 Montserrat;color:var(--navy);margin-bottom:6px}
+.opt{display:flex;align-items:center;gap:20px;border:3px solid var(--grid);border-radius:18px;padding:22px 24px;font:600 32px/1.25 Montserrat;color:var(--navy)}
+.opt .l{flex:none;width:52px;height:52px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:800 26px Montserrat;color:var(--navy)}
+.opt.on{border-color:var(--blue);background:#eef2ff}
+.opt.on .l{background:var(--blue);color:#fff}
+.opt .tick{margin-left:auto;font:800 40px Montserrat;color:var(--blue)}
+.stamp{right:70px;top:840px;width:230px;height:230px;border-radius:50%;border:12px solid #e5484d;color:#e5484d;display:grid;place-items:center;font:400 120px/1 "Archivo Black"}
+.stamp small{font-size:70px;position:absolute;right:40px;top:30px}
+.phone{left:250px;width:580px;top:250px;height:1100px;background:var(--navy);border-radius:70px;padding:60px 30px;box-shadow:0 60px 100px -50px rgba(19,24,56,.9);border:10px solid #0b0f26}
+.phone .clock{text-align:center;color:#fff;font:400 120px/1 "Archivo Black";margin:30px 0 40px}
+.phone .clock small{font:700 30px Montserrat;margin-left:10px;color:#c9d2f7}
+.notes{display:grid;gap:16px}
+.note{background:rgba(255,255,255,.95);border-radius:24px;padding:20px 22px;display:flex;gap:16px;font:600 25px/1.3 Montserrat;color:var(--navy)}
+.note i{flex:none;width:16px;height:16px;border-radius:50%;margin-top:8px}
+.note b{display:block;font:800 20px Montserrat;letter-spacing:.06em;color:var(--muted);margin-bottom:2px;text-transform:uppercase}
+.vs{left:70px;right:70px;top:300px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.vs .col{background:#fff;border-radius:28px;padding:36px 28px;display:grid;gap:14px;justify-items:center;align-content:start;box-shadow:0 30px 60px -40px rgba(19,24,56,.5);min-height:860px}
+.vs .col.job{background:var(--navy)}
+.vs .k{font:800 24px Montserrat;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.vs .job .k{color:#a9b6f5}
+.pill{display:block;width:100%;text-align:center;background:var(--soft);color:var(--navy);border-radius:16px;padding:22px 14px;font:800 30px Montserrat}
+.pill.hot{background:var(--blue);color:#fff;font-size:28px;line-height:1.25;margin-bottom:12px}
+.pill.hot:nth-child(3){background:var(--yellow);color:var(--navy)}
+.pill.hot:nth-child(4){background:#e5484d}
+.arr{font:800 34px Montserrat;color:var(--muted)}
+/* topic 03 */
+.search{left:90px;right:90px;top:200px;height:110px;background:#fff;border-radius:60px;box-shadow:0 20px 40px -26px rgba(19,24,56,.5);display:flex;align-items:center;gap:20px;padding:0 40px;font:600 38px Montserrat;color:var(--navy);z-index:2}
+.search .mag{font-size:52px;color:var(--muted)}
+.pview{left:90px;right:90px;top:340px;height:1290px;overflow:hidden;border-radius:28px}
+.plist{position:absolute;left:0;right:0;height:4000px}
+.prof{position:absolute;left:0;right:0;height:220px;background:#fff;border-radius:28px;padding:30px;display:flex;gap:26px;align-items:center;box-shadow:0 20px 40px -30px rgba(19,24,56,.5)}
+.prof .av{flex:none;width:130px;height:130px;border-radius:50%;display:grid;place-items:center;font:400 44px "Archivo Black";color:#fff}
+.prof b{display:block;font:400 38px "Archivo Black";color:var(--navy)}
+.prof span{display:block;font:600 27px/1.3 Montserrat;color:var(--navy)}
+.prof small{display:block;font:700 23px Montserrat;color:var(--muted);margin-top:6px}
+.prof.empty{border:5px dashed #cfd6ea;box-shadow:none;background:#fafbff}
+.prof.empty .av{background:#cfd6ea;color:#fff}
+.prof .ghost{color:#9aa5cf;font-style:italic}
+.rev{left:0;right:0;bottom:200px;text-align:center;font:800 28px Montserrat;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);z-index:2}
+.rev b{font:400 54px "Archivo Black";color:var(--blue);letter-spacing:0;margin-left:12px}
+.stamp.skip{left:auto;right:70px;top:auto;bottom:640px;width:auto;height:auto;border-radius:16px;padding:14px 30px;font:400 64px "Archivo Black";border-width:8px;z-index:3;background:rgba(255,255,255,.85)}
+.pcard{left:90px;right:90px;top:330px;background:#fff;border-radius:34px;padding:46px;display:grid;gap:36px;box-shadow:0 40px 80px -46px rgba(19,24,56,.6)}
+.pcard .top{display:flex;gap:30px;align-items:center}
+.av.big{flex:none;width:170px;height:170px;border-radius:50%;display:grid;place-items:center;font:400 46px "Archivo Black";color:#fff}
+.pcard b{display:block;font:400 48px "Archivo Black";color:var(--navy)}
+.pcard .top span{display:block;font:600 30px/1.35 Montserrat;color:var(--navy);margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.stats div{background:var(--paper);border-radius:20px;padding:22px 10px}
+.stats b{font:400 52px "Archivo Black";color:var(--blue)}
+.stats small{font:800 20px Montserrat;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tiles i{aspect-ratio:1;border-radius:18px}
+.chks{left:150px;right:150px;top:420px;display:grid;gap:26px}
+.chk{display:flex;align-items:center;gap:24px;background:#fff;border-radius:22px;padding:28px 34px;font:800 40px Montserrat;color:var(--navy);box-shadow:0 20px 40px -30px rgba(19,24,56,.5)}
+.chk i{font-style:normal;width:64px;height:64px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:36px}
+
+.pcard .top .av.big{display:grid;margin:0;color:#fff;font:400 46px "Archivo Black"}
+</style></head>
+<body><div id="stage"></div>
+<script>
+const W=1080,H=1920;
+const stage=document.getElementById('stage');
+const AST='<svg viewBox="-50 -50 100 100" width="100%" height="100%"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+// helpers
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lin=(t,a,b)=>clamp((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3);              // ease out cubic
+const eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const POS='#2bb673',NEG='#e5484d',NEU='#9aa5cf';
+const SNIPS=[
+ ['@tolu.writes','This campaign is everywhere right now',POS],['@ada_reviews','Customer service took 3 days to reply',NEG],
+ ['@lagos_daily','Brand X announces new partnership',NEU],['@kemi.o','Who runs their PR? Brilliant work',POS],
+ ['@techng','The launch event was a mess honestly',NEG],['@ife_creates','Saw their ad on the BRT again',NEU],
+ ['@campus.gist','Free tickets for students? Count me in',POS],['@d.okafor','Their CEO interview was solid',POS],
+ ['@naija.biz','Price went up again this month',NEG],['@zainab.k','Just switched to them last week',NEU],
+ ['@media_watch','Trending at #3 in Lagos',POS],['@seyi_says','The rebrand is growing on me',POS],
+ ['@abuja.now','Long queues at the Ikeja outlet',NEG],['@ngozi.pr','Great crisis response today',POS],
+ ['@the.analyst','Share of voice up 18% this week',NEU],['@femi.dev','Their app keeps crashing',NEG],
+];
+const SLOTS=[[50,210],[560,250],[50,420],[560,460],[50,1150],[560,1190],[50,1360],[560,1400],[50,1570],[560,1610]];
+const cards=SNIPS.slice(0,10).map((s,i)=>({h:s[0],txt:s[1],c:s[2],t0:0.5+i*0.6,x:SLOTS[i][0]+(rnd()-.5)*30,y:SLOTS[i][1],r:(rnd()-.5)*7}));
+function count(t){ // mentions counter 0..12480 over 0.4..6.8s, accelerating
+  const k=lin(t,0.4,6.8); return Math.round(12480*Math.pow(k,2.2)); }
+function fmt(n){return n.toLocaleString('en-US')}
+function el(cls,html,style){return `<div class="abs ${cls}" style="${style||''}">${html}</div>`}
+
+function render(t){
+  let h='';
+  const hudTxt = t<18.5 ? `<span class="rec"><span class="dot" style="opacity:${(Math.floor(t*2)%2)?1:.25}"></span>Recruiter view · Candidate search</span><span>00:${String(Math.floor(t)).padStart(2,'0')}:${String(Math.floor((t%1)*30)).padStart(2,'0')}</span>` : `<span>The Comms Boardroom</span><span>Tech &amp; Comms</span>`;
+  h+=el('hud',hudTxt);
+  h+=el('corner c1','')+el('corner c2','')+el('corner c3','')+el('corner c4','');
+
+  // TOPIC 03 · SCENE 1+2: a recruiter scrolls past (0 - 10.5)
+  const PROFILES=[['AO','#5a7bfe','Adaeze O.','PR intern · writes about brand storytelling','2.1k followers · 48 posts'],
+    ['TK','#ffd60a','Tunde K.','Content creator · campus events host','5.4k followers · 120 posts'],
+    ['FB','#2bb673','Funmi B.','Mass Comm \'25 · building a media portfolio','860 followers · 31 posts'],
+    ['IE','#e5484d','Ifeanyi E.','Social media lead, student union','1.3k followers · 64 posts'],
+    ['ZM','#5a7bfe','Zainab M.','Documenting my first year in comms','3.0k followers · 77 posts'],
+    ['DA','#ffd60a','David A.','Podcast host · culture & media','2.6k followers · 52 posts']];
+  if(t<10.6){
+    const a=eo(lin(t,0.1,0.5)), o=1-lin(t,10.0,10.4);
+    const typed='Mass Comm graduate, Lagos'.slice(0,Math.floor(lin(t,0.3,1.8)*25));
+    h+=el('search',`<span class="mag">⌕</span>${typed}<span class="caret" style="opacity:${(Math.floor(t*3)%2)&&t<2?1:0}">|</span>`,`opacity:${a*o}`);
+    // list scrolls up (fast in the middle), then settles on the empty profile
+    const f = eio(lin(t,1.8,6.2)), settle = eo(lin(t,5.9,6.3));
+    const rows=PROFILES.map((p,i)=>`<div class="prof" style="top:${i*250}px"><span class="av" style="background:${p[1]}">${p[0]}</span><div><b>${p[2]}</b><span>${p[3]}</span><small>${p[4]}</small></div></div>`).join('')
+      + `<div class="prof empty" style="top:${PROFILES.length*250}px;transform:scale(${1+.05*settle})"><span class="av">?</span><div><b>Mass Comm student</b><span class="ghost">No headline</span><small>0 posts · no photo · nothing to see</small></div></div>`;
+    h+=el('pview',`<div class="plist" style="top:${80 - 1120*f}px">${rows}</div>`,`opacity:${a*o}`);
+    const n = Math.round(46*Math.pow(lin(t,1.8,6.0),1.4)) + (t>=6?1:0);
+    h+=el('rev',`Profiles reviewed <b>${n}</b>`,`opacity:${a*(1-lin(t,6.9,7.3))}`);
+    if(t>6.3){ const k=back(clamp(lin(t,6.3,6.7))); h+=el('stamp skip','SKIPPED',`opacity:${clamp(k)*o};transform:rotate(${-12+8*(1-k)}deg) scale(${1.5-.5*k})`); }
+    if(t>=7.2){
+      const c1=eo(lin(t,7.2,7.7)), c2=eo(lin(t,7.9,8.4)), oo=1-lin(t,10,10.4);
+      h+=el('caption',`<div class="s" style="opacity:${c1}">A recruiter looked you up.</div><div class="b" style="opacity:${c2};transform:translateY(${(1-c2)*40}px)">They found nothing.</div>`,`top:1420px;opacity:${oo}`);
+    }
+  }
+  // TOPIC 03 · SCENE 3: the profile builds itself (10.4 - 14.8)
+  if(t>=10.4 && t<15){
+    const a=eo(lin(t,10.4,10.9)), o=1-lin(t,14.4,14.8);
+    const av=eo(lin(t,10.8,11.3)), head='Mass Comm student · documenting my journey into PR'.slice(0,Math.floor(lin(t,11.2,12.4)*51));
+    const posts=Math.round(24*eo(lin(t,11.6,13.4))), fol=Math.round(1284*eo(lin(t,11.6,13.6)));
+    const tiles=[...Array(6)].map((_,i)=>`<i style="opacity:${eo(lin(t,11.8+i*.2,12.2+i*.2))};background:${['#dfe6ff','#ffd60a','#dfe6ff','#5a7bfe','#dfe6ff','#131838'][i]}"></i>`).join('');
+    const glitch = t>14.1 ? `translateX(${(Math.sin(t*90)*12).toFixed(1)}px)` : '';
+    h+=el('pcard',`<div class="top"><span class="av big" style="background:${av>0.5?'#5a7bfe':'#cfd6ea'};transform:scale(${.8+.2*av})">${av>0.5?'YOU':'?'}</span><div><b>Your name</b><span>${head}<span class="caret">${t<12.6?'|':''}</span></span></div></div>
+      <div class="stats"><div><b>${posts}</b><small>Posts</small></div><div><b>${fol.toLocaleString('en-US')}</b><small>Followers</small></div><div><b>${Math.round(312*eo(lin(t,12,13.8)))}</b><small>Profile views</small></div></div>
+      <div class="tiles">${tiles}</div>`,`opacity:${a*o};transform:translateY(${(1-a)*60}px) ${glitch}`);
+    const c1=eo(lin(t,11.4,11.9)), c2=eo(lin(t,12.1,12.6));
+    h+=el('caption',`<div class="s" style="opacity:${c1}">You don't need to have made it.</div><div class="b" style="opacity:${c2};transform:translateY(${(1-c2)*40}px)">You need to show up.</div>`,`top:1420px;opacity:${o}`);
+  }
+  // TOPIC 03 · SCENE 4 (14.6 - 18.8)
+  if(t>=14.6 && t<18.8){
+    const o=1-lin(t,18.2,18.6);
+    const CH=['Profile photo','A clear headline','Your first post','A story worth following'];
+    const chips=CH.map((c,i)=>{const k=back(clamp(lin(t,14.8+i*.35,15.2+i*.35)));return `<span class="chk" style="opacity:${clamp(k)};transform:scale(${.8+.2*k})"><i>✓</i>${c}</span>`}).join('');
+    h+=el('chks',chips,`opacity:${o}`);
+    const c1=eo(lin(t,16.0,16.5)), c2=eo(lin(t,16.6,17.1));
+    h+=el('caption',`<div class="s" style="opacity:${c1}">Start telling the story</div><div class="b" style="opacity:${c2};transform:translateY(${(1-c2)*40}px)">of who you're becoming.</div>`,`top:1300px;opacity:${o}`);
+  }
+  // TOPIC 03 · SCENE 5 (18.6 - 21.6)
+  if(t>=18.6 && t<21.8){
+    const a=eo(lin(t,18.8,19.3)), o=1-lin(t,21.2,21.6);
+    h+=el('caption',`<div class="s" style="font-size:80px;color:var(--navy)">We'll show you how.</div>`,`top:880px;opacity:${a*o};transform:scale(${.94+.06*a})`);
+  }
+  // SCENE 6: title (21.5 - 26.4)
+  if(t>=21.5 && t<26.6){
+    const o=1-lin(t,26.0,26.4);
+    const l1=back(clamp(lin(t,21.5,21.9))), l2=back(clamp(lin(t,21.75,22.2)));
+    const sq=`<s style="left:-26px;top:-26px"></s><s style="right:-26px;top:-26px"></s><s style="left:-26px;bottom:-26px"></s><s style="right:-26px;bottom:-26px"></s>`;
+    h+=el('title',`<div style="transform:translateY(${(1-l1)*-120}px);opacity:${clamp(l1)}">TECH <span class="amp">&amp;</span></div><div style="transform:scale(${.5+.5*l2});opacity:${clamp(l2)}"><span class="boxed">COMMS${sq}</span></div>`,`opacity:${o}`);
+    const tg=back(clamp(lin(t,22.5,23.0)));
+    h+=el('tag','Where Communications Meet Technology',`opacity:${clamp(tg)*o};transform:translateX(-50%) rotate(${-3-9*(1-tg)}deg) scale(${.8+.2*tg})`);
+    h+=el('ast',AST,`right:-60px;top:250px;transform:rotate(${t*40}deg);opacity:${.9*o}`);
+    h+=el('ast',AST,`left:-110px;top:1380px;transform:rotate(${-t*30}deg) scale(.7);opacity:${.35*o};filter:blur(4px)`);
+    const sub=eo(lin(t,23.3,23.8));
+    h+=el('caption',`<div class="s" style="font-size:54px">Topic 03 · Building your<br>professional presence</div>`,`top:1340px;opacity:${sub*o}`);
+  }
+  // SCENE 7: details + CTA (26.3 - 31)
+  if(t>=26.3){
+    const r=i=>eo(lin(t,26.4+i*.25,26.9+i*.25));
+    h+=el('ast',AST,`right:-120px;top:1500px;transform:rotate(${t*40}deg);opacity:.5`);
+    h+=el('title',`TECH <span class="amp">&amp;</span> COMMS`,`top:330px;font-size:96px;opacity:${r(0)}`);
+    h+=el('tag','Where Communications Meet Technology',`top:480px;font-size:34px;padding:16px 34px;opacity:${r(0)};transform:translateX(-50%) rotate(-3deg)`);
+    h+=`<div class="abs info">
+      <div class="row" style="opacity:${r(0)};transform:translateX(${(1-r(0))*-80}px)"><div class="k">Date</div><div class="v">26th Nov. 2026</div></div>
+      <div class="row" style="opacity:${r(1)};transform:translateX(${(1-r(1))*80}px)"><div class="k">Venue</div><div class="v sm">Legacy Hall,<br>Crawford University</div></div>
+      <div class="open" style="opacity:${r(2)}">Open to all Mass Communication students.<br><em>Seats are limited.</em></div>
+      <div class="logo" style="opacity:${r(3)};margin-top:30px"><span class="lm"><span>T</span><span>C</span><span>B</span><span>R</span></span><span class="lt">The<br>Comms<br>Board<br>Room</span></div>
+    </div>`;
+    h+=el('partner','In partnership with the Department of Mass Communication<br>&amp; the Crawford University Alumni Association',`opacity:${r(4)}`);
+  }
+  // flash at title hit
+  const f = Math.max(0, 1-Math.abs(t-21.5)/0.18);
+  if(f>0) h+=el('flash','',`opacity:${f*.9}`);
+  stage.innerHTML=h;
+}
+window.render=render;
+render(0);
+</script></body></html>
