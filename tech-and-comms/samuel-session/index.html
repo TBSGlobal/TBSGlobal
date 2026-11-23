@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>From Monitoring to Intelligence · Samuel Ogundeji · Tech &amp; Comms</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:AB;src:url(fonts/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:MB;src:url(fonts/montserrat-latin-900-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(fonts/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(fonts/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(fonts/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(fonts/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:S;font-style:italic;src:url(fonts/dm-serif-display-latin-400-italic.woff2)}
+:root{--deep:#071566;--royal:#022394;--blue:#5379F6;--ink:#131838;--paper:#f2f5fc;--grid:#e2e8f8;--muted:#4b537a;--yellow:#ffd60a;--amber:#FFB020;--red:#e5484d;--green:#1f9d63}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#0b0f2a}
+#stage{position:absolute;width:1920px;height:1080px;transform-origin:0 0;overflow:hidden}
+.slide{position:absolute;inset:0;font:500 34px/1.4 M,sans-serif;color:var(--ink);background-color:var(--paper);opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;
+  background-image:linear-gradient(var(--grid) 2px,transparent 2px),linear-gradient(90deg,var(--grid) 2px,transparent 2px);background-size:120px 120px;padding:90px 140px 110px;display:flex;flex-direction:column;justify-content:center}
+.slide>*{flex:none}
+.slide.on{opacity:1;visibility:visible}
+.slide.dark{background-color:var(--deep);color:#fff;background-image:linear-gradient(rgba(255,255,255,.05) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.05) 2px,transparent 2px)}
+.abs{position:absolute}
+.step{opacity:0;transform:translateY(18px);transition:opacity .45s,transform .45s}
+.step.in{opacity:1;transform:none}
+.eyebrow{font:800 26px M;letter-spacing:.3em;text-transform:uppercase;color:var(--blue)}
+.dark .eyebrow{color:var(--yellow)}
+h1{font:400 112px/1.02 AB;letter-spacing:-.01em}
+h2{font:400 78px/1.06 AB;letter-spacing:-.005em;margin-top:18px}
+.serif{font-family:S;font-style:italic;font-weight:400}
+.hi{color:var(--royal)}.dark .hi{color:var(--yellow)}
+.lead{font:600 38px/1.45 M;color:var(--muted);margin-top:26px;max-width:1350px}
+.dark .lead{color:rgba(255,255,255,.82)}
+.cards{display:grid;gap:30px;margin-top:50px}
+.card{background:#fff;border:1px solid var(--grid);border-radius:28px;padding:38px 40px;box-shadow:0 30px 60px -45px rgba(7,21,102,.5)}
+.dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);box-shadow:none}
+.card h3{font:400 44px/1.1 AB;margin-bottom:12px}
+.card p{font:600 29px/1.45 M;color:var(--muted)}
+.dark .card p{color:rgba(255,255,255,.8)}
+.tag{display:inline-block;font:800 20px M;letter-spacing:.2em;text-transform:uppercase;padding:9px 20px;border-radius:99px;background:var(--royal);color:#fff;margin-bottom:18px}
+.tag.y{background:var(--yellow);color:var(--ink)}
+.callout{margin-top:44px;background:var(--yellow);color:var(--ink);border-radius:22px;padding:26px 34px;font:700 32px/1.4 M;display:inline-block;max-width:1500px}
+.dark .callout{background:var(--yellow)}
+.foot{position:absolute;left:140px;right:140px;bottom:40px;display:flex;justify-content:space-between;font:800 18px M;letter-spacing:.2em;color:#9aa3c7;text-transform:uppercase}
+.dark .foot{color:rgba(255,255,255,.45)}
+.ast{color:var(--blue)}.ast svg{width:100%;height:100%;display:block}
+.logo{display:inline-block;text-align:center;line-height:.98;font-family:MB;--l1:var(--ink)}
+.logo .l1{font-size:var(--s);color:var(--l1);letter-spacing:-.03em;white-space:nowrap}.logo .amp{color:var(--blue)}
+.logo .box{display:inline-block;position:relative;margin-top:calc(var(--s)*.06);background:var(--blue);color:#fff;font-size:calc(var(--s)*1.02);padding:calc(var(--s)*.01) calc(var(--s)*.16) calc(var(--s)*.02);outline:calc(var(--s)*.022) solid var(--blue);white-space:nowrap}
+.logo .box i{position:absolute;width:calc(var(--s)*.13);height:calc(var(--s)*.13);background:#fff;border:calc(var(--s)*.025) solid var(--blue)}
+.logo .box i:nth-child(1){left:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}.logo .box i:nth-child(2){right:calc(var(--s)*-.09);top:calc(var(--s)*-.09)}
+.logo .box i:nth-child(3){left:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}.logo .box i:nth-child(4){right:calc(var(--s)*-.09);bottom:calc(var(--s)*-.09)}
+.logo.white{--l1:#fff}
+/* loop */
+.loop{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px}
+.loop .card{position:relative;transition:all .4s}
+.loop .card .n{font:400 30px AB;color:var(--blue)}
+.loop .card.act{background:var(--royal);border-color:var(--royal);transform:translateY(-10px)}
+.loop .card.act h3,.loop .card.act p,.loop .card.act .n{color:#fff}
+.arrow{position:absolute;right:-26px;top:50%;width:28px;height:28px;transform:translateY(-50%);color:var(--blue);z-index:2;font:800 30px M}
+/* versus */
+.vs{display:grid;grid-template-columns:1fr 120px 1fr;align-items:stretch;margin-top:46px}
+.vs .mid{display:grid;place-items:center;font:400 54px AB;color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.chip{font:700 26px M;padding:8px 18px;border-radius:99px;background:var(--paper);color:var(--royal)}
+/* timeline */
+.tl{position:relative;margin-top:80px;display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.tl:before{content:'';position:absolute;left:0;right:0;top:34px;height:6px;background:var(--grid);border-radius:3px}
+.tl .t{position:relative;padding-top:82px}
+.tl .t:before{content:'';position:absolute;left:0;top:18px;width:38px;height:38px;border-radius:50%;background:#fff;border:8px solid var(--blue)}
+.tl .t.cur:before{background:var(--yellow);border-color:var(--royal)}
+.tl .t b{display:block;font:400 34px/1.15 AB}
+.tl .t span{display:block;font:600 25px/1.4 M;color:var(--muted);margin-top:10px}
+.tl .t em{display:block;font:800 20px M;letter-spacing:.18em;color:var(--blue);font-style:normal;margin-bottom:8px;text-transform:uppercase}
+/* table */
+table{border-collapse:collapse;width:100%;margin-top:26px;font:600 25px M}
+th{font:800 18px M;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:2px solid var(--grid)}
+td{padding:16px;border-bottom:1px solid var(--grid)}
+.s{display:inline-block;padding:3px 14px;border-radius:99px;font:800 19px M}
+.s.p{background:#e3f6ec;color:var(--green)}.s.n{background:#fde8e8;color:var(--red)}.s.u{background:#eef0f6;color:var(--muted)}
+/* phones */
+.phones{display:flex;gap:34px;align-items:flex-start}
+.phone{width:300px;height:640px;border-radius:44px;background:#0b0f2a;padding:12px;box-shadow:0 40px 70px -40px rgba(7,21,102,.7);flex:none}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:34px;display:block;background:#fff}
+.phone.up{transform:translateY(-40px)}
+/* worked example */
+.wx{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
+.wx .card{padding:28px 26px;cursor:pointer;transition:all .3s}
+.wx .card h4{font:800 19px M;letter-spacing:.18em;color:var(--blue);margin-bottom:12px}
+.wx .card p{font:600 26px/1.4 M;color:var(--ink)}
+.wx .card.hl{background:var(--royal);border-color:var(--royal)}.wx .card.hl h4{color:var(--yellow)}.wx .card.hl p{color:#fff}
+.wx .card.ins{background:var(--yellow);border-color:var(--yellow)}
+/* levels */
+.lv{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:40px}
+.lv .card{padding:30px 28px;display:flex;flex-direction:column}
+.lv .card .yr{font:400 64px/1 AB;color:var(--blue)}
+.lv .card .q{font:700 26px/1.35 M;color:var(--ink);margin:16px 0 0;min-height:140px}
+.lv .card .a{font:600 22.5px/1.45 M;color:var(--muted);border-top:2px solid var(--grid);padding-top:16px;margin-top:16px}
+.lv .card .a b{color:var(--royal);display:block;font:800 18px M;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px}
+/* live */
+#joinqr svg{width:100%;height:100%;display:block}
+.count{font:400 140px/1 AB;color:var(--yellow)}
+iframe.dash{position:absolute;inset:0;width:100%;height:100%;border:0}
+.report{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px}
+.report .card .n{font:400 62px/1 AB;color:var(--blue);margin-bottom:14px}
+/* chrome */
+#bar{position:absolute;left:0;bottom:0;height:8px;background:var(--yellow);transition:width .4s;z-index:9}
+#notes{position:fixed;left:0;right:0;bottom:0;background:rgba(7,10,40,.96);color:#fff;font:600 20px/1.5 M,sans-serif;padding:18px 28px;display:none;z-index:20;max-height:40vh;overflow:auto}
+#notes b{color:#ffd60a}
+#hint{position:fixed;right:14px;bottom:14px;color:rgba(255,255,255,.4);font:600 12px M,sans-serif;z-index:20}
+</style></head><body>
+<div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide dark" data-notes="Welcome. 25 minutes: what monitoring and intelligence are, why they matter now, how they work, a mistake of mine, and what it means for you, level by level.">
+  <div class="abs ast" style="right:120px;top:120px;width:300px;height:300px;transform:rotate(14deg)">__AST__</div>
+  <div class="eyebrow" style="margin-top:-120px">Tech &amp; Comms · Talk 2</div>
+  <h1 style="margin-top:30px;max-width:1400px">From Monitoring<br>to <span class="serif hi" style="font-size:1.08em">Intelligence</span></h1>
+  <p class="lead">Proving PR works when information moves faster than ever, and AI is in the conversation.</p>
+  <div class="abs" style="left:140px;bottom:120px;display:flex;gap:30px;align-items:center">
+    <img src="img/samuel.jpg" style="width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:top;border:5px solid var(--yellow)" alt="">
+    <div><div style="font:400 44px AB">Samuel Ogundeji</div><div style="font:600 28px M;color:rgba(255,255,255,.8)">Founder &amp; Lead Consultant, The Comms Boardroom Technologies</div></div></div>
+  <div class="abs" style="right:140px;bottom:120px">__LOGOW__</div>
+</section>
+
+<!-- 2 JOIN -->
+<section class="slide" data-live="join" data-notes="Get phones out now. Scan, pick Feed or Blog, and talk about data prices or ASUU strikes. We'll look at what you said later. This is social listening, live.">
+  <div style="display:grid;grid-template-columns:1fr 600px;gap:90px;align-items:center;height:100%">
+    <div><div class="eyebrow">Before we start</div>
+      <h2 style="font-size:96px">Phones out.<br>Join <span class="serif hi" style="font-size:1.08em">TC Live</span></h2>
+      <p class="lead">Scan, choose <b style="color:var(--ink)">Feed</b> or <b style="color:var(--ink)">Blog</b>, and tell us what you think about:</p>
+      <div style="display:flex;gap:20px;margin-top:26px"><span class="chip" style="font-size:32px;padding:14px 28px;background:#e8eeff">📶 Data price increase</span><span class="chip" style="font-size:32px;padding:14px 28px;background:#fff4dc;color:#8a5a00">🎓 ASUU strikes</span></div>
+      <div style="margin-top:50px;display:flex;align-items:baseline;gap:24px"><span class="count" id="voices" style="color:var(--royal)">0</span><span style="font:700 32px M;color:var(--muted)">voices in the conversation</span></div></div>
+    <div class="card" style="padding:40px;text-align:center"><div id="joinqr" style="width:520px;height:520px"></div><div style="font:800 30px M;margin-top:18px;color:var(--royal)" id="joinurl"></div></div></div>
+</section>
+
+<!-- 3 SUMMARY -->
+<section class="slide" data-notes="Keep it simple. Monitoring is the record. Intelligence is the decision.">
+  <div class="eyebrow">01 · In summary</div>
+  <h2>Two words people mix up</h2>
+  <div class="cards" style="grid-template-columns:1fr 1fr">
+    <div class="card step"><span class="tag">Media monitoring</span><h3>What is being said</h3><p>Systematic tracking of every mention of a brand, issue or competitor across press, broadcast, online news, blogs and social media.</p></div>
+    <div class="card step"><span class="tag y">Media intelligence</span><h3>What it means, and what to do next</h3><p>Turning those mentions into insight and a recommendation a decision-maker can act on.</p></div></div>
+  <div class="callout step">Monitoring is the record. Intelligence is the decision.</div>
+</section>
+
+<!-- 4 LOOP -->
+<section class="slide" data-loop="1" data-notes="Everything today sits on this loop. Click through each stage.">
+  <div class="eyebrow">01 · The big picture</div>
+  <h2>Four ideas, one loop</h2>
+  <div class="loop">
+    <div class="card"><div class="n">1</div><h3>Monitor</h3><p>What's being said. Every mention, every channel.</p><span class="arrow">→</span></div>
+    <div class="card"><div class="n">2</div><h3>Evaluate</h3><p>Did it matter? Outcomes against goals, not just coverage.</p><span class="arrow">→</span></div>
+    <div class="card"><div class="n">3</div><h3>Get intelligent</h3><p>What to do next. A specific, actionable recommendation.</p><span class="arrow">→</span></div>
+    <div class="card"><div class="n">4</div><h3>Listen</h3><p>Continuously, in real time. Always on, not a monthly report.</p></div></div>
+  <p class="lead step" style="margin-top:50px">The analyst's job ends in an <b style="color:var(--ink)">action</b>, not a chart.</p>
+</section>
+
+<!-- 5 PROVE -->
+<section class="slide dark" data-notes="The big conversation in our industry: proving PR value. Pause on the question.">
+  <div class="eyebrow">02 · Why it matters now</div>
+  <h1 style="margin-top:110px;font-size:150px">“Did PR<br><span class="serif hi" style="font-size:1.08em">work?”</span></h1>
+  <p class="lead step" style="font-size:42px">Every client, every boss, every budget meeting is asking. Can you answer with evidence?</p>
+</section>
+
+<!-- 6 VS -->
+<section class="slide" data-notes="Digital marketing deals mostly with sales metrics. PR deals with reputation. We have to pull the qualitative out of the quantitative. That's why the people who can prove PR worked are becoming more valuable.">
+  <div class="eyebrow">02 · The measurement gap</div>
+  <h2>Why proving PR is harder</h2>
+  <div class="vs">
+    <div class="card step"><span class="tag" style="background:var(--muted)">Digital marketing</span><h3>Sales metrics</h3><p>Numbers that end in a transaction.</p>
+      <div class="chips"><span class="chip">Clicks</span><span class="chip">Conversions</span><span class="chip">Cost per sale</span><span class="chip">Return on ad spend</span></div></div>
+    <div class="mid step">vs</div>
+    <div class="card step"><span class="tag">Public relations</span><h3>Reputational metrics</h3><p>Pulling the <b style="color:var(--ink)">qualitative</b> out of the <b style="color:var(--ink)">quantitative</b>.</p>
+      <div class="chips"><span class="chip">Trust</span><span class="chip">Sentiment</span><span class="chip">Perception</span><span class="chip">Credibility</span><span class="chip">Share of voice</span></div></div></div>
+  <div class="callout step">Proving that PR worked is becoming harder, so the people who can do it are becoming more valuable.</div>
+</section>
+
+<!-- 7 SPEED -->
+<section class="slide" data-notes="It wasn't much of a topic until social media. The rate at which information now flies changed everything.">
+  <div class="eyebrow">02 · What changed</div>
+  <h2>Then social media happened</h2>
+  <div class="cards" style="grid-template-columns:1fr 1fr">
+    <div class="card step"><span class="tag" style="background:var(--muted)">Before</span>
+      <p style="font-size:31px;line-height:1.7">📰 The story broke in the morning paper<br>⏳ You had hours, even a day, to respond<br>🚪 A few editors decided what got published<br>✂️ Monitoring = cutting and filing clippings</p></div>
+    <div class="card step" style="border:3px solid var(--blue)"><span class="tag">Now</span>
+      <p style="font-size:31px;line-height:1.7">📱 Anyone can publish, instantly<br>⚡ A post can trend in minutes<br>🗣️ The story is told before the press office wakes up<br>📊 Every comment, like and share is data</p></div></div>
+  <div class="callout step">Information moves faster than reports. Monitoring alone can't keep up, so it had to become intelligence.</div>
+</section>
+
+<!-- 8 EVOLUTION -->
+<section class="slide" data-notes="Walk the timeline. AVE has been formally rejected by the industry since the Barcelona Principles.">
+  <div class="eyebrow">02 · The evolution</div>
+  <h2>From counting coverage to <span class="serif hi" style="font-size:1.08em">explaining</span> it</h2>
+  <div class="tl">
+    <div class="t step"><em>Then</em><b>Press clippings</b><span>Cutting books and folders of coverage</span></div>
+    <div class="t step"><em>Counting</em><b>AVE</b><span>Coverage priced as ad space. Now rejected by the industry</span></div>
+    <div class="t step"><em>Online</em><b>Digital monitoring</b><span>Online news, broadcast, Google Alerts</span></div>
+    <div class="t step"><em>Social</em><b>Social listening</b><span>Always-on dashboards, sentiment, share of voice</span></div>
+    <div class="t step cur"><em>Now</em><b>AI intelligence</b><span>Agents that read, summarise and recommend</span></div></div>
+</section>
+
+<!-- 9 MONITORING -->
+<section class="slide" data-notes="Mini deck: what gets tracked. Small teams start with Google Alerts and a manual log; scale adds tools. Either way the output is a structured log.">
+  <div class="eyebrow">03 · Media monitoring, practically</div>
+  <h2>Track it. Log it.</h2>
+  <div style="display:grid;grid-template-columns:620px 1fr;gap:50px;margin-top:40px">
+    <div class="cards" style="grid-template-columns:1fr 1fr;margin-top:0;gap:18px">
+      <div class="card" style="padding:26px"><h3 style="font-size:30px">📰 Press &amp; online news</h3></div><div class="card" style="padding:26px"><h3 style="font-size:30px">📻 Broadcast &amp; radio</h3></div>
+      <div class="card" style="padding:26px"><h3 style="font-size:30px">✍️ Blogs &amp; forums</h3></div><div class="card" style="padding:26px"><h3 style="font-size:30px">🏛️ Regulatory &amp; government</h3></div>
+      <p style="grid-column:1/-1;font:600 25px/1.45 M;color:var(--muted);margin-top:6px">Start with Google Alerts and a spreadsheet. Scale with tools. Either way, the output is a structured log.</p></div>
+    <div class="card step"><span class="tag">The monitoring log</span>
+      <table><tr><th>Date</th><th>Source</th><th>Headline</th><th>Reach</th><th>Tone</th><th>Key message?</th></tr>
+        <tr><td>Mon</td><td>BusinessDay</td><td>Brand opens new plant</td><td>4.2M</td><td><span class="s p">Positive</span></td><td>✓</td></tr>
+        <tr><td>Mon</td><td>Radio phone-in</td><td>Listeners ask about prices</td><td>800k</td><td><span class="s n">Negative</span></td><td>✗</td></tr>
+        <tr><td>Tue</td><td>Blog</td><td>Factory tour review</td><td>12k</td><td><span class="s u">Neutral</span></td><td>✓</td></tr></table></div></div>
+</section>
+
+<!-- 10 VOLUME -->
+<section class="slide" data-notes="Monitoring tells you activity happened. Evaluation tells you whether it mattered. Retire AVE.">
+  <div class="eyebrow">03 · Evaluation</div>
+  <h2>Volume is not value</h2>
+  <div class="cards" style="grid-template-columns:1fr 1fr">
+    <div class="card step"><span class="tag" style="background:var(--muted)">Monitoring asks</span><h3>“How much coverage did we get?”</h3><p>Counts, clips, mentions, reach: a record of output.</p></div>
+    <div class="card step"><span class="tag">Evaluation asks</span><h3>“Did it move a business outcome?”</h3><p>Message pull-through, sentiment shift, audience action, reputation movement.</p></div></div>
+  <div class="callout step">On AVE: if your report still converts coverage into an ad-spend figure, retire it. The Barcelona Principles rejected it.</div>
+</section>
+
+<!-- 11 STANDARD -->
+<section class="slide" data-amec="1" data-notes="Barcelona sets the philosophy, AMEC gives the working model. Click through outputs, outtakes, outcomes.">
+  <div class="eyebrow">03 · The evaluation standard</div>
+  <h2>Barcelona + AMEC, in one view</h2>
+  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px;margin-top:40px">
+    <div class="card"><span class="tag">Barcelona Principles</span>
+      <p style="font-size:28px;line-height:1.75;color:var(--ink)">① Set goals before you measure<br>② Measure outcomes, not just outputs<br>③ AVEs do not measure PR value<br>④ Social media is measurable like any channel<br>⑤ Be transparent and replicable</p></div>
+    <div><span class="tag y" style="margin-left:4px">AMEC: the working model</span>
+      <div class="loop amec" style="grid-template-columns:1fr;gap:16px;margin-top:6px">
+        <div class="card" style="padding:26px 30px"><h3 style="font-size:40px">Outputs</h3><p>What we produced: coverage, content, reach delivered.</p></div>
+        <div class="card" style="padding:26px 30px"><h3 style="font-size:40px">Outtakes</h3><p>What the audience took away: awareness, understanding, sentiment.</p></div>
+        <div class="card" style="padding:26px 30px"><h3 style="font-size:40px">Outcomes</h3><p>What changed as a result: behaviour, trust, business results.</p></div></div></div></div>
+</section>
+
+<!-- 12 INTELLIGENCE -->
+<section class="slide" data-notes="Intelligence adds benchmarking. Share of voice is your presence versus the whole category.">
+  <div class="eyebrow">03 · Media intelligence, practically</div>
+  <h2>From what happened to <span class="serif hi" style="font-size:1.08em">what next</span></h2>
+  <div style="display:grid;grid-template-columns:1fr 640px;gap:50px;margin-top:40px">
+    <div class="cards" style="grid-template-columns:1fr 1fr;margin-top:0;gap:20px">
+      <div class="card step" style="padding:28px"><h3 style="font-size:32px">Share of voice</h3><p style="font-size:25px">Your presence in the conversation vs the whole category</p></div>
+      <div class="card step" style="padding:28px"><h3 style="font-size:32px">Benchmarking</h3><p style="font-size:25px">Your volume and tone vs named competitors</p></div>
+      <div class="card step" style="padding:28px"><h3 style="font-size:32px">Message penetration</h3><p style="font-size:25px">How much of your key message actually lands</p></div>
+      <div class="card step" style="padding:28px"><h3 style="font-size:32px">Spokesperson visibility</h3><p style="font-size:25px">Who is quoted, how often, how favourably</p></div></div>
+    <div class="card"><span class="tag">Share of voice · example</span>
+      ${SOVBARS}
+      <p style="font-size:23px;margin-top:18px">Brand A leads on volume, but is that volume positive? Intelligence answers the next question.</p></div></div>
+</section>
+
+<!-- 13 LISTENING -->
+<section class="slide" data-notes="From manual to automated. Then the pitfall: reach and impressions alone are vanity metrics.">
+  <div class="eyebrow">03 · Social listening</div>
+  <h2>From manual to automated</h2>
+  <div class="vs" style="grid-template-columns:1fr 110px 1fr;margin-top:40px">
+    <div class="card step"><span class="tag" style="background:var(--muted)">Manual</span><p style="font-size:29px;line-height:1.7;color:var(--ink)">Search X, TikTok and Google by hand<br>Copy posts into a spreadsheet<br>Tag sentiment one by one<br>Report weekly, if there's time</p></div>
+    <div class="mid step">→</div>
+    <div class="card step" style="border:3px solid var(--blue)"><span class="tag">Automated</span><p style="font-size:29px;line-height:1.7;color:var(--ink)">Tools pull every mention, always on<br>Sentiment scored automatically<br>Topics clustered, spikes flagged<br>AI drafts the brief</p></div></div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:34px" class="step"><span class="chip">Mentions</span><span class="chip">Reach vs impressions</span><span class="chip">Engagement rate</span><span class="chip">Sentiment</span><span class="chip">Share of voice</span><span class="chip">Conversation volume</span></div>
+  <div class="callout step" style="font-size:28px">Pitfall: reach and impressions alone are vanity metrics. Always pair them with sentiment or engagement.</div>
+</section>
+
+<!-- 14 LIVE DASHBOARD -->
+<section class="slide dark" data-live="dash" style="padding:0" data-notes="This is you. Every number traces back to something someone in this hall did: posts, views, likes, reposts. Read the AI brief out loud. Press S on the dashboard for practice data if the internet drops.">
+  <iframe class="dash" data-src="dashboard.html" title="Live listening dashboard"></iframe>
+</section>
+
+<!-- 15 CASE STUDY -->
+<section class="slide" data-wx="1" data-notes="Mini deck worked example. Click each column, then reveal the insight.">
+  <div class="eyebrow">03 · Case study</div>
+  <h2>Putting the framework to work</h2>
+  <p class="lead" style="margin-top:12px">A product-launch campaign: Objective → KPI → Source → Metric → Insight.</p>
+  <div class="wx">
+    <div class="card"><h4>OBJECTIVE</h4><p>Build awareness for a new product line among urban consumers</p></div>
+    <div class="card"><h4>KPI</h4><p>60% positive sentiment share within 4 weeks of launch</p></div>
+    <div class="card"><h4>DATA SOURCE</h4><p>Owned social (IG / X / LinkedIn) + earned press + social listening</p></div>
+    <div class="card"><h4>METRIC</h4><p>Sentiment: 71% positive. Share of voice: 34% of category chatter</p></div>
+    <div class="card ins"><h4 style="color:var(--royal)">INSIGHT</h4><p class="ins-txt" style="font-weight:800">Click to reveal</p></div></div>
+  <div class="callout step" style="font-size:29px">A metric can clear its target and still hide a real risk. Evaluation confirms the number; intelligence explains it.</div>
+</section>
+
+<!-- 16 AUTOMONITOR -->
+<section class="slide" data-notes="Agentic AI in practice. AutoMonitor: automated daily monitoring for African PR agencies, by client, competitor and industry, with AI analysis.">
+  <div style="display:grid;grid-template-columns:1fr 1010px;gap:50px;height:100%;align-items:center">
+    <div><div class="eyebrow">03 · Agentic AI</div><h2 style="font-size:84px">AutoMonitor</h2>
+      <p class="lead" style="font-size:32px">Automated daily media monitoring for African PR agencies.</p>
+      <p style="font:600 29px/1.8 M;margin-top:26px">☀️ A daily digest: client, competitors, industry<br>🤖 AI analysis: themes, risks, recommended actions<br>📤 Share with the client in one click</p></div>
+    <div class="phones"><div class="phone"><img src="img/am-1.jpg" alt="AutoMonitor daily digest"></div><div class="phone up"><img src="img/am-2.jpg" alt="AutoMonitor AI analysis"></div><div class="phone"><img src="img/am-3.jpg" alt="AutoMonitor insights charts"></div></div></div>
+</section>
+
+<!-- 17 BOARDROOM ANALYTICS -->
+<section class="slide" data-notes="Boardroom Analytics: upload a brief, set objectives and keywords, get AMEC-aligned, boardroom-ready reports. Alerts and an AI assistant.">
+  <div style="display:grid;grid-template-columns:1fr 1010px;gap:50px;height:100%;align-items:center">
+    <div><div class="eyebrow">03 · Agentic AI</div><h2 style="font-size:84px">Boardroom Analytics</h2>
+      <p class="lead" style="font-size:32px">From campaign brief to boardroom-ready report.</p>
+      <p style="font:600 29px/1.8 M;margin-top:26px">📄 Upload the brief, set objectives &amp; keywords<br>📈 Quantitative + qualitative, aligned to AMEC<br>🔔 Alerts on spikes and negative stories<br>💬 An AI assistant that reads your campaigns</p></div>
+    <div class="phones"><div class="phone"><img src="img/ba-1.jpg" alt="Boardroom Analytics dashboard"></div><div class="phone up"><img src="img/ba-2.jpg" alt="Boardroom Analytics alerts"></div><div class="phone"><img src="img/ba-3.jpg" alt="Boardroom Analytics AI assistant"></div></div></div>
+</section>
+
+<!-- 18 REPORT SHAPE -->
+<section class="slide" data-notes="One format for every report. The recommended action is the line people actually read.">
+  <div class="eyebrow">03 · Bringing it together</div>
+  <h2>One format for every report</h2>
+  <div class="report">
+    <div class="card step"><div class="n">1</div><h3 style="font-size:36px">Headline insight</h3><p>One sentence. A finding, not a metric dump.</p></div>
+    <div class="card step"><div class="n">2</div><h3 style="font-size:36px">Supporting data</h3><p>The two or three numbers that prove it. No more.</p></div>
+    <div class="card step"><div class="n">3</div><h3 style="font-size:36px">So what</h3><p>Why it matters to the brand or business right now.</p></div>
+    <div class="card step" style="border:3px solid var(--yellow)"><div class="n">4</div><h3 style="font-size:36px">Recommended action</h3><p>What we do next, and by when. The line people actually read.</p></div></div>
+</section>
+
+<!-- 19 PALAVA -->
+<section class="slide dark" data-notes="Tell it in your own words. Beverage client, report to the regional boss, I compared against the boss's projection and didn't ask. Wrong numbers went up. Lessons.">
+  <div class="eyebrow">04 · A story</div>
+  <h2>My beverage reporting <span class="serif hi" style="font-size:1.08em">palava</span></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:44px">
+    <div class="cards" style="grid-template-columns:1fr;gap:16px;margin-top:0">
+      <div class="card step" style="padding:24px 30px"><p style="font-size:28px">🥤 A beverage client. A data report going to the <b style="color:#fff">regional boss</b>.</p></div>
+      <div class="card step" style="padding:24px 30px"><p style="font-size:28px">📈 The boss had sent a <b style="color:#fff">projection</b> earlier, and I built my report against it.</p></div>
+      <div class="card step" style="padding:24px 30px"><p style="font-size:28px">🤐 I should have asked a question. <b style="color:#fff">I didn't.</b></p></div>
+      <div class="card step" style="padding:24px 30px;border-color:var(--red)"><p style="font-size:28px">❌ The numbers I sent were <b style="color:#fff">wrong</b>.</p></div></div>
+    <div class="step" style="background:var(--yellow);color:var(--ink);border-radius:28px;padding:40px 44px"><div style="font:800 22px M;letter-spacing:.2em">WHAT I LEARNED</div>
+      <p style="font:700 32px/1.5 M;margin-top:20px">1. Mistakes are possible. Own them fast.</p>
+      <p style="font:700 32px/1.5 M;margin-top:16px">2. When data is going up the chain, <u>ask before you send</u>.</p>
+      <p style="font:700 32px/1.5 M;margin-top:16px">3. Check numbers against the source, not against an assumption.</p></div></div>
+</section>
+
+<!-- 20 GEO -->
+<section class="slide" data-notes="People don't just search, they ask AI. Brand mentions now happen inside AI conversations we can't easily see. Human judgement still decides what it means.">
+  <div class="eyebrow">05 · What is measured now</div>
+  <h2>From SEO to <span class="serif hi" style="font-size:1.08em">GEO</span></h2>
+  <div class="vs" style="margin-top:40px">
+    <div class="card step"><span class="tag" style="background:var(--muted)">Search Engine Optimisation</span><h3>Rank on Google</h3><p>People searched, clicked a link and read your story.</p></div>
+    <div class="mid step">→</div>
+    <div class="card step" style="border:3px solid var(--blue)"><span class="tag">Generative Engine Optimisation</span><h3>Be in the AI's answer</h3><p>People ask ChatGPT, Gemini or Meta AI, and the answer describes your brand for you.</p></div></div>
+  <div class="cards step" style="grid-template-columns:1fr 1fr;margin-top:30px;gap:24px">
+    <div class="card" style="padding:26px 32px"><p style="font-size:27px;color:var(--ink)">🔍 Brand mentions now happen inside AI conversations, so tracking them is <b>tougher</b> and may be <b>more expensive</b>.</p></div>
+    <div class="card" style="padding:26px 32px;border:3px solid var(--yellow)"><p style="font-size:27px;color:var(--ink)">🧠 <b>Human judgement still matters</b>: what it means, what to say, and when to stay silent.</p></div></div>
+</section>
+
+<!-- 21 BIG QUESTION -->
+<section class="slide dark" data-notes="Let it land. Silence for a few seconds.">
+  <div class="abs ast" style="right:140px;top:130px;width:260px;height:260px;transform:rotate(14deg)">__AST__</div>
+  <div class="eyebrow">05 · The big question</div>
+  <h1 style="margin-top:90px;font-size:120px;max-width:1550px">What are you coming into this industry <span class="serif hi" style="font-size:1.08em">to do?</span></h1>
+  <p class="lead step" style="font-size:46px;margin-top:50px">What impact must <b style="color:#fff">you</b> contribute?</p>
+</section>
+
+<!-- 22 LEVELS -->
+<section class="slide" data-notes="One slide for every level. Ask the question, give them a moment, then click to reveal the guiding answer.">
+  <div class="eyebrow">06 · Where you are now</div>
+  <h2 style="font-size:66px">A question for every level</h2>
+  <div class="lv">
+    <div class="card"><div class="yr">100L</div><div class="q">Your advantage is time. What will you do with four full years?</div>
+      <div class="a step"><b>Guide</b>Build habits now: read the news daily, set a Google Alert on a brand you love, open a LinkedIn profile and start a simple monitoring log.</div></div>
+    <div class="card"><div class="yr">200L</div><div class="q">You have the foundations. What can you show, not just tell?</div>
+      <div class="a step"><b>Guide</b>Apply them: learn spreadsheets and basic data, analyse one real campaign, write about it and start a portfolio. Volunteer for department media.</div></div>
+    <div class="card"><div class="yr">300L</div><div class="q">The ball is still in your court. Where will your internship take you?</div>
+      <div class="a step"><b>Guide</b>Choose your placement deliberately. Pick a lane (PR, measurement, digital), learn one listening tool and build relationships with practitioners.</div></div>
+    <div class="card" style="border:3px solid var(--yellow)"><div class="yr">400L</div><div class="q">What do you know, what don't you know yet, and how will you go after it?</div>
+      <div class="a step"><b>Guide</b>You have theory and research methods. Now pursue what the classroom hasn't covered yet (measurement frameworks, social listening, GEO), the knowledge God has opened up to you. Make your project count.</div></div></div>
+</section>
+
+<!-- 23 CLOSE -->
+<section class="slide dark" data-notes="Close. One habit. Thank the hall.">
+  <div class="eyebrow">The one habit to leave with</div>
+  <h1 style="margin-top:60px;font-size:96px;max-width:1600px">Before you send any report, ask <span class="serif hi" style="font-size:1.1em">“so what?”</span></h1>
+  <p class="lead" style="font-size:36px">If you can't answer in one sentence, it's monitoring dressed up as intelligence. Go one more step.</p>
+  <div class="abs" style="left:140px;bottom:120px;display:flex;gap:30px;align-items:center">
+    <img src="img/samuel.jpg" style="width:130px;height:130px;border-radius:50%;object-fit:cover;object-position:top;border:5px solid var(--yellow)" alt="">
+    <div><div style="font:400 40px AB">Thank you · Samuel Ogundeji</div><div style="font:600 26px M;color:rgba(255,255,255,.8)">info@thecommsboardroom.com · The Comms Boardroom Technologies</div></div></div>
+  <div class="abs" style="right:140px;bottom:120px">__LOGOW__</div>
+</section>
+
+<div id="bar"></div>
+</div>
+<div id="notes"></div><div id="hint">← → or click · N notes · F fullscreen</div>
+<script src="js/qrcode.js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/listen.js"></script>
+<script>
+const AST = '<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+const LOGOW = '<div class="logo white" style="--s:56px"><div class="l1">TECH <span class="amp">&amp;</span></div><span class="box">COMMS<i></i><i></i><i></i><i></i></span></div>';
+const SOV = [['Brand A', 41, '#022394'], ['Brand B', 27, '#5379F6'], ['Brand C', 19, '#9aa3c7'], ['Brand D', 13, '#c9d3f2']];
+const SOVBARS = SOV.map(([n, v, c]) => `<div style="display:grid;grid-template-columns:150px 1fr 80px;align-items:center;gap:16px;margin-top:22px;font:700 26px M"><span>${n}</span><div style="height:26px;border-radius:13px;background:#e2e8f8;overflow:hidden"><i style="display:block;height:100%;width:${v / 41 * 100}%;background:${c}"></i></div><span>${v}%</span></div>`).join('');
+const stage = document.getElementById('stage');
+stage.innerHTML = stage.innerHTML.replaceAll('__AST__', AST).replaceAll('__LOGOW__', LOGOW).replace('${SOVBARS}', SOVBARS);
+
+const params = new URLSearchParams(location.search);
+const SITE = location.protocol.startsWith('http') ? location.origin : 'https://tc-live-session.vercel.app';
+const JOIN = SITE + '/join';
+let KEY = params.get('key') || ''; try { if (KEY) localStorage.setItem('tc_key', KEY); else KEY = localStorage.getItem('tc_key') || ''; } catch (e) {}
+
+function fit() { const k = Math.min(innerWidth / 1920, innerHeight / 1080); stage.style.transform = `scale(${k})`; stage.style.left = (innerWidth - 1920 * k) / 2 + 'px'; stage.style.top = (innerHeight - 1080 * k) / 2 + 'px'; }
+addEventListener('resize', fit); fit();
+
+// join QR + live counter of people who joined
+(() => { const q = qrcode(0, 'M'); q.addData(JOIN); q.make(); document.getElementById('joinqr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 0, scalable: true }); document.getElementById('joinurl').textContent = JOIN.replace(/^https?:\/\//, ''); })();
+const sb = window.supabase ? supabase.createClient(TC.url, TC.key, { auth: { persistSession: false } }) : null;
+async function voices() { if (!sb) return; try { const r = await sb.from('tc_profiles').select('id', { count: 'exact', head: true }); if (!r.error) document.getElementById('voices').textContent = r.count; } catch (e) {} }
+
+// ---------- navigation with click-to-reveal steps ----------
+const slides = [...document.querySelectorAll('.slide')];
+let cur = 0, timer = null;
+const steps = (s) => [...s.querySelectorAll('.step')];
+const interactive = (s) => s.dataset.loop ? [...s.querySelectorAll('.loop .card')] : s.dataset.amec ? [...s.querySelectorAll('.amec .card')] : s.dataset.wx ? [...s.querySelectorAll('.wx .card')] : [];
+function state(s) { return s._i || 0; }
+function show(i, back) {
+  slides[cur].classList.remove('on'); clearInterval(timer);
+  cur = Math.max(0, Math.min(slides.length - 1, i)); const s = slides[cur]; s.classList.add('on');
+  const st = steps(s), it = interactive(s), total = st.length + it.length;
+  s._i = back ? total : 0; apply(s);
+  document.getElementById('bar').style.width = ((cur + 1) / slides.length * 100) + '%';
+  document.getElementById('notes').innerHTML = `<b>${cur + 1} / ${slides.length}</b> · ${s.dataset.notes || ''}`;
+  if (s.dataset.live === 'join') { voices(); timer = setInterval(voices, 4000); }
+  if (s.dataset.live === 'dash') { const f = s.querySelector('iframe'); if (!f.src) f.src = f.dataset.src + (KEY ? '?key=' + encodeURIComponent(KEY) : '') + (location.protocol.startsWith('http') ? '' : (KEY ? '&' : '?') + 'site=' + encodeURIComponent(SITE)); }
+  history.replaceState(null, '', '#' + (cur + 1));
+}
+function apply(s) {
+  const it = interactive(s), st = steps(s), i = s._i;
+  // interactive cards first (highlight one at a time), then the steps
+  it.forEach((c, k) => c.classList.toggle(s.dataset.wx ? 'hl' : 'act', k === i - 1 && i <= it.length));
+  if (s.dataset.wx) { const ins = s.querySelector('.ins-txt'); const open = i >= it.length; ins.textContent = open ? 'Target beaten, but 80% of the positive sentiment came from ONE influencer post. Diversify voices.' : 'Click to reveal'; ins.style.fontSize = open ? '24px' : ''; }
+  st.forEach((e, k) => e.classList.toggle('in', k < i - it.length));
+}
+function next() { const s = slides[cur], total = steps(s).length + interactive(s).length; if (state(s) < total) { s._i++; apply(s); } else if (cur < slides.length - 1) show(cur + 1); }
+function prev() { const s = slides[cur]; if (state(s) > 0) { s._i--; apply(s); } else if (cur > 0) show(cur - 1, true); }
+addEventListener('keydown', (e) => {
+  if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+  else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+  else if (e.key === 'n' || e.key === 'N') { const n = document.getElementById('notes'); n.style.display = n.style.display === 'block' ? 'none' : 'block'; }
+  else if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  else if (e.key === 'Home') show(0); else if (e.key === 'End') show(slides.length - 1);
+  else if ((e.key === 's' || e.key === 'S') && slides[cur].dataset.live === 'dash') slides[cur].querySelector('iframe').contentWindow.postMessage('tc-sim', '*');
+});
+stage.addEventListener('click', (e) => { if (slides[cur].dataset.live === 'dash') return; (e.clientX < innerWidth * 0.25 ? prev : next)(); });
+let tx = null; addEventListener('touchstart', (e) => { tx = e.touches[0].clientX; }, { passive: true });
+addEventListener('touchend', (e) => { if (tx == null) return; const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) (d < 0 ? next : prev)(); tx = null; });
+addEventListener('message', (e) => { if (e.data === 'tc-next') next(); if (e.data === 'tc-prev') prev(); });
+show(Math.max(0, (parseInt(location.hash.slice(1)) || 1) - 1));
+</script></body></html>

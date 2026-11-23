@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Listening Dashboard · Tech &amp; Comms</title>
+<style>
+@font-face{font-family:AB;src:url(fonts/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(fonts/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(fonts/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(fonts/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(fonts/montserrat-latin-800-normal.woff2)}
+:root{--deep:#071566;--royal:#022394;--blue:#5379F6;--ink:#131838;--paper:#f2f5fc;--line:#e2e8f8;--muted:#5b6386;--yellow:#ffd60a;--amber:#FFB020;--pos:#1f9d63;--neu:#9aa3c7;--neg:#e5484d}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--deep)}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;font:500 18px/1.35 M,sans-serif;color:var(--ink);background:var(--paper);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:60px 60px}
+.top{position:absolute;left:0;right:0;top:0;height:92px;background:var(--deep);color:#fff;display:flex;align-items:center;gap:26px;padding:0 32px}
+.top h1{font:400 34px AB;letter-spacing:.01em}.top h1 span{color:var(--yellow)}
+.pill{display:inline-flex;align-items:center;gap:8px;font:800 14px M;letter-spacing:.16em;background:rgba(255,255,255,.12);padding:7px 14px;border-radius:99px}
+.pill i{width:10px;height:10px;border-radius:50%;background:#ff4d4f;animation:p 1.4s infinite}@keyframes p{50%{opacity:.25}}
+.pill.sim i{background:var(--yellow);animation:none}
+.leg{display:flex;gap:18px;font:700 17px M}.leg span{display:flex;align-items:center;gap:8px}.leg b{width:14px;height:14px;border-radius:4px;display:inline-block}
+.join{margin-left:auto;display:flex;align-items:center;gap:14px;font:700 16px M;text-align:right}
+.join .qr{background:#fff;padding:5px;border-radius:8px;width:76px;height:76px}.join .qr svg{width:100%;height:100%;display:block}
+.join b{display:block;font:400 22px AB;color:var(--yellow)}
+.panel{position:absolute;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 22px;box-shadow:0 18px 40px -30px rgba(7,21,102,.5);overflow:hidden}
+.h{font:800 14px M;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.h small{font:700 12px M;letter-spacing:.04em;text-transform:none;color:#9aa3c7}
+.kpi .v{font:400 54px/1.05 AB;margin-top:10px;font-variant-numeric:tabular-nums}
+.kpi .s{font:600 15px M;color:var(--muted);margin-top:4px}
+.kpi .d{font:800 14px M}
+.bar{height:14px;border-radius:7px;background:var(--line);overflow:hidden;display:flex}
+.bar i{display:block;height:100%;transition:width .6s}
+.rowb{display:grid;grid-template-columns:108px 1fr 54px;align-items:center;gap:12px;margin-top:13px;font:700 16px M}
+.rowb .n{text-align:right;font-variant-numeric:tabular-nums}
+.kw{display:flex;flex-wrap:wrap;gap:9px 10px;margin-top:14px;align-content:flex-start}
+.kw span{background:var(--paper);border-radius:99px;padding:5px 14px;font-weight:800;color:var(--royal);transition:all .4s}
+.wall{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.post{border:1px solid var(--line);border-radius:14px;padding:11px 14px;font:500 16px/1.38 M;position:relative;animation:in .5s}
+@keyframes in{from{opacity:0;transform:translateY(-8px)}}
+.post .m{display:flex;gap:8px;align-items:center;font:700 13px M;color:var(--muted);margin-bottom:4px}
+.post .m .t{padding:2px 8px;border-radius:99px;font:800 11px M;letter-spacing:.06em;text-transform:uppercase}
+.post .m .se{margin-left:auto;width:10px;height:10px;border-radius:50%}
+.post .x{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post .x b{font-weight:800}
+.post button{position:absolute;right:8px;bottom:6px;border:0;background:var(--neg);color:#fff;font:800 11px M;padding:3px 8px;border-radius:7px;cursor:pointer;display:none}
+.mod .post button{display:block}
+.post.hid{opacity:.35}
+.brief .sum{font:400 25px/1.22 AB;margin-top:12px}
+.brief .tone{display:inline-block;margin-top:12px;padding:4px 12px;border-radius:99px;font:800 13px M;letter-spacing:.08em;text-transform:uppercase}
+.brief ul{list-style:none;margin-top:10px}.brief li{font:600 15.5px/1.38 M;margin-top:7px;padding-left:18px;position:relative}
+.brief li:before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--blue)}
+.brief li.r:before{background:var(--neg)}
+.brief .q{margin-top:10px;font:600 15.5px/1.4 M;border-left:4px solid var(--yellow);padding-left:12px}
+.brief .rec{margin-top:12px;background:var(--paper);border-radius:12px;padding:10px 14px;font:700 15.5px/1.38 M}
+.empty{color:#9aa3c7;font:600 17px M;margin-top:20px}
+#admin{position:fixed;right:10px;bottom:10px;z-index:9;display:none;gap:8px}
+#admin button{border:0;border-radius:9px;padding:8px 12px;font:800 13px M;cursor:pointer;background:#fff;color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.mod #admin{display:flex}
+</style></head><body>
+<div id="stage">
+  <div class="top"><h1>LIVE SOCIAL <span>LISTENING</span></h1><span class="pill" id="status"><i></i>LIVE</span>
+    <div class="leg"><span><b style="background:var(--blue)"></b>Data prices</span><span><b style="background:var(--amber)"></b>ASUU strikes</span></div>
+    <div class="join"><div>Scan to join the conversation<b id="joinurl"></b></div><div class="qr" id="qr"></div></div></div>
+  <!-- KPIs -->
+  <div id="kpis"></div>
+  <div class="panel" style="left:28px;top:280px;width:790px;height:380px"><div class="h">Mentions over time <small>per minute, last 20 minutes</small></div><svg id="line" width="746" height="310" style="margin-top:8px"></svg></div>
+  <div class="panel" style="left:838px;top:280px;width:450px;height:380px"><div class="h">Share of voice</div><div id="sov"></div></div>
+  <div class="panel" style="left:28px;top:680px;width:420px;height:372px"><div class="h">Sentiment</div><div id="sent"></div></div>
+  <div class="panel" style="left:468px;top:680px;width:380px;height:372px"><div class="h">Brands &amp; institutions <small>mentions</small></div><div id="ents"></div></div>
+  <div class="panel" style="left:868px;top:680px;width:420px;height:372px"><div class="h">Top keywords</div><div class="kw" id="kw"></div></div>
+  <div class="panel brief" style="left:1308px;top:112px;width:584px;height:520px"><div class="h">Analyst brief <small id="bsrc"></small></div><div id="brief"></div></div>
+  <div class="panel" style="left:1308px;top:652px;width:584px;height:400px"><div class="h">Latest conversation <small id="wallc"></small></div><div class="wall" id="wall"></div></div>
+</div>
+<div id="admin"><button id="bsim">Simulation: off</button><button id="bai">Refresh AI brief</button><button id="brst">Reset demo</button></div>
+<script src="js/supabase.js"></script>
+<script src="js/qrcode.js"></script>
+<script src="js/listen.js"></script>
+<script src="js/sim.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+let KEY = params.get('key') || ''; try { if (KEY) localStorage.setItem('tc_key', KEY); else KEY = localStorage.getItem('tc_key') || ''; } catch (e) {}
+const sb = window.supabase ? supabase.createClient(TC.url, TC.key, { auth: { persistSession: false } }) : null;
+function fit() { const k = Math.min(innerWidth / 1920, innerHeight / 1080); const st = $('#stage'); st.style.transform = `scale(${k})`; st.style.left = (innerWidth - 1920 * k) / 2 + 'px'; st.style.top = (innerHeight - 1080 * k) / 2 + 'px'; }
+addEventListener('resize', fit); fit();
+
+// join link + QR (the live site's /join page; offline copies point at the hosted one)
+const JOIN = (location.protocol.startsWith('http') ? location.origin : (params.get('site') || 'https://tc-live-session.vercel.app')) + '/join';
+$('#joinurl').textContent = JOIN.replace(/^https?:\/\//, '');
+(() => { const q = qrcode(0, 'M'); q.addData(JOIN); q.make(); $('#qr').innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); })();
+
+const D = { mode: 'live', fails: 0, data: null, brief: null, briefAt: 0, briefPosts: 0, prev: {} };
+async function fetchLive() {
+  const all = async (q) => { let out = [], from = 0; for (;;) { const { data, error } = await q().range(from, from + 999); if (error) throw error; out = out.concat(data); if (data.length < 1000) return out; from += 1000; } };
+  const [posts, comments, stats, reach, people] = await Promise.all([
+    all(() => sb.from('tc_posts').select('id,profile_id,channel,topic,title,body,image_url,created_at,hidden,tc_profiles(handle,name)').order('created_at', { ascending: false })),
+    all(() => sb.from('tc_events').select('id,post_id,body,created_at,hidden').eq('type', 'comment').order('created_at', { ascending: false })),
+    all(() => sb.from('tc_post_stats').select('*')),
+    sb.from('tc_reach').select('*').then((r) => { if (r.error) throw r.error; return r.data; }),
+    sb.from('tc_profiles').select('id', { count: 'exact', head: true }).then((r) => { if (r.error) throw r.error; return r.count; }),
+  ]);
+  return { posts: posts.map((p) => ({ ...p, handle: p.tc_profiles?.handle, name: p.tc_profiles?.name })), comments, stats: Object.fromEntries(stats.map((s) => [s.post_id, s])), reach, people };
+}
+async function tick() {
+  try {
+    if (D.mode === 'sim') D.data = SIM.step();
+    else { D.data = await fetchLive(); D.fails = 0; }
+  } catch (e) { if (++D.fails >= 3 && D.mode === 'live') setMode('sim', true); }
+  if (D.data) draw(TC.metrics(D.data));
+}
+function setMode(m, auto) {
+  D.mode = m; $('#status').className = 'pill' + (m === 'sim' ? ' sim' : '');
+  $('#status').innerHTML = m === 'sim' ? '<i></i>PRACTICE DATA' : '<i></i>LIVE';
+  $('#bsim').textContent = 'Simulation: ' + (m === 'sim' ? 'on' : 'off');
+  D.brief = null; D.briefPosts = 0; if (m === 'sim') SIM.start();
+  if (auto) console.warn('Live data unreachable: switched to practice data');
+}
+
+// ---------- drawing ----------
+const pctColor = { positive: 'var(--pos)', neutral: 'var(--neu)', negative: 'var(--neg)' };
+function kpis(m) {
+  const k = [['Mentions', m.mentions, `${m.posts} posts · ${m.comments} comments`], ['Reach', m.reach, 'different students who saw it'],
+    ['Impressions', m.impressions, 'times a post was on a screen'], ['Engagement', m.engagement, `${m.er}% engagement rate`],
+    ['Net sentiment', (m.sentiment.net > 0 ? '+' : '') + m.sentiment.net, `${m.sentiment.pos}% positive · ${m.sentiment.neg}% negative`], ['Voices', m.people, 'students in the conversation']];
+  $('#kpis').innerHTML = k.map(([h, v, s], i) => { const prev = D.prev[h]; const up = typeof v === 'number' && prev != null && v > prev ? `<span class="d" style="color:var(--pos)"> ▲ ${TC.fmt(v - prev)}</span>` : '';
+    return `<div class="panel kpi" style="left:${28 + i * 210}px;top:112px;width:196px;height:150px"><div class="h">${h}</div><div class="v">${typeof v === 'number' ? TC.fmt(v) : v}</div><div class="s">${s}${up}</div></div>`; }).join('');
+  k.forEach(([h, v]) => { if (typeof v === 'number') D.prev[h] = v; });
+}
+function line(m) {
+  const W = 746, H = 310, L = 34, B = 30, T = 10, b = m.buckets, max = Math.max(4, ...b.map((x) => Math.max(x.data, x.asuu)));
+  const x = (i) => L + i * (W - L - 10) / (b.length - 1), y = (v) => T + (H - T - B) * (1 - v / max);
+  const path = (k) => b.map((p, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p[k]).toFixed(1)).join(' ');
+  const area = (k, c) => `<path d="${path(k)} L${x(b.length - 1)} ${y(0)} L${x(0)} ${y(0)} Z" fill="${c}" opacity=".12"/><path d="${path(k)}" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const grid = [0, .5, 1].map((f) => { const v = Math.round(max * f); return `<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="#e2e8f8"/><text x="${L - 8}" y="${y(v) + 5}" text-anchor="end" font-size="13" fill="#9aa3c7" font-family="M" font-weight="700">${v}</text>`; }).join('');
+  const ticks = [0, 5, 10, 15, 19].map((i) => `<text x="${x(i)}" y="${H - 6}" text-anchor="middle" font-size="13" fill="#9aa3c7" font-family="M" font-weight="700">${i === 19 ? 'now' : '-' + (19 - i) + 'm'}</text>`).join('');
+  $('#line').innerHTML = grid + ticks + area('asuu', '#FFB020') + area('data', '#5379F6');
+}
+function donut(parts, size = 150) {
+  const tot = parts.reduce((a, p) => a + p[1], 0) || 1, r = size / 2 - 14, C = 2 * Math.PI * r; let off = 0;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="#e2e8f8" stroke-width="26"/>` +
+    parts.map(([, v, c]) => { const l = v / tot * C, s = `<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${c}" stroke-width="26" stroke-dasharray="${l} ${C - l}" stroke-dashoffset="${-off}" transform="rotate(-90 ${size / 2} ${size / 2})"/>`; off += l; return s; }).join('') + '</svg>';
+}
+function sov(m) {
+  const d = m.topics.data.mentions, a = m.topics.asuu.mentions, t = d + a || 1, s = m.channels.social, bl = m.channels.blog, ct = s.mentions + bl.mentions || 1;
+  $('#sov').innerHTML = `<div style="display:flex;gap:18px;align-items:center;margin-top:12px">${donut([['d', d, '#5379F6'], ['a', a, '#FFB020']])}
+      <div style="font:700 16px M"><div style="color:var(--blue);font:400 40px AB">${Math.round(d / t * 100)}%</div>Data prices<div style="color:#c98a00;font:400 40px AB;margin-top:8px">${Math.round(a / t * 100)}%</div>ASUU strikes</div></div>
+    <div class="h" style="margin-top:16px">By channel</div>
+    <div class="rowb"><span>Social</span><div class="bar"><i style="width:${s.mentions / ct * 100}%;background:var(--royal)"></i></div><span class="n">${s.mentions}</span></div>
+    <div class="rowb"><span>Blog</span><div class="bar"><i style="width:${bl.mentions / ct * 100}%;background:var(--blue)"></i></div><span class="n">${bl.mentions}</span></div>`;
+}
+function sentRow(label, s) {
+  return `<div class="rowb" style="grid-template-columns:96px 1fr 58px"><span>${label}</span><div class="bar">${['positive', 'neutral', 'negative'].map((k) => `<i style="width:${s.n ? s[k] / s.n * 100 : 0}%;background:${pctColor[k]}"></i>`).join('')}</div><span class="n" style="color:${s.net >= 0 ? 'var(--pos)' : 'var(--neg)'}">${s.n ? (s.net > 0 ? '+' : '') + s.net : '–'}</span></div>`;
+}
+function sent(m) {
+  $('#sent').innerHTML = `<div style="display:flex;gap:16px;margin-top:10px;font:700 14px M;color:var(--muted)"><span style="color:var(--pos)">● Positive</span><span style="color:var(--neu)">● Neutral</span><span style="color:var(--neg)">● Negative</span></div>` +
+    sentRow('Overall', m.sentiment) + sentRow('Data', m.topics.data.sentiment) + sentRow('ASUU', m.topics.asuu.sentiment) + sentRow('Social', m.channels.social.sentiment) + sentRow('Blog', m.channels.blog.sentiment) +
+    `<div style="font:600 13px M;color:#9aa3c7;margin-top:12px">Net = % positive minus % negative</div>`;
+}
+function ents(m) {
+  const max = Math.max(1, ...m.entities.map((e) => e[1]));
+  $('#ents').innerHTML = m.entities.length ? m.entities.slice(0, 7).map(([n, v]) => `<div class="rowb" style="grid-template-columns:80px 1fr 40px;margin-top:12px"><span>${n}</span><div class="bar"><i style="width:${v / max * 100}%;background:${['ASUU', 'FG'].includes(n) ? 'var(--amber)' : 'var(--blue)'}"></i></div><span class="n">${v}</span></div>`).join('') : '<p class="empty">Waiting for mentions…</p>';
+}
+function kw(m) {
+  const max = Math.max(1, ...m.keywords.map((k) => k[1]));
+  $('#kw').innerHTML = m.keywords.length ? m.keywords.map(([w, v]) => `<span style="font-size:${15 + 17 * v / max}px;opacity:${.55 + .45 * v / max}">${TC.esc(w)}</span>`).join('') : '<p class="empty">Keywords appear as people post…</p>';
+}
+function wall(m) {
+  const all = D.data.posts.slice().sort((a, b) => b.created_at.localeCompare(a.created_at));
+  const show = (KEY ? all : all.filter((p) => !p.hidden)).slice(0, 6);
+  $('#wallc').textContent = `${m.posts} posts`;
+  const html = show.map((p) => { const s = TC.sentiment((p.title || '') + ' ' + p.body), stt = D.data.stats[p.id] || {};
+    return `<div class="post ${p.hidden ? 'hid' : ''}" data-id="${p.id}"><div class="m"><span class="t" style="background:${p.topic === 'data' ? '#e8eeff' : '#fff4dc'};color:${p.topic === 'data' ? '#022394' : '#8a5a00'}">${TC.TOPICS[p.topic].label}</span>
+      <span>${p.channel === 'blog' ? '📝 Blog' : '💬 Social'} · @${TC.esc(p.handle || 'user')} · ${TC.ago(p.created_at)} · ♥ ${stt.likes || 0} ↻ ${stt.reposts || 0}</span><span class="se" style="background:${pctColor[s]}"></span></div>
+      <div class="x">${p.title ? `<b>${TC.esc(TC.mask(p.title))}.</b> ` : ''}${TC.esc(TC.mask(p.body))}</div>${D.mode === 'live' ? `<button data-h="${p.hidden ? 0 : 1}">${p.hidden ? 'Show' : 'Hide'}</button>` : ''}</div>`; }).join('');
+  if ($('#wall').dataset.sig !== html.length + ':' + (show[0] || {}).id + ':' + show.map((p) => +p.hidden).join('')) { $('#wall').innerHTML = html || '<p class="empty">Scan the code and post. Your words appear here.</p>'; $('#wall').dataset.sig = html.length + ':' + (show[0] || {}).id + ':' + show.map((p) => +p.hidden).join(''); }
+}
+$('#wall').onclick = async (e) => { const b = e.target.closest('button'); if (!b || !KEY) return; const id = b.closest('.post').dataset.id;
+  const { error } = await sb.rpc('tc_moderate', { p_key: KEY, p_post: id, p_hidden: b.dataset.h === '1' }); if (!error) tick(); };
+function brief(m) {
+  const auto = TC.ruleBrief(m), b = D.brief || auto;
+  $('#bsrc').textContent = !b ? '' : D.brief ? `AI read-out · Gemini · ${TC.ago(D.briefAtIso)} ago` : 'rule-based read-out';
+  if (!b) { $('#brief').innerHTML = '<p class="empty">The analyst brief writes itself once the conversation starts.</p>'; return; }
+  const tc = /negative/.test(b.tone) ? ['#fde8e8', 'var(--neg)'] : /positive/.test(b.tone) ? ['#e3f6ec', 'var(--pos)'] : ['#eef2ff', 'var(--royal)'];
+  $('#brief').innerHTML = `<div class="sum">${TC.esc(b.summary || '')}</div><span class="tone" style="background:${tc[0]};color:${tc[1]}">Tone: ${TC.esc(b.tone || 'mixed')}</span>
+    <ul>${(b.themes || []).slice(0, 3).map((t) => `<li><b>${TC.esc(t.name)}</b>: ${TC.esc(t.note)}</li>`).join('')}${(b.risks || []).slice(0, 2).map((r) => `<li class="r">${TC.esc(r)}</li>`).join('')}</ul>
+    ${(b.standout || []).slice(0, 1).map((s) => `<div class="q">“${TC.esc(TC.mask(s.quote))}” <span style="color:var(--muted)">@${TC.esc(s.handle)} · ${TC.esc(s.why || '')}</span></div>`).join('')}
+    ${b.recommendation ? `<div class="rec">→ ${TC.esc(b.recommendation)}</div>` : ''}`;
+}
+async function aiBrief(force) {
+  if (D.mode !== 'live' || !KEY || !sb) return;
+  const n = D.data ? D.data.posts.filter((p) => !p.hidden).length : 0;
+  if (!force && (n < 3 || n - D.briefPosts < 3 || Date.now() - D.briefAt < 40000)) return;
+  D.briefAt = Date.now();
+  try {
+    const r = await fetch(TC.url + '/functions/v1/tc-brief', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: TC.key, Authorization: 'Bearer ' + TC.key }, body: JSON.stringify({ key: KEY }) });
+    const j = await r.json(); if (j.brief) { D.brief = j.brief; D.briefPosts = n; D.briefAtIso = new Date().toISOString(); } else console.warn('AI brief:', j.error);
+  } catch (e) { console.warn('AI brief failed', e); }
+}
+function draw(m) { kpis(m); line(m); sov(m); sent(m); ents(m); kw(m); wall(m); brief(m); }
+
+// ---------- admin (only with the presenter key) ----------
+(async () => { if (!KEY || !sb) return; const { data } = await sb.rpc('tc_check_key', { p_key: KEY }); if (data) document.body.classList.add('mod'); else KEY = ''; })();
+$('#bsim').onclick = () => setMode(D.mode === 'sim' ? 'live' : 'sim');
+$('#bai').onclick = () => aiBrief(true).then(tick);
+$('#brst').onclick = async () => { if (!confirm('Clear all posts and start a fresh conversation?')) return; await sb.rpc('tc_reset', { p_key: KEY }); D.brief = null; D.briefPosts = 0; D.prev = {}; tick(); };
+addEventListener('keydown', (e) => { if (e.key === 's' || e.key === 'S') $('#bsim').click(); });
+addEventListener('message', (e) => { if (e.data === 'tc-sim') setMode('sim'); if (e.data === 'tc-live') setMode('live'); });
+
+if (!sb || params.get('mode') === 'sim' || !navigator.onLine) setMode('sim');
+// inside the deck: arrow keys still move the slides after a click in the dashboard
+addEventListener('keydown', (e) => { if (window.parent === window) return; if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) parent.postMessage('tc-next', '*'); if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) parent.postMessage('tc-prev', '*'); });
+tick(); setInterval(tick, 3000); setInterval(() => aiBrief(false), 10000);
+</script></body></html>
