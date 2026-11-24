@@ -49,7 +49,7 @@ header{position:sticky;top:0;z-index:5;background:var(--deep);color:#fff;padding
 .panel h2{font:400 22px AB;margin-bottom:4px}
 .lbl{font:800 11px M;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:14px 0 7px}
 .seg{display:flex;gap:8px}
-.seg button{flex:1;border:2px solid var(--line);border-radius:12px;padding:10px 8px;font:800 14px M;color:var(--muted);text-align:center}
+.seg button{flex:1;min-width:0;border:2px solid var(--line);border-radius:12px;padding:10px 8px;font:800 14px M;color:var(--muted);text-align:center}
 .seg button.on{border-color:var(--royal);color:var(--royal);background:#eef2ff}
 .chips{display:flex;flex-wrap:wrap;gap:7px}
 .chip{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:6px 11px;font:700 13px M;color:var(--royal)}
@@ -173,8 +173,8 @@ async function act(post, type, body) {
 }
 
 // ---------- feed ----------
-const hl = (t) => TC.esc(t).replace(/(#[A-Za-z0-9_]+|\b(MTN|Airtel|Glo|NCC|ASUU|FG|NLC|9mobile)\b)/g, '<span class="kw">$1</span>');
-const tagOf = (topic) => `<span class="tag" style="background:${topic === 'data' ? '#e8eeff' : '#fff4dc'};color:${topic === 'data' ? '#022394' : '#8a5a00'}">${TC.TOPICS[topic].label}</span>`;
+const hl = (t) => TC.esc(t).replace(/(#[A-Za-z0-9_]+|\b(MTN|Airtel|Glo|NCC|ASUU|FG|NLC|9mobile|NiMet|El Niño|El Nino)\b)/g, '<span class="kw">$1</span>');
+const tagOf = (topic) => { const T = TC.TOPICS[topic] || TC.TOPICS.data; return `<span class="tag" style="background:${T.bg};color:${T.fg}">${T.label}</span>`; };
 const st = (p) => S.stats[p.id] || { views: 0, likes: 0, comments: 0, reposts: 0, shares: 0 };
 function actions(p) {
   const s = st(p), L = S.mine.like.has(p.id), R = S.mine.repost.has(p.id);
@@ -245,7 +245,7 @@ function compose(channel) {
     const T = TC.TOPICS[topic];
     $('#panel').innerHTML = `<h2>${channel === 'social' ? 'New post' : 'New article'}</h2>
       <div class="lbl">Post to</div><div class="seg" id="ch"><button data-v="social" class="${channel === 'social' ? 'on' : ''}">💬 Feed</button><button data-v="blog" class="${channel === 'blog' ? 'on' : ''}">📝 Blog</button></div>
-      <div class="lbl">Topic</div><div class="seg" id="tp"><button data-v="data" class="${topic === 'data' ? 'on' : ''}">📶 Data prices</button><button data-v="asuu" class="${topic === 'asuu' ? 'on' : ''}">🎓 ASUU strikes</button></div>
+      <div class="lbl">Topic</div><div class="seg" id="tp"><button data-v="data" class="${topic === 'data' ? 'on' : ''}">📶 Data prices</button><button data-v="asuu" class="${topic === 'asuu' ? 'on' : ''}">🎓 ASUU</button><button data-v="elnino" class="${topic === 'elnino' ? 'on' : ''}">☀️ El Niño heat</button></div>
       <div class="lbl">Need an idea?</div>${T.prompts.map((q) => `<button class="prompt">${TC.esc(q)}</button>`).join('')}
       <div class="lbl">Tap to add keywords</div><div class="chips">${[...T.tags, ...T.keywords].map((k) => `<button class="chip kwb">${TC.esc(k)}</button>`).join('')}</div>
       ${channel === 'blog' ? '<div class="lbl">Title</div><input type="text" id="ti" maxlength="120" placeholder="Give your article a headline">' : ''}

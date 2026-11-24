@@ -13,21 +13,31 @@ TC.TOPICS = {
   asuu: { label: 'ASUU strikes', color: '#FFB020', tags: ['#ASUUStrike', '#EndASUUStrike', '#2009Agreement'],
     keywords: ['ASUU', 'strike', 'lecturers', 'FG', '2009 agreement', 'no work no pay', 'students at home'],
     prompts: ['What do ASUU strikes cost a student?', 'Who should fix it: ASUU, the FG, or both?', 'A friend in a public university just went home. What would you tell them?'] },
+  elnino: { label: 'El Niño heat', color: '#F0662B', tags: ['#ElNino', '#Heatwave', '#ScorchingSun'],
+    keywords: ['El Niño', 'heatwave', 'scorching sun', 'NiMet', 'heat stroke', 'no light', 'stay hydrated', 'climate change'],
+    prompts: ['How is this heat affecting your classes, sleep or health?', 'What should NiMet or the government be telling people right now?', 'Which brand could win hearts in this heat, and how?'] },
 };
+TC.TOPIC_KEYS = Object.keys(TC.TOPICS);
+// light badge colours per topic (student app + dashboard)
+TC.TOPICS.data.bg = '#e8eeff'; TC.TOPICS.data.fg = '#022394';
+TC.TOPICS.asuu.bg = '#fff4dc'; TC.TOPICS.asuu.fg = '#8a5a00';
+TC.TOPICS.elnino.bg = '#ffe9df'; TC.TOPICS.elnino.fg = '#b3400f';
 
 // tracked entities (what a monitoring tool would be set up to catch)
 TC.ENTITIES = [
   ['MTN', /\bmtn\b/i], ['Airtel', /\bairtel\b/i], ['Glo', /\bglo\b|\bglobacom\b/i], ['9mobile', /\b9mobile\b/i],
   ['NCC', /\bncc\b/i], ['ASUU', /\basuu\b/i], ['FG', /\bfg\b|federal government/i], ['NLC', /\bnlc\b/i],
+  ['NiMet', /\bnimet\b/i], ['El Niño', /\bel ?ni[nñ]o\b/i],
 ];
 TC.TOPIC_RX = {
   data: /\b(data|tariff|bundle|mtn|airtel|glo|9mobile|ncc|recharge|airtime|subscription|network|telco|hike)\b|50%/i,
   asuu: /\b(asuu|strike|strikes|lecturers?|fg|union|2009|ippis|utas|salar(y|ies)|no work)\b/i,
+  elnino: /\b(el ?ni[nñ]o|heat|heatwave|hot|sun|scorching|temperature|nimet|climate|weather|sweat|hydrat\w*)\b/i,
 };
 
 const POS = 'good great love fair happy thanks thank better improve improved support agree sweet nice solution hope hopeful progress win resolved enjoy valid respect best affordable cheap reasonable fix fixed sensible understand understandable calm peace proud grateful kudos commend dialogue invest investment benefit benefits upgrade quality reliable'.split(' ');
-const NEG = 'bad terrible expensive scam ripoff unfair hate angry wicked frustrated frustrating wahala suffering suffer suffered poor slow waste wasted robbery greedy sad tired nonsense useless cheat cheating problem problems insensitive failed fail failure shame disappointed disappointing worst painful pain broke stranded wicked exploit exploitation outrageous ridiculous annoying annoyed crazy jobless idle delay delayed setback hardship hardships unfortunate sorry cry crying protest neglect neglected heartless lazy greed corrupt corruption backward abandoned'.split(' ');
-const NEG_PHRASES = [/data (dey|is) finish(ing)?/i, /too (much|high|expensive)/i, /e no (make|dey make) sense/i, /no work,? no pay/i, /at home (again|for months)/i, /\bstrike again\b/i, /\bfinish(es|ing)? (too )?(fast|quick)/i, /\bdata finishing\b/i, /\bnot (fair|lasting)\b/i];
+const NEG = 'bad terrible expensive scam ripoff unfair hate angry wicked frustrated frustrating wahala suffering suffer suffered poor slow waste wasted robbery greedy sad tired nonsense useless cheat cheating problem problems insensitive failed fail failure shame disappointed disappointing worst painful pain broke stranded wicked exploit exploitation outrageous ridiculous annoying annoyed crazy jobless idle delay delayed setback hardship hardships unfortunate sorry cry crying protest neglect neglected heartless lazy greed corrupt corruption backward abandoned unbearable scorching suffocating dehydrated exhausted sweating stroke'.split(' ');
+const NEG_PHRASES = [/data (dey|is) finish(ing)?/i, /too (much|high|expensive)/i, /e no (make|dey make) sense/i, /no work,? no pay/i, /at home (again|for months)/i, /\bstrike again\b/i, /\bfinish(es|ing)? (too )?(fast|quick)/i, /\bdata finishing\b/i, /\bnot (fair|lasting|normal)\b/i, /\bno light\b/i, /\btoo hot\b/i];
 const POS_PHRASES = [/well done/i, /makes? sense/i, /good (move|decision|news)/i];
 const NEGATORS = new Set(['not', 'no', 'never', "don't", 'dont', "isn't", 'isnt', "wasn't", "won't", 'cannot', "can't", 'cant', 'nor', 'without']);
 const SWEAR = /\b(f+u+c+k\w*|sh[i1]t\w*|bitch\w*|bastard\w*|ashawo|werey|mumu|idiot\w*|stupid|ode|olodo|dick\w*|pussy|asshole|motherf\w*|nigga\w*|cunt\w*)\b/i;
@@ -42,7 +52,7 @@ TC.sentiment = (text) => {
   words.forEach((w, i) => {
     const flip = NEGATORS.has(words[i - 1]) || NEGATORS.has(words[i - 2]);
     if (POS.includes(w)) s += flip ? -1 : 1;
-    else if (NEG.includes(w)) s += flip ? 0.5 : -1;
+    else if (NEG.includes(w)) s += NEGATORS.has(words[i - 1]) ? 0.5 : -1;
   });
   NEG_PHRASES.forEach((r) => { if (r.test(t)) s -= 1; });
   POS_PHRASES.forEach((r) => { if (r.test(t)) s += 1; });
@@ -51,7 +61,7 @@ TC.sentiment = (text) => {
 };
 
 const STOP = new Set(('a an the and or but if then so to of in on at for from by with as is are was were be been being it its this that these those i me my we our you your he she they them their his her im i\'m dont do does did done have has had not no yes just very too can could will would should may might must also about into over than more most some any all one two get got go going come make made want need like know think say said see one us who what when where why how which there here because while still even only really now new our out up down off again ever every each much many such own same other dey na e go wey make sef o abeg oo don am una dem wetin no be student students people test post article comment ' +
-    'data asuu').split(' '));
+    'data asuu el nino niño').split(' '));
 TC.words = (text) => (text || '').toLowerCase().replace(/https?:\S+/g, ' ').replace(/[^a-z0-9#@%\s]/g, ' ').split(/\s+/)
   .filter((w) => w.length > 2 && !STOP.has(w) && !/^\d+$/.test(w) && !w.startsWith('@'));
 TC.entities = (text) => TC.ENTITIES.filter(([, r]) => r.test(text || '')).map(([n]) => n);
@@ -87,7 +97,7 @@ TC.metrics = ({ posts, comments, stats, reach, people }) => {
   const keywords = Object.entries(kw).sort((a, b) => b[1] - a[1]).slice(0, 14);
 
   // mentions over time: one bucket per minute, last 20 minutes
-  const now = Date.now(), B = 20, buckets = Array.from({ length: B }, (_, k) => ({ t: now - (B - 1 - k) * 60000, data: 0, asuu: 0 }));
+  const now = Date.now(), B = 20, buckets = Array.from({ length: B }, (_, k) => ({ t: now - (B - 1 - k) * 60000, data: 0, asuu: 0, elnino: 0 }));
   items.forEach((i) => { const k = B - 1 - Math.floor((now - new Date(i.at)) / 60000); if (k >= 0 && k < B) buckets[k][i.topic]++; });
 
   const per = (topic) => { const ps = live.filter((p) => p.topic === topic), its = group('topic', topic);
@@ -101,7 +111,7 @@ TC.metrics = ({ posts, comments, stats, reach, people }) => {
     people, posts: live.length, comments: cms.length, mentions: items.length, impressions, reach: rget(null, null), engagement,
     er: impressions ? Math.round(engagement / impressions * 1000) / 10 : 0,
     likes: sum(live, 'likes'), reposts: sum(live, 'reposts'), shares: sum(live, 'shares'),
-    sentiment: sentOf(items), topics: { data: per('data'), asuu: per('asuu') }, channels: { social: chan('social'), blog: chan('blog') },
+    sentiment: sentOf(items), topics: Object.fromEntries(TC.TOPIC_KEYS.map((t) => [t, per(t)])), channels: { social: chan('social'), blog: chan('blog') },
     entities: Object.entries(ent).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]), keywords, buckets, top: scored.slice(0, 3), items,
   };
 };
@@ -109,13 +119,13 @@ TC.metrics = ({ posts, comments, stats, reach, people }) => {
 // rule-based analyst brief: the fallback when the AI read-out is unavailable
 TC.ruleBrief = (m) => {
   if (!m.mentions) return null;
-  const lead = m.topics.data.mentions >= m.topics.asuu.mentions ? 'data' : 'asuu';
+  const lead = TC.TOPIC_KEYS.slice().sort((a, b) => m.topics[b].mentions - m.topics[a].mentions)[0];
   const tone = m.sentiment.neg >= 55 ? 'mostly negative' : m.sentiment.pos >= 55 ? 'mostly positive' : 'mixed';
-  const themes = ['data', 'asuu'].map((t) => { const kw = {}; m.items.filter((i) => i.topic === t).forEach((i) => new Set(TC.words(i.text)).forEach((w) => { kw[w] = (kw[w] || 0) + 1; }));
+  const themes = TC.TOPIC_KEYS.map((t) => { const kw = {}; m.items.filter((i) => i.topic === t).forEach((i) => new Set(TC.words(i.text)).forEach((w) => { kw[w] = (kw[w] || 0) + 1; }));
     const top = Object.entries(kw).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([w]) => w);
     return top.length ? { name: TC.TOPICS[t].label, topic: t, note: 'Most used words: ' + top.join(', ') } : null; }).filter(Boolean);
   const risks = [];
-  ['data', 'asuu'].forEach((t) => { const s = m.topics[t].sentiment; if (s.n >= 3 && s.neg >= 50) risks.push(`${s.neg}% of the ${TC.TOPICS[t].label.toLowerCase()} conversation is negative`); });
+  TC.TOPIC_KEYS.forEach((t) => { const s = m.topics[t].sentiment; if (s.n >= 3 && s.neg >= 50) risks.push(`${s.neg}% of the ${TC.TOPICS[t].label.toLowerCase()} conversation is negative`); });
   const ent = m.entities[0]; if (ent) risks.push(`${ent[0]} is the most-mentioned name (${ent[1]} mentions)`);
   const t = m.top[0];
   return {

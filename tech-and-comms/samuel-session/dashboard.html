@@ -59,7 +59,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--deep)}
 </style></head><body>
 <div id="stage">
   <div class="top"><h1>LIVE SOCIAL <span>LISTENING</span></h1><span class="pill" id="status"><i></i>LIVE</span>
-    <div class="leg"><span><b style="background:var(--blue)"></b>Data prices</span><span><b style="background:var(--amber)"></b>ASUU strikes</span></div>
+    <div class="leg"><span><b style="background:var(--blue)"></b>Data prices</span><span><b style="background:var(--amber)"></b>ASUU strikes</span><span><b style="background:#F0662B"></b>El Niño heat</span></div>
     <div class="join"><div>Scan to join the conversation<b id="joinurl"></b></div><div class="qr" id="qr"></div></div></div>
   <!-- KPIs -->
   <div id="kpis"></div>
@@ -127,13 +127,13 @@ function kpis(m) {
   k.forEach(([h, v]) => { if (typeof v === 'number') D.prev[h] = v; });
 }
 function line(m) {
-  const W = 746, H = 310, L = 34, B = 30, T = 10, b = m.buckets, max = Math.max(4, ...b.map((x) => Math.max(x.data, x.asuu)));
+  const W = 746, H = 310, L = 34, B = 30, T = 10, b = m.buckets, max = Math.max(4, ...b.map((x) => Math.max(x.data, x.asuu, x.elnino)));
   const x = (i) => L + i * (W - L - 10) / (b.length - 1), y = (v) => T + (H - T - B) * (1 - v / max);
   const path = (k) => b.map((p, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(p[k]).toFixed(1)).join(' ');
   const area = (k, c) => `<path d="${path(k)} L${x(b.length - 1)} ${y(0)} L${x(0)} ${y(0)} Z" fill="${c}" opacity=".12"/><path d="${path(k)}" fill="none" stroke="${c}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`;
   const grid = [0, .5, 1].map((f) => { const v = Math.round(max * f); return `<line x1="${L}" x2="${W}" y1="${y(v)}" y2="${y(v)}" stroke="#e2e8f8"/><text x="${L - 8}" y="${y(v) + 5}" text-anchor="end" font-size="13" fill="#9aa3c7" font-family="M" font-weight="700">${v}</text>`; }).join('');
   const ticks = [0, 5, 10, 15, 19].map((i) => `<text x="${x(i)}" y="${H - 6}" text-anchor="middle" font-size="13" fill="#9aa3c7" font-family="M" font-weight="700">${i === 19 ? 'now' : '-' + (19 - i) + 'm'}</text>`).join('');
-  $('#line').innerHTML = grid + ticks + area('asuu', '#FFB020') + area('data', '#5379F6');
+  $('#line').innerHTML = grid + ticks + area('elnino', '#F0662B') + area('asuu', '#FFB020') + area('data', '#5379F6');
 }
 function donut(parts, size = 150) {
   const tot = parts.reduce((a, p) => a + p[1], 0) || 1, r = size / 2 - 14, C = 2 * Math.PI * r; let off = 0;
@@ -141,10 +141,10 @@ function donut(parts, size = 150) {
     parts.map(([, v, c]) => { const l = v / tot * C, s = `<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${c}" stroke-width="26" stroke-dasharray="${l} ${C - l}" stroke-dashoffset="${-off}" transform="rotate(-90 ${size / 2} ${size / 2})"/>`; off += l; return s; }).join('') + '</svg>';
 }
 function sov(m) {
-  const d = m.topics.data.mentions, a = m.topics.asuu.mentions, t = d + a || 1, s = m.channels.social, bl = m.channels.blog, ct = s.mentions + bl.mentions || 1;
-  $('#sov').innerHTML = `<div style="display:flex;gap:18px;align-items:center;margin-top:12px">${donut([['d', d, '#5379F6'], ['a', a, '#FFB020']])}
-      <div style="font:700 16px M"><div style="color:var(--blue);font:400 40px AB">${Math.round(d / t * 100)}%</div>Data prices<div style="color:#c98a00;font:400 40px AB;margin-top:8px">${Math.round(a / t * 100)}%</div>ASUU strikes</div></div>
-    <div class="h" style="margin-top:16px">By channel</div>
+  const ks = TC.TOPIC_KEYS, v = ks.map((k) => m.topics[k].mentions), t = v.reduce((x, y) => x + y, 0) || 1, s = m.channels.social, bl = m.channels.blog, ct = s.mentions + bl.mentions || 1;
+  $('#sov').innerHTML = `<div style="display:flex;gap:18px;align-items:center;margin-top:10px">${donut(ks.map((k, i) => [k, v[i], TC.TOPICS[k].color]), 140)}
+      <div style="font:700 15px M">${ks.map((k, i) => `<div style="display:flex;align-items:baseline;gap:10px;margin-top:${i ? 6 : 0}px"><span style="color:${TC.TOPICS[k].fg};font:400 34px AB;min-width:92px">${Math.round(v[i] / t * 100)}%</span>${TC.TOPICS[k].label}</div>`).join('')}</div></div>
+    <div class="h" style="margin-top:12px">By channel</div>
     <div class="rowb"><span>Social</span><div class="bar"><i style="width:${s.mentions / ct * 100}%;background:var(--royal)"></i></div><span class="n">${s.mentions}</span></div>
     <div class="rowb"><span>Blog</span><div class="bar"><i style="width:${bl.mentions / ct * 100}%;background:var(--blue)"></i></div><span class="n">${bl.mentions}</span></div>`;
 }
@@ -153,12 +153,12 @@ function sentRow(label, s) {
 }
 function sent(m) {
   $('#sent').innerHTML = `<div style="display:flex;gap:16px;margin-top:10px;font:700 14px M;color:var(--muted)"><span style="color:var(--pos)">● Positive</span><span style="color:var(--neu)">● Neutral</span><span style="color:var(--neg)">● Negative</span></div>` +
-    sentRow('Overall', m.sentiment) + sentRow('Data', m.topics.data.sentiment) + sentRow('ASUU', m.topics.asuu.sentiment) + sentRow('Social', m.channels.social.sentiment) + sentRow('Blog', m.channels.blog.sentiment) +
+    sentRow('Overall', m.sentiment) + sentRow('Data', m.topics.data.sentiment) + sentRow('ASUU', m.topics.asuu.sentiment) + sentRow('El Niño', m.topics.elnino.sentiment) + sentRow('Social', m.channels.social.sentiment) + sentRow('Blog', m.channels.blog.sentiment) +
     `<div style="font:600 13px M;color:#9aa3c7;margin-top:12px">Net = % positive minus % negative</div>`;
 }
 function ents(m) {
   const max = Math.max(1, ...m.entities.map((e) => e[1]));
-  $('#ents').innerHTML = m.entities.length ? m.entities.slice(0, 7).map(([n, v]) => `<div class="rowb" style="grid-template-columns:80px 1fr 40px;margin-top:12px"><span>${n}</span><div class="bar"><i style="width:${v / max * 100}%;background:${['ASUU', 'FG'].includes(n) ? 'var(--amber)' : 'var(--blue)'}"></i></div><span class="n">${v}</span></div>`).join('') : '<p class="empty">Waiting for mentions…</p>';
+  $('#ents').innerHTML = m.entities.length ? m.entities.slice(0, 7).map(([n, v]) => `<div class="rowb" style="grid-template-columns:80px 1fr 40px;margin-top:12px"><span>${n}</span><div class="bar"><i style="width:${v / max * 100}%;background:${['ASUU', 'FG'].includes(n) ? 'var(--amber)' : ['NiMet', 'El Niño'].includes(n) ? '#F0662B' : 'var(--blue)'}"></i></div><span class="n">${v}</span></div>`).join('') : '<p class="empty">Waiting for mentions…</p>';
 }
 function kw(m) {
   const max = Math.max(1, ...m.keywords.map((k) => k[1]));
@@ -169,7 +169,7 @@ function wall(m) {
   const show = (KEY ? all : all.filter((p) => !p.hidden)).slice(0, 6);
   $('#wallc').textContent = `${m.posts} posts`;
   const html = show.map((p) => { const s = TC.sentiment((p.title || '') + ' ' + p.body), stt = D.data.stats[p.id] || {};
-    return `<div class="post ${p.hidden ? 'hid' : ''}" data-id="${p.id}"><div class="m"><span class="t" style="background:${p.topic === 'data' ? '#e8eeff' : '#fff4dc'};color:${p.topic === 'data' ? '#022394' : '#8a5a00'}">${TC.TOPICS[p.topic].label}</span>
+    return `<div class="post ${p.hidden ? 'hid' : ''}" data-id="${p.id}"><div class="m"><span class="t" style="background:${(TC.TOPICS[p.topic] || TC.TOPICS.data).bg};color:${(TC.TOPICS[p.topic] || TC.TOPICS.data).fg}">${TC.TOPICS[p.topic].label}</span>
       <span>${p.channel === 'blog' ? '📝 Blog' : '💬 Social'} · @${TC.esc(p.handle || 'user')} · ${TC.ago(p.created_at)} · ♥ ${stt.likes || 0} ↻ ${stt.reposts || 0}</span><span class="se" style="background:${pctColor[s]}"></span></div>
       <div class="x">${p.title ? `<b>${TC.esc(TC.mask(p.title))}.</b> ` : ''}${TC.esc(TC.mask(p.body))}</div>${D.mode === 'live' ? `<button data-h="${p.hidden ? 0 : 1}">${p.hidden ? 'Show' : 'Hide'}</button>` : ''}</div>`; }).join('');
   if ($('#wall').dataset.sig !== html.length + ':' + (show[0] || {}).id + ':' + show.map((p) => +p.hidden).join('')) { $('#wall').innerHTML = html || '<p class="empty">Scan the code and post. Your words appear here.</p>'; $('#wall').dataset.sig = html.length + ':' + (show[0] || {}).id + ':' + show.map((p) => +p.hidden).join(''); }

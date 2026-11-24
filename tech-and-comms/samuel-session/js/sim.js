@@ -27,6 +27,12 @@
     ['social', 'asuu', null, 'ASUU strike headlines again. Nobody wins this, everybody loses'],
     ['social', 'data', null, 'Student data plans would be a smart PR move for MTN or Glo right now. Win the next generation'],
     ['social', 'asuu', null, 'Proud of lecturers who still teach well despite everything. But the system has failed them'],
+    ['social', 'elnino', null, 'This sun is not normal. Walked from the hostel to class and I was already sweating like I ran a marathon #Heatwave'],
+    ['social', 'elnino', null, 'NiMet warned about the heat. Drink water, avoid the sun at noon, look out for each other #ElNino'],
+    ['blog', 'elnino', 'El Niño is a communications test', 'Heat is a public health story. Hospitals, schools, NiMet and even drink brands all have a role. The ones who give useful, timely advice will earn trust this season.'],
+    ['social', 'elnino', null, 'No light and this scorching sun. Sleeping at night is now a battle'],
+    ['social', 'elnino', null, 'Respect to the brand that set up free water points on campus. That is how you win hearts in this heat'],
+    ['social', 'elnino', null, 'Climate change is not a future problem anymore. El Niño is showing us right now'],
   ];
   const NAMES = ['Tolu', 'Ada', 'Chidi', 'Zainab', 'Femi', 'Ngozi', 'Tunde', 'Amaka', 'Seyi', 'Halima', 'Kemi', 'Emeka', 'Bisi', 'Uche', 'Musa', 'Ife', 'Dayo', 'Ruth'];
   const COMMENTS = ['So true', 'This is exactly my experience', 'Nah, I think they had no choice', 'The FG needs to act', 'Facts!', 'MTN should see this', 'Well said', 'Too expensive honestly', 'I disagree, lecturers deserve better'];
@@ -35,7 +41,10 @@
   window.SIM = {
     start() {
       const now = Date.now(), people = NAMES.map((n, i) => ({ id: 'u' + i, name: n, handle: n.toLowerCase() + '_' + (11 + i * 3) }));
-      S = { now, people, posts: [], comments: [], views: {}, viewers: {}, likes: {}, reposts: {}, shares: {}, seen: new Set(), queue: P.slice(), n: 0 };
+      // mix the topics so all three show up early
+      const by = {}; P.forEach((p) => (by[p[1]] = by[p[1]] || []).push(p)); const queue = [];
+      while (Object.values(by).some((l) => l.length)) Object.values(by).forEach((l) => { if (l.length) queue.push(l.shift()); });
+      S = { now, people, posts: [], comments: [], views: {}, viewers: {}, likes: {}, reposts: {}, shares: {}, seen: new Set(), queue, n: 0 };
       // a few posts already in when the slide opens
       for (let i = 0; i < 6; i++) this.add(now - (6 - i) * 70000);
     },
