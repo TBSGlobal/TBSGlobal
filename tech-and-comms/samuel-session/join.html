@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TC Live · Tech &amp; Comms</title>
+<meta name="theme-color" content="#071566">
+<style>
+@font-face{font-family:AB;src:url(fonts/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(fonts/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(fonts/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(fonts/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(fonts/montserrat-latin-800-normal.woff2)}
+:root{--deep:#071566;--royal:#022394;--blue:#5379F6;--ink:#131838;--paper:#f2f5fc;--line:#e2e8f8;--muted:#5b6386;--yellow:#ffd60a;--red:#e5484d;--green:#1f9d63;--amber:#FFB020}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--paper);color:var(--ink);font:500 15px/1.45 M,system-ui,sans-serif}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+.wrap{max-width:560px;margin:0 auto;min-height:100vh;padding-bottom:110px}
+header{position:sticky;top:0;z-index:5;background:var(--deep);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 0}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand b{font:400 20px AB;letter-spacing:.01em}.brand b span{color:var(--yellow)}
+.me{font:700 12px M;opacity:.85;text-align:right}
+.live{display:inline-flex;align-items:center;gap:6px;font:800 11px M;letter-spacing:.14em;background:rgba(255,255,255,.12);padding:4px 9px;border-radius:99px}
+.live i{width:7px;height:7px;border-radius:50%;background:#ff4d4f;animation:p 1.4s infinite}@keyframes p{50%{opacity:.25}}
+.tabs{display:flex;margin-top:10px}
+.tabs button{flex:1;color:rgba(255,255,255,.65);font:800 14px M;padding:11px 0 12px;border-bottom:3px solid transparent}
+.tabs button.on{color:#fff;border-color:var(--yellow)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:12px 12px 0;padding:14px}
+.row{display:flex;gap:10px;align-items:center}
+.av{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;font:800 15px M;color:#fff}
+.who b{font-weight:800}.who span{color:var(--muted);font-size:13px}
+.tag{display:inline-block;font:800 10.5px M;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;margin-left:auto;white-space:nowrap}
+.body{margin-top:8px;white-space:pre-wrap;word-wrap:break-word}
+.body .kw{color:var(--royal);font-weight:700}
+.pimg{margin-top:10px;border-radius:12px;width:100%;display:block;max-height:420px;object-fit:cover;background:var(--line)}
+.acts{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted);font:700 13px M}
+.acts button{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:10px;color:var(--muted)}
+.acts button.on{color:var(--royal)}.acts button.liked{color:var(--red)}
+.acts svg{width:19px;height:19px}
+.rp{font:700 12px M;color:var(--green);margin-bottom:6px}
+.blog h3{font:400 19px/1.2 AB;margin-top:8px}
+.blog .ex{color:var(--muted);margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog .cover{margin-top:10px;border-radius:12px;width:100%;height:170px;object-fit:cover}
+.fab{position:fixed;right:max(16px,calc(50vw - 264px));bottom:calc(20px + env(safe-area-inset-bottom));z-index:6;background:var(--yellow);color:var(--ink);font:800 16px M;padding:16px 22px;border-radius:99px;box-shadow:0 12px 30px -10px rgba(7,21,102,.6);display:flex;gap:8px;align-items:center}
+.empty{text-align:center;color:var(--muted);padding:50px 20px}
+/* sheets */
+.sheet{position:fixed;inset:0;z-index:10;background:rgba(7,21,102,.45);display:none;align-items:flex-end;justify-content:center}
+.sheet.on{display:flex}
+.panel{background:#fff;width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+.panel h2{font:400 22px AB;margin-bottom:4px}
+.lbl{font:800 11px M;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:14px 0 7px}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;min-width:0;border:2px solid var(--line);border-radius:12px;padding:10px 8px;font:800 14px M;color:var(--muted);text-align:center}
+.seg button.on{border-color:var(--royal);color:var(--royal);background:#eef2ff}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:6px 11px;font:700 13px M;color:var(--royal)}
+.prompt{display:block;width:100%;text-align:left;border:1px dashed #c9d3f2;border-radius:12px;padding:9px 11px;font:600 13.5px M;color:var(--ink);margin-bottom:6px;background:#fbfcff}
+input[type=text],textarea{width:100%;border:2px solid var(--line);border-radius:12px;padding:11px 12px;font:500 16px M;outline:none;background:#fff}
+input[type=text]:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:110px;resize:vertical}
+.cnt{text-align:right;font:600 12px M;color:var(--muted);margin-top:4px}
+.btn{display:block;width:100%;background:var(--royal);color:#fff;font:800 16px M;padding:15px;border-radius:14px;margin-top:16px}
+.btn:disabled{opacity:.5}
+.btn.ghost{background:var(--paper);color:var(--ink)}
+.photo{display:flex;align-items:center;gap:10px;margin-top:10px}
+.photo label{border:2px dashed var(--line);border-radius:12px;padding:10px 14px;font:700 14px M;color:var(--royal);cursor:pointer}
+.photo img{height:54px;border-radius:8px}
+.warn{color:var(--red);font:700 13px M;margin-top:8px;display:none}
+.cm{padding:10px 0;border-top:1px solid var(--line)}.cm b{font-weight:800}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:99px;font:700 14px M;z-index:20;display:none}
+/* join */
+.hero{background:var(--deep);color:#fff;padding:calc(40px + env(safe-area-inset-top)) 22px 34px;border-radius:0 0 28px 28px}
+.hero h1{font:400 34px/1.05 AB}.hero h1 span{color:var(--yellow)}
+.hero p{margin-top:12px;color:rgba(255,255,255,.85)}
+.join{padding:6px 18px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;border:2px solid var(--line);border-radius:16px;padding:14px;width:100%;margin-bottom:10px;background:#fff}
+.opt.on{border-color:var(--royal);background:#eef2ff}
+.opt b{display:block;font:800 16px M}.opt span{color:var(--muted);font-size:13.5px}
+.opt .ic{font-size:26px;line-height:1}
+.note{font-size:12.5px;color:var(--muted);margin-top:14px;text-align:center}
+.read h1{font:400 26px/1.15 AB;margin:6px 0 10px}
+</style></head><body>
+<div class="wrap" id="app"></div>
+<div class="sheet" id="sheet"><div class="panel" id="panel"></div></div>
+<div class="toast" id="toast"></div>
+<script src="js/supabase.js"></script>
+<script src="js/listen.js"></script>
+<script>
+const sb = supabase.createClient(TC.url, TC.key, { auth: { persistSession: false } });
+const $ = (s) => document.querySelector(s);
+const ICON = {
+  like: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7.1a4.4 4.4 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></svg>',
+  liked: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7.5-4.6-7.5-10.1A4.4 4.4 0 0 1 12 7.1a4.4 4.4 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></svg>',
+  comment: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg>',
+  repost: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg>',
+  share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>',
+  views: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+};
+const COLORS = ['#5379F6', '#022394', '#e5484d', '#1f9d63', '#FFB020', '#8b5cf6', '#0ea5e9', '#f97316'];
+const avColor = (s) => COLORS[[...(s || 'x')].reduce((a, c) => a + c.charCodeAt(0), 0) % COLORS.length];
+
+let me = null; try { me = JSON.parse(localStorage.getItem('tc_me') || 'null'); } catch (e) {}
+const S = { tab: 'social', posts: [], stats: {}, mine: { like: new Set(), repost: new Set() }, last: null, open: null };
+const toast = (t) => { const el = $('#toast'); el.textContent = t; el.style.display = 'block'; clearTimeout(toast.t); toast.t = setTimeout(() => el.style.display = 'none', 2200); };
+
+// ---------- join ----------
+function renderJoin() {
+  let channel = 'social';
+  $('#app').innerHTML = `<div class="hero"><span class="live"><i></i>LIVE IN THE HALL</span>
+    <h1 style="margin-top:16px">Tech &amp; Comms <span>Live</span></h1>
+    <p>Join the conversation. What you post here shows up on the big screen as a live social listening dashboard.</p></div>
+    <div class="join"><div class="lbl">Your name</div><input type="text" id="nm" maxlength="40" placeholder="e.g. Tolu Adeyemi" autocomplete="name">
+    <div class="lbl">Your handle</div><input type="text" id="hd" maxlength="24" placeholder="@tolu_writes">
+    <div class="lbl">Where do you want to post?</div>
+    <button class="opt on" data-c="social"><span class="ic">💬</span><span><b>Social feed</b><span>Short posts with text or a photo. Likes, comments and reposts, like X or Instagram.</span></span></button>
+    <button class="opt" data-c="blog"><span class="ic">📝</span><span><b>Blog</b><span>Longer posts with a title. Others read and comment, like a news site or Medium.</span></span></button>
+    <button class="btn" id="go">Join the conversation</button>
+    <p class="note">Keep it respectful: posts may appear on the screen in the hall. No phone number or email needed.</p></div>`;
+  const nm = $('#nm'), hd = $('#hd');
+  nm.oninput = () => { if (!hd.dataset.edited) hd.value = '@' + nm.value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 18) + (nm.value ? '_' + (10 + Math.floor(Math.random() * 89)) : ''); };
+  hd.oninput = () => { hd.dataset.edited = 1; };
+  document.querySelectorAll('.opt').forEach((b) => b.onclick = () => { channel = b.dataset.c; document.querySelectorAll('.opt').forEach((x) => x.classList.toggle('on', x === b)); });
+  $('#go').onclick = async () => {
+    const name = nm.value.trim(), handle = (hd.value.trim() || '@' + name).replace(/^@*/, '').replace(/[^A-Za-z0-9_.]/g, '').slice(0, 24);
+    if (!name || handle.length < 2) return toast('Add your name first');
+    if (TC.clean(name + ' ' + handle)) return toast('Please choose a different name');
+    $('#go').disabled = true;
+    const { data, error } = await sb.from('tc_profiles').insert({ name, handle, channel }).select().single();
+    if (error) { $('#go').disabled = false; return toast('Could not join. Check your internet and try again.'); }
+    me = { id: data.id, name, handle, channel }; localStorage.setItem('tc_me', JSON.stringify(me));
+    S.tab = channel; boot();
+  };
+}
+
+// ---------- data ----------
+async function load(full) {
+  let q = sb.from('tc_posts').select('id,profile_id,channel,topic,title,body,image_url,created_at,hidden,tc_profiles(name,handle)').order('created_at', { ascending: false }).limit(120);
+  if (!full && S.last) q = q.gt('created_at', S.last);
+  const [{ data: posts, error }, { data: stats }, { data: hid }] = await Promise.all([q, sb.from('tc_post_stats').select('*'),
+    sb.from('tc_posts').select('id').eq('hidden', true)]);
+  if (error) return false;
+  const map = new Map(S.posts.map((p) => [p.id, p]));
+  (posts || []).forEach((p) => map.set(p.id, { ...p, name: p.tc_profiles?.name, handle: p.tc_profiles?.handle }));
+  const hidden = new Set((hid || []).map((h) => h.id));
+  S.posts = [...map.values()].filter((p) => !hidden.has(p.id) && !p.hidden).sort((a, b) => b.created_at.localeCompare(a.created_at));
+  if (S.posts.length) S.last = S.posts[0].created_at;
+  S.stats = Object.fromEntries((stats || []).map((s) => [s.post_id, s]));
+  return true;
+}
+async function loadMine() {
+  const { data } = await sb.from('tc_events').select('post_id,type').eq('profile_id', me.id).in('type', ['like', 'repost']);
+  (data || []).forEach((e) => S.mine[e.type].add(e.post_id));
+}
+// impressions: a post counts as seen when at least 60% of it is on screen for a second
+const viewQ = [], seenAt = {};
+const io = new IntersectionObserver((ents) => ents.forEach((en) => {
+  const id = en.target.dataset.id; if (!id) return;
+  if (en.isIntersecting) en.target._t = setTimeout(() => { if (Date.now() - (seenAt[id] || 0) > 30000) { seenAt[id] = Date.now(); viewQ.push({ post_id: id, profile_id: me.id, type: 'view' }); } }, 1000);
+  else clearTimeout(en.target._t);
+}), { threshold: 0.6 });
+async function flushViews() { if (!viewQ.length || !me) return; const batch = viewQ.splice(0, viewQ.length); const { error } = await sb.from('tc_events').insert(batch); if (error && !/foreign key/.test(error.message)) viewQ.unshift(...batch); }
+setInterval(flushViews, 4000);
+document.addEventListener('visibilitychange', () => { if (document.hidden) flushViews(); });
+
+async function act(post, type, body) {
+  const row = { post_id: post.id, profile_id: me.id, type }; if (body) row.body = body;
+  const { error } = await sb.from('tc_events').insert(row);
+  if (error && error.code !== '23505') { toast('Could not send. Try again.'); return false; }
+  const s = S.stats[post.id] || (S.stats[post.id] = { views: 0, likes: 0, comments: 0, reposts: 0, shares: 0 });
+  const k = { like: 'likes', repost: 'reposts', share: 'shares', comment: 'comments' }[type]; if (k && !error) s[k] = (s[k] || 0) + 1;
+  if (type === 'like' || type === 'repost') S.mine[type].add(post.id);
+  if (type === 'repost') s.last_repost = new Date().toISOString();
+  return true;
+}
+
+// ---------- feed ----------
+const hl = (t) => TC.esc(t).replace(/(#[A-Za-z0-9_]+|\b(MTN|Airtel|Glo|NCC|ASUU|FG|NLC|9mobile|NiMet|El Niño|El Nino)\b)/g, '<span class="kw">$1</span>');
+const tagOf = (topic) => { const T = TC.TOPICS[topic] || TC.TOPICS.data; return `<span class="tag" style="background:${T.bg};color:${T.fg}">${T.label}</span>`; };
+const st = (p) => S.stats[p.id] || { views: 0, likes: 0, comments: 0, reposts: 0, shares: 0 };
+function actions(p) {
+  const s = st(p), L = S.mine.like.has(p.id), R = S.mine.repost.has(p.id);
+  return `<div class="acts">
+    <button data-a="comment" data-id="${p.id}">${ICON.comment}${s.comments || ''}</button>
+    <button data-a="repost" data-id="${p.id}" class="${R ? 'on' : ''}">${ICON.repost}${s.reposts || ''}</button>
+    <button data-a="like" data-id="${p.id}" class="${L ? 'liked' : ''}">${L ? ICON.liked : ICON.like}${s.likes || ''}</button>
+    <button data-a="share" data-id="${p.id}">${ICON.share}${s.shares || ''}</button>
+    <span style="display:flex;align-items:center;gap:5px;padding:6px 4px">${ICON.views}${TC.fmt(s.views || 0)}</span></div>`;
+}
+function head(p) {
+  return `<div class="row"><div class="av" style="background:${avColor(p.handle)}">${TC.esc((p.name || '?')[0].toUpperCase())}</div>
+    <div class="who"><b>${TC.esc(p.name || 'Student')}</b><br><span>@${TC.esc(p.handle || 'user')} · ${TC.ago(p.created_at)}</span></div>${tagOf(p.topic)}</div>`;
+}
+function render() {
+  const tab = S.tab;
+  let list = S.posts.filter((p) => p.channel === tab);
+  if (tab === 'social') list = list.map((p) => ({ p, k: [p.created_at, st(p).last_repost || ''].sort().pop() })).sort((a, b) => b.k.localeCompare(a.k)).map((x) => x.p);
+  $('#app').innerHTML = `<header><div class="brand"><b>TC <span>Live</span></b><span class="live"><i></i>LIVE</span><div class="me">${TC.esc(me.name)}<br>@${TC.esc(me.handle)}</div></div>
+    <div class="tabs"><button data-t="social" class="${tab === 'social' ? 'on' : ''}">Feed</button><button data-t="blog" class="${tab === 'blog' ? 'on' : ''}">Blog</button></div></header>
+    <div id="list">${list.length ? list.map((p) => tab === 'social' ? `<div class="card" data-id="${p.id}">${st(p).reposts ? `<div class="rp">↻ Reposted ${st(p).reposts}×</div>` : ''}${head(p)}
+        <div class="body">${hl(TC.mask(p.body))}</div>${p.image_url ? `<img class="pimg" loading="lazy" src="${TC.esc(p.image_url)}" alt="">` : ''}${actions(p)}</div>`
+      : `<div class="card blog" data-id="${p.id}">${head(p)}<h3>${TC.esc(TC.mask(p.title || 'Untitled'))}</h3>${p.image_url ? `<img class="cover" loading="lazy" src="${TC.esc(p.image_url)}" alt="">` : ''}
+        <div class="ex">${TC.esc(TC.mask(p.body))}</div><button class="chip" style="margin-top:10px" data-a="read" data-id="${p.id}">Read article</button>${actions(p)}</div>`).join('')
+      : `<div class="empty">${tab === 'social' ? 'No posts yet. Be the first to start the conversation.' : 'No articles yet. Write the first one.'}</div>`}</div>
+    <button class="fab" id="fab">${tab === 'social' ? '✎ Post' : '✎ Write'}</button>`;
+  document.querySelectorAll('.tabs button').forEach((b) => b.onclick = () => { S.tab = b.dataset.t; render(); window.scrollTo(0, 0); });
+  $('#fab').onclick = () => compose(tab);
+  document.querySelectorAll('#list .card').forEach((c) => io.observe(c));
+}
+document.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-a]'); if (!b) return;
+  const p = S.posts.find((x) => x.id === b.dataset.id); if (!p) return;
+  const a = b.dataset.a;
+  if (a === 'like') { if (S.mine.like.has(p.id)) return; if (await act(p, 'like')) refreshCard(p); }
+  else if (a === 'repost') { if (S.mine.repost.has(p.id)) return toast('Already reposted'); if (await act(p, 'repost')) { toast('Reposted to everyone\'s feed'); render(); } }
+  else if (a === 'share') {
+    const text = `${p.title ? p.title + ': ' : ''}${p.body}`.slice(0, 200) + ' (via TC Live)';
+    try { if (navigator.share) await navigator.share({ text }); else { await navigator.clipboard.writeText(text); toast('Copied to share'); } } catch (err) { if (err && err.name === 'AbortError') return; }
+    if (await act(p, 'share')) refreshCard(p);
+  }
+  else if (a === 'comment' || a === 'read') openPost(p, a === 'comment');
+});
+function refreshCard(p) { const c = document.querySelector(`.card[data-id="${p.id}"] .acts`); if (c) c.outerHTML = actions(p); }
+
+async function openPost(p, focus) {
+  if (p.channel === 'blog' && !seenAt['r' + p.id]) { seenAt['r' + p.id] = 1; viewQ.push({ post_id: p.id, profile_id: me.id, type: 'view' }); }
+  const { data: cms } = await sb.from('tc_events').select('id,body,created_at,profile_id,tc_profiles(name,handle)').eq('post_id', p.id).eq('type', 'comment').eq('hidden', false).order('created_at');
+  $('#panel').innerHTML = `<div class="read">${head(p)}${p.title ? `<h1>${TC.esc(TC.mask(p.title))}</h1>` : ''}
+    ${p.image_url ? `<img class="pimg" src="${TC.esc(p.image_url)}" alt="">` : ''}<div class="body" style="font-size:16px">${hl(TC.mask(p.body))}</div>${actions(p)}</div>
+    <div class="lbl">Comments</div><div>${(cms || []).map((c) => `<div class="cm"><b>${TC.esc(c.tc_profiles?.name || 'Student')}</b> <span style="color:var(--muted)">@${TC.esc(c.tc_profiles?.handle || '')} · ${TC.ago(c.created_at)}</span><div>${hl(TC.mask(c.body))}</div></div>`).join('') || '<p style="color:var(--muted)">No comments yet.</p>'}</div>
+    <textarea id="cmt" maxlength="500" placeholder="Add a comment…" style="min-height:70px;margin-top:10px"></textarea>
+    <p class="warn" id="cw">Please keep it respectful. Rephrase and try again.</p>
+    <button class="btn" id="cs">Comment</button><button class="btn ghost" id="cx">Close</button>`;
+  sheet(true);
+  if (focus) setTimeout(() => $('#cmt').focus(), 200);
+  $('#cx').onclick = () => { sheet(false); render(); };
+  $('#cs').onclick = async () => { const t = $('#cmt').value.trim(); if (!t) return; if (TC.clean(t)) { $('#cw').style.display = 'block'; return; }
+    $('#cs').disabled = true; if (await act(p, 'comment', t)) { toast('Comment posted'); openPost(p); } else $('#cs').disabled = false; };
+}
+function sheet(on) { $('#sheet').classList.toggle('on', on); document.body.style.overflow = on ? 'hidden' : ''; }
+$('#sheet').onclick = (e) => { if (e.target.id === 'sheet') { sheet(false); render(); } };
+
+// ---------- compose ----------
+function compose(channel) {
+  let topic = 'data', file = null;
+  const draw = () => {
+    const T = TC.TOPICS[topic];
+    $('#panel').innerHTML = `<h2>${channel === 'social' ? 'New post' : 'New article'}</h2>
+      <div class="lbl">Post to</div><div class="seg" id="ch"><button data-v="social" class="${channel === 'social' ? 'on' : ''}">💬 Feed</button><button data-v="blog" class="${channel === 'blog' ? 'on' : ''}">📝 Blog</button></div>
+      <div class="lbl">Topic</div><div class="seg" id="tp"><button data-v="data" class="${topic === 'data' ? 'on' : ''}">📶 Data prices</button><button data-v="asuu" class="${topic === 'asuu' ? 'on' : ''}">🎓 ASUU</button><button data-v="elnino" class="${topic === 'elnino' ? 'on' : ''}">☀️ El Niño heat</button></div>
+      <div class="lbl">Need an idea?</div>${T.prompts.map((q) => `<button class="prompt">${TC.esc(q)}</button>`).join('')}
+      <div class="lbl">Tap to add keywords</div><div class="chips">${[...T.tags, ...T.keywords].map((k) => `<button class="chip kwb">${TC.esc(k)}</button>`).join('')}</div>
+      ${channel === 'blog' ? '<div class="lbl">Title</div><input type="text" id="ti" maxlength="120" placeholder="Give your article a headline">' : ''}
+      <div class="lbl">${channel === 'blog' ? 'Your article' : 'Your post'}</div>
+      <textarea id="tx" maxlength="${channel === 'blog' ? 2000 : 280}" style="min-height:${channel === 'blog' ? 180 : 110}px" placeholder="${channel === 'blog' ? 'Write your take…' : 'What do you think?'}"></textarea>
+      <div class="cnt" id="cn">0 / ${channel === 'blog' ? 2000 : 280}</div>
+      <div class="photo"><label>📷 ${channel === 'blog' ? 'Cover photo' : 'Add photo'}<input type="file" id="ph" accept="image/*" hidden></label><img id="pv" hidden alt=""></div>
+      <p class="warn" id="w">Please keep it respectful. Rephrase and try again.</p>
+      <button class="btn" id="send">${channel === 'blog' ? 'Publish article' : 'Post'}</button><button class="btn ghost" id="cl">Cancel</button>`;
+    const tx = $('#tx');
+    tx.oninput = () => { $('#cn').textContent = tx.value.length + ' / ' + tx.maxLength; };
+    document.querySelectorAll('#ch button').forEach((b) => b.onclick = () => { channel = b.dataset.v; keep(draw); });
+    document.querySelectorAll('#tp button').forEach((b) => b.onclick = () => { topic = b.dataset.v; keep(draw); });
+    document.querySelectorAll('.prompt').forEach((b) => b.onclick = () => { if (!tx.value) tx.placeholder = b.textContent; tx.focus(); });
+    document.querySelectorAll('.kwb').forEach((b) => b.onclick = () => { tx.value = (tx.value + (tx.value && !/\s$/.test(tx.value) ? ' ' : '') + b.textContent + ' ').slice(0, tx.maxLength); tx.oninput(); });
+    $('#ph').onchange = (e) => { file = e.target.files[0] || null; if (file) { $('#pv').src = URL.createObjectURL(file); $('#pv').hidden = false; } };
+    $('#cl').onclick = () => sheet(false);
+    $('#send').onclick = send;
+  };
+  const keep = (fn) => { const t = $('#tx')?.value, ti = $('#ti')?.value; fn(); if (t) { $('#tx').value = t; $('#tx').oninput(); } if (ti && $('#ti')) $('#ti').value = ti; if (file) { $('#pv').src = URL.createObjectURL(file); $('#pv').hidden = false; } };
+  async function send() {
+    const body = $('#tx').value.trim(), title = $('#ti') ? $('#ti').value.trim() : null;
+    if (!body || (channel === 'blog' && !title)) return toast(channel === 'blog' ? 'Add a title and your article' : 'Write something first');
+    if (TC.clean(body + ' ' + (title || ''))) { $('#w').style.display = 'block'; return; }
+    $('#send').disabled = true; $('#send').textContent = 'Posting…';
+    let image_url = null;
+    if (file) { try { image_url = await upload(file); } catch (e) { toast('Photo failed, posting text only'); } }
+    const { error } = await sb.from('tc_posts').insert({ profile_id: me.id, channel, topic, title: channel === 'blog' ? title : null, body, image_url });
+    if (error) { $('#send').disabled = false; $('#send').textContent = 'Try again'; return toast(/foreign key/.test(error.message) ? 'Session ended. Please rejoin.' : 'Could not post. Check your internet.'); }
+    sheet(false); S.tab = channel; await load(true); render(); window.scrollTo(0, 0); toast('Posted! Watch the screen 👀');
+  }
+  draw(); sheet(true);
+}
+// photos are shrunk on the phone before upload (max 640 px, JPEG) to keep the demo light
+async function upload(f) {
+  const img = await createImageBitmap(f); const k = Math.min(1, 640 / Math.max(img.width, img.height));
+  const c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  const blob = await new Promise((r) => c.toBlob(r, 'image/jpeg', 0.72));
+  const path = `${me.id}/${Date.now()}.jpg`;
+  const { error } = await sb.storage.from(TC.bucket).upload(path, blob, { contentType: 'image/jpeg' });
+  if (error) throw error;
+  return sb.storage.from(TC.bucket).getPublicUrl(path).data.publicUrl;
+}
+
+// ---------- start ----------
+async function boot() {
+  if (!me) return renderJoin();
+  const { data, error } = await sb.from('tc_profiles').select('id').eq('id', me.id).maybeSingle();
+  if (!error && data === null) { localStorage.removeItem('tc_me'); me = null; return renderJoin(); }  // demo was reset: join again
+  await Promise.all([load(true), loadMine()]); render();
+  setInterval(async () => { if ($('#sheet').classList.contains('on')) return; const y = window.scrollY; if (await load(false)) { render(); window.scrollTo(0, y); } }, 12000);
+}
+boot();
+</script></body></html>

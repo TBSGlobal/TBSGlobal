@@ -1,0 +1,76 @@
+Tech & Comms event screens: running order
+
+
+ARRIVAL LOOP
+  01 - Welcome
+  02 - Register for your certificate
+  03 - Flyer - todays line-up
+  04 - Meet the voices
+  05 - Partners and sponsors
+
+OPENING
+  06 - Title
+  07 - Opening message - HOD
+  08 - A1 - Certificates and how the raffle works
+
+TALK 1
+  09 - Up next - Gabriel Ntoka
+
+AFTER TALK 1
+  10 - A2 - Zofu CV revamp
+
+TALK 2
+  11 - Up next - Samuel Ogundeji
+
+AFTER TALK 2
+  12 - A3 - Survey QR code
+
+RAFFLE ROUND 1
+  13 - Round 1
+  14 - Raffle Q1 - Public Relations
+  15 - Raffle Q1 - Answer
+  16 - Raffle Q2 - Advertising
+  17 - Raffle Q2 - Answer
+  18 - Raffle Q3 - Journalism
+  19 - Raffle Q3 - Answer
+  20 - Raffle Q4 - Broadcasting
+  21 - Raffle Q4 - Answer
+  22 - Raffle Q5 - Media Monitoring & Evaluation
+  23 - Raffle Q5 - Answer
+  24 - Winner
+
+TALK 3
+  25 - Up next - Onaopemipo Famori
+
+AFTER TALK 3
+  26 - A4 - P+ Measurement book offer
+
+PANEL
+  27 - Up next - Panel
+
+RAFFLE ROUND 2
+  28 - Round 2
+  29 - Raffle Q6 - Digital & New Media
+  30 - Raffle Q6 - Answer
+  31 - Raffle Q7 - Film & Multimedia
+  32 - Raffle Q7 - Answer
+  33 - Raffle Q8 - Development Communication
+  34 - Raffle Q8 - Answer
+  35 - Raffle Q9 - Personal Branding
+  36 - Raffle Q9 - Answer
+  37 - Raffle Q10 - Strategic Communication
+  38 - Raffle Q10 - Answer
+  39 - Winner
+
+Q&A
+  40 - Ask your question
+
+CLOSING
+  41 - A5 - Zofu code (hall only)
+  42 - Thank you
+  43 - Which university next
+  44 - Group photo and prompt wall
+  45 - See you online
+
+BACKUP
+  46 - We will be right back
