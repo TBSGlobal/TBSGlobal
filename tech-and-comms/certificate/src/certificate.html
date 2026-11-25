@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:AB;src:url(kit/archivo-black-latin-400-normal.woff2)}
+@font-face{font-family:M;font-weight:500;src:url(kit/montserrat-latin-500-normal.woff2)}
+@font-face{font-family:M;font-weight:600;src:url(kit/montserrat-latin-600-normal.woff2)}
+@font-face{font-family:M;font-weight:700;src:url(kit/montserrat-latin-700-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(kit/montserrat-latin-800-normal.woff2)}
+@font-face{font-family:S;font-style:italic;src:url(kit/dm-serif-display-latin-400-italic.woff2)}
+@page{size:297mm 210mm;margin:0}
+:root{--deep:#071566;--royal:#022394;--blue:#5379F6;--ink:#131838;--muted:#4b537a;--yellow:#ffd60a;--grid:#e2e8f8;--paper:#f7f9fe}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#fff}
+.cert{position:relative;width:297mm;height:210mm;overflow:hidden;font-family:M,sans-serif;color:var(--ink);page-break-after:always;
+  background-color:var(--paper);background-image:linear-gradient(var(--grid) .5mm,transparent .5mm),linear-gradient(90deg,var(--grid) .5mm,transparent .5mm);background-size:15mm 15mm;background-position:-.25mm -.25mm}
+.cert:last-child{page-break-after:auto}
+.abs{position:absolute}
+.frame{inset:8mm;border:1.6mm solid var(--deep);border-radius:4mm}
+.frame2{inset:11mm;border:.4mm solid var(--blue);border-radius:2.5mm}
+.band{left:8mm;top:8mm;bottom:8mm;width:58mm;background:var(--deep);border-radius:2.4mm 0 0 2.4mm;overflow:hidden}
+.band .ast{position:absolute;color:var(--blue)}
+.band .ast svg{width:100%;height:100%;display:block}
+.vert{position:absolute;left:0;right:0;bottom:16mm;text-align:center;color:#fff}
+.vert b{display:block;font:400 9mm/1 AB;color:var(--yellow)}
+.vert span{display:block;font:700 3.1mm/1.5 M;letter-spacing:.28em;margin-top:3mm;opacity:.85}
+.main{left:80mm;right:20mm;top:18mm;bottom:20mm}
+.top{display:flex;align-items:center;justify-content:space-between}
+.top img.tc{height:16mm}
+.top img.tcbr{height:15mm}
+.eyebrow{font:800 3mm M;letter-spacing:.3em;color:var(--blue);text-transform:uppercase;margin-top:7mm}
+h1{font:400 12mm/1 AB;letter-spacing:-.01em;margin-top:2.5mm;white-space:nowrap}
+h1 em{font-family:S;font-style:italic;font-weight:400;color:var(--royal);font-size:1.08em}
+.to{font:600 4mm M;color:var(--muted);margin-top:6mm}
+.name{margin-top:1mm;height:16mm;border-bottom:.6mm solid var(--deep);display:flex;align-items:flex-end;padding-bottom:1.5mm}
+.name span{font:400 12mm/1 S;font-style:italic;color:var(--deep);white-space:nowrap}
+.body{font:500 3.7mm/1.55 M;color:var(--ink);margin-top:5mm;max-width:190mm}
+.body b{font-weight:800}
+.sigs{position:absolute;left:0;right:0;bottom:16mm;display:flex;gap:14mm;align-items:flex-start}
+.sig{width:66mm;margin-top:9mm}
+.sig .line{border-top:.45mm solid var(--ink);padding-top:2mm}
+.sig b{display:block;font:800 3.6mm M}
+.sig span{display:block;font:600 2.9mm/1.4 M;color:var(--muted)}
+.seal{align-self:flex-end;margin-left:auto;width:27mm;height:27mm;border-radius:50%;background:var(--yellow);display:grid;place-items:center;text-align:center;transform:rotate(-8deg);box-shadow:0 0 0 1.2mm var(--paper),0 0 0 1.6mm var(--yellow)}
+.seal div{font:800 2.6mm/1.25 M;letter-spacing:.12em;color:var(--deep)}
+.seal div b{display:block;font:400 5.6mm/1 AB;letter-spacing:0;margin:1mm 0}
+.partners{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:5mm}
+.partners small{font:800 2.5mm M;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;white-space:nowrap}
+.partners img{height:10mm;width:auto;mix-blend-mode:multiply}
+.partners .dept{font:800 2.5mm/1.25 M;color:var(--deep)}
+.partners .dept span{font-weight:500;color:var(--muted)}
+.no{position:absolute;right:20mm;bottom:12.5mm;font:600 2.5mm M;color:var(--muted);letter-spacing:.08em}
+</style></head><body>
+<div id="out"></div>
+<script>
+const AST='<svg viewBox="-50 -50 100 100"><g fill="currentColor"><rect x="-10" y="-48" width="20" height="96" rx="10"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(60)"/><rect x="-10" y="-48" width="20" height="96" rx="10" transform="rotate(120)"/></g></svg>';
+const esc=(s)=>String(s??'').replace(/[&<>"']/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function cert(name,i){
+  const no = name ? 'TC-CU-2026-' + String(i + 1).padStart(4, '0') : 'TC-CU-2026-______';
+  return `<section class="cert">
+  <div class="abs band"><div class="ast" style="left:-14mm;top:-12mm;width:62mm;height:62mm;transform:rotate(14deg)">${AST}</div>
+    <div class="ast" style="left:30mm;top:70mm;width:22mm;height:22mm;opacity:.5">${AST}</div>
+    <div class="vert"><b>26.11<br>2026</b><span>CRAWFORD<br>UNIVERSITY</span></div></div>
+  <div class="abs frame"></div><div class="abs frame2" style="left:66mm"></div>
+  <div class="abs main">
+    <div class="top"><img class="tc" src="kit/tc-logo.png" alt="Tech &amp; Comms"><img class="tcbr" src="kit/tcbr-logo.png" alt="The Comms Boardroom"></div>
+    <div class="eyebrow">Tech &amp; Comms · Where Communications Meet Technology</div>
+    <h1>Certificate of <em>Participation</em></h1>
+    <div class="to">This is to certify that</div>
+    <div class="name"><span>${esc(name)}</span></div>
+    <p class="body">participated in <b>Tech &amp; Comms</b>, a seminar on communications in the real world, media monitoring and intelligence, AI in communications and building a professional presence, held at the Multipurpose Hall, Crawford University, on <b>Thursday, 26 November 2026</b>. Organised by The Comms Boardroom Technologies in partnership with the Department of Mass Communication and the Crawford University Alumni Association.</p>
+    <div class="sigs">
+      <div class="sig"><div class="line"><b>Samuel Ogundeji</b><span>Founder &amp; Lead Consultant,<br>The Comms Boardroom Technologies</span></div></div>
+      <div class="sig"><div class="line"><b>Dr. Dayo Odigie</b><span>Head of Department,<br>Mass Communication, Crawford University</span></div></div>
+      <div class="seal"><div>TECH &amp; COMMS<b>2026</b>CRAWFORD</div></div>
+    </div>
+    <div class="partners"><small>In partnership with</small><img src="kit/maco.jpg" alt=""><div class="dept">DEPT. OF MASS COMMUNICATION<br><span>Crawford University</span></div><img src="kit/unicorn.jpg" alt="">
+      <small style="margin-left:4mm">Sponsored by</small><img src="kit/pplus.png" alt=""><img src="kit/zofu.png" alt="" style="height:6mm"></div>
+  </div>
+  <div class="no">No. ${no}</div>
+</section>`;}
+window.build=(names)=>{ document.getElementById('out').innerHTML=(names.length?names:['']).map((n,i)=>cert(n,i)).join(''); };
+build([]);
+</script></body></html>
