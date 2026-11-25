@@ -21,6 +21,8 @@ html,body{background:#fff}
 .band .ast{position:absolute;color:var(--blue)}
 .band .ast svg{width:100%;height:100%;display:block}
 .vert{position:absolute;left:0;right:0;bottom:16mm;text-align:center;color:#fff}
+.vert .cu{width:36mm;height:42mm;margin:0 auto 7mm;background:#fff;border-radius:4mm;display:grid;place-items:center}
+.vert .cu img{height:36mm;width:auto}
 .vert b{display:block;font:400 9mm/1 AB;color:var(--yellow)}
 .vert span{display:block;font:700 3.1mm/1.5 M;letter-spacing:.28em;margin-top:3mm;opacity:.85}
 .main{left:80mm;right:20mm;top:18mm;bottom:20mm}
@@ -58,8 +60,8 @@ function cert(name,i){
   const no = name ? 'TC-CU-2026-' + String(i + 1).padStart(4, '0') : 'TC-CU-2026-______';
   return `<section class="cert">
   <div class="abs band"><div class="ast" style="left:-14mm;top:-12mm;width:62mm;height:62mm;transform:rotate(14deg)">${AST}</div>
-    <div class="ast" style="left:30mm;top:70mm;width:22mm;height:22mm;opacity:.5">${AST}</div>
-    <div class="vert"><b>26.11<br>2026</b><span>CRAWFORD<br>UNIVERSITY</span></div></div>
+    <div class="ast" style="left:34mm;top:58mm;width:18mm;height:18mm;opacity:.5">${AST}</div>
+    <div class="vert"><div class="cu"><img src="kit/crawford.png" alt="Crawford University logo"></div><b>26.11<br>2026</b><span>CRAWFORD<br>UNIVERSITY</span></div></div>
   <div class="abs frame"></div><div class="abs frame2" style="left:66mm"></div>
   <div class="abs main">
     <div class="top"><img class="tc" src="kit/tc-logo.png" alt="Tech &amp; Comms"><img class="tcbr" src="kit/tcbr-logo.png" alt="The Comms Boardroom"></div>
@@ -67,7 +69,7 @@ function cert(name,i){
     <h1>Certificate of <em>Participation</em></h1>
     <div class="to">This is to certify that</div>
     <div class="name"><span>${esc(name)}</span></div>
-    <p class="body">participated in <b>Tech &amp; Comms</b>, a seminar on communications in the real world, media monitoring and intelligence, AI in communications and building a professional presence, held at the Multipurpose Hall, Crawford University, on <b>Thursday, 26 November 2026</b>. Organised by The Comms Boardroom Technologies in partnership with the Department of Mass Communication and the Crawford University Alumni Association.</p>
+    <p class="body">participated in <b>Tech &amp; Comms</b>, a seminar on communications in the real world, media monitoring and intelligence, AI in communications and building a professional presence, held at Crawford University on <b>Thursday, 26 November 2026</b>. Organised by The Comms Boardroom Technologies in partnership with the Department of Mass Communication and the Crawford University Alumni Association.</p>
     <div class="sigs">
       <div class="sig"><div class="line"><b>Samuel Ogundeji</b><span>Founder &amp; Lead Consultant,<br>The Comms Boardroom Technologies</span></div></div>
       <div class="sig"><div class="line"><b>Dr. Dayo Odigie</b><span>Head of Department,<br>Mass Communication, Crawford University</span></div></div>
