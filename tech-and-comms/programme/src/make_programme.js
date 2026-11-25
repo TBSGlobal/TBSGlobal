@@ -25,20 +25,22 @@ function cell(children, w, o = {}) {
 
 // ---- programme rows: [minutes, minutes label, item, who, note, kind]
 const ROWS = [
-  [4, '4', 'Welcome, opening prayer and recognition of guests', 'Host: Samuel Ogundeji', 'Sets the tone: honest conversations, not a lecture. All questions are held for the open Q&A at the end.', 'open'],
+  [4, '4', 'Welcome, opening prayer, recognition of guests and what to expect', 'Compere: Kyrian Benita', 'Sets the tone: honest conversations, not a lecture. All questions are held for the panel at the end.', 'open'],
   [2, '2', 'Opening message', 'Head of Department, Mass Communication (or a representative)', 'A short welcome on behalf of the department.', 'open'],
-  [2, '2', 'Announcement 1: Certificates and the raffle', 'Host', 'Register at the front desk for a certificate of participation; how the raffle works. Script A1 below.', 'ann'],
-  [20, '20–25', 'Talk 1: Communications: School vs Reality', 'Gabriel Ntoka', 'Topic 01.', 'talk'],
-  [2, '2', 'Announcement 2: Free CV revamp with Zofu', 'Host', 'One month of Zofu Pro free for every attendee. Script A2 below.', 'ann'],
-  [20, '20–25', 'Talk 2: Media Monitoring, Evaluation, Intelligence & Social Listening, and AI in Communications', 'Samuel Ogundeji', 'Topic 02. A team member introduces Samuel and keeps time during this talk.', 'talk'],
-  [2, '2', 'Announcement 3: Scan the survey QR code', 'Team member', 'Survey QR code on screen; students scan and fill it in while the raffle runs. Script A3 below.', 'ann'],
-  [5, '5', 'Raffle draw, round 1: 5 questions', 'Host', 'PR, Advertising, Journalism, Broadcasting, Media Monitoring & Evaluation. Winners get the matching hand fan and airtime.', 'fun'],
-  [20, '20–25', 'Talk 3: Building a Personal Brand', 'Onaopemipo Famori', 'Topic 03. Ends with the one-week challenge.', 'talk'],
-  [2, '2', 'Announcement 4: Book discount from P+ Measurement', 'Host', 'Book offer for attendees. Script A4 below.', 'ann'],
-  [25, '25', 'Panel session', 'Barnabas (You Media: the new media landscape) and Samuel Jegede (communications in humanitarian work); moderated by the host', 'From traditional media to You Media, and where a communications career can lead.', 'panel'],
-  [5, '5', 'Raffle draw, round 2: 5 questions', 'Host', 'Digital & New Media, Film & Multimedia, Development Communication, Personal Branding, Strategic Communication.', 'fun'],
-  [15, '15', 'Open Q&A (in the hall)', 'All speakers and panelists; host moderates', 'Questions from the floor with a roving microphone, taken in groups of three. The best question wins the Agba Creator fan.', 'qa'],
-  [6, '6', 'Closing: sponsor announcements, vote of thanks and group photo', 'Host; vote of thanks by a student representative', 'Script A5 below (sponsors, Zofu code, certificate reminder), then the vote of thanks and the group photo at the backdrop.', 'close'],
+  [2, '2', 'Announcement 1: Certificates, the raffle and two free books', 'Compere', 'Register at the front desk for your certificate; how the raffle works; post about the event to win one of two free books. Script A1 below.', 'ann'],
+  [20, '20–25', 'Talk 1: Communications: School vs Reality (joining virtually)', 'Gabriel Ntoka', 'Streamed live on the hall screen. Test the link and sound before 10:00.', 'talk'],
+  [2, '2', 'Announcement 2: Free CV revamp with Zofu', 'Compere', 'One month of Zofu Pro free for every attendee. Short Zofu video if received (to be confirmed). Script A2 below.', 'ann'],
+  [5, '5', 'Short talk: The relevance of building a good CV/portfolio for early career builders', 'Onaopemipo Famori', 'A quick, practical talk that follows on from the Zofu announcement.', 'talk'],
+  [20, '20–25', 'Talk 2: Media Monitoring, Evaluation, Intelligence & Social Listening, and AI in Communications', 'Samuel Ogundeji', 'Includes the live TC Live social listening demo.', 'talk'],
+  [2, '2', 'Announcement 3: Scan the survey QR code', 'Compere', 'Survey QR code on screen, 5 to 10 questions. Script A3 below.', 'ann'],
+  [5, '5', 'Raffle draw, round 1: 5 questions', 'Compere', 'Students pick a number from 1 to 10; a correct answer wins that hand fan plus airtime or data.', 'fun'],
+  [20, '20–25', 'Talk 3: Building Your Professional Presence', 'Onaopemipo Famori', 'Ends with the one-week challenge.', 'talk'],
+  [2, '2', 'Announcement 4: P+ Measurement book offer', 'Compere', 'The Science of Public Relations at ₦10,000 instead of ₦15,000. Script A4 below.', 'ann'],
+  [30, '30', 'Panel session and open Q&A', 'All speakers and panelists: Barnabas Inumidun, Samuel Jegede, Samuel Ogundeji, Onaopemipo Famori (Gabriel Ntoka if still online). Moderator: a student (to be confirmed)', 'The only Q&A of the day. The panel discussion first, then questions from the floor before the panelists leave.', 'panel'],
+  [5, '5', 'Raffle draw, round 2: the remaining 5 questions', 'Compere', 'Same rules: pick one of the numbers not yet chosen.', 'fun'],
+  [3, '3', 'Announcement 5: Sponsors, offers and the two book winners', 'Compere', 'Thank sponsors and partners, the Zofu code, announce the two free-book winners, certificate reminder. Script A5 below.', 'ann'],
+  [2, '2', 'Vote of thanks', 'A student representative', '', 'close'],
+  [5, '5', 'Group photo', 'Everyone, at the backdrop', 'Very important. Photographer ready before the vote of thanks ends.', 'close'],
 ];
 const START = 10 * 60;   // 10:00 AM; change here if the start time moves
 const fmt = (m) => { const h = Math.floor(m / 60), mm = m % 60, h12 = ((h + 11) % 12) + 1; return `${h12}:${String(mm).padStart(2, '0')}`; };
@@ -55,66 +57,57 @@ function programmeTable() {
     cell([P([T(`${fmt(START - 30)}–${fmt(START)}`, { bold: true, size: 17, color: NAVY })], { spacing: { after: 0 } })], W[0], { fill: SOFT }),
     cell([P([T('30', { size: 17, color: MUTED })], { spacing: { after: 0 } })], W[1], { fill: SOFT }),
     cell([P([T('Arrival and registration at the front desk', { bold: true, size: 18, color: NAVY })], { spacing: { after: 30 } }),
-          P([T('Students register for certificates and get a raffle number. Music playing; photos at the backdrop and Instagram placard; sticky notes on the prompt wall.', { size: 16, color: MUTED })], { spacing: { after: 0 } })], W[2], { fill: SOFT }),
+          P([T('Students register for certificates (hand tags to be confirmed), then take a sticky note and marker and answer one of the four prompts on the backdrop. Music playing; photos at the backdrop and the Instagram placard. No raffle numbers at the door. The programme starts at 10:00 on the dot, however full the hall is.', { size: 16, color: MUTED })], { spacing: { after: 0 } })], W[2], { fill: SOFT }),
     cell([P([T('Front desk / TCBR team', { size: 17 })], { spacing: { after: 0 } })], W[3], { fill: SOFT })] })];
   ROWS.forEach(([m, ml, item, who, note, kind]) => {
-    const tag = { talk: 'TALK', panel: 'PANEL', qa: 'Q&A', fun: 'RAFFLE', ann: 'NOTICE', open: '', close: '' }[kind];
+    const tag = { talk: 'TALK', panel: 'PANEL + Q&A', qa: 'Q&A', fun: 'RAFFLE', ann: 'NOTICE', open: '', close: '' }[kind];
     const tagFill = kind === 'fun' ? YELLOW : kind === 'ann' ? NAVY : BLUE;
     rows.push(new TableRow({ cantSplit: true, children: [
       cell([P([T(`${fmt(t)}–${fmt(t + m)}`, { bold: true, size: 17, color: NAVY })], { spacing: { after: 0 } })], W[0], { fill: fill[kind] }),
       cell([P([T(ml, { size: 17, color: MUTED })], { spacing: { after: 0 } })], W[1], { fill: fill[kind] }),
       cell([P([...(tag ? [T(` ${tag} `, { bold: true, size: 13, color: kind === 'fun' ? NAVY : 'FFFFFF', shading: { type: ShadingType.CLEAR, fill: tagFill, color: 'auto' } }), T('  ')] : []),
-              T(item, { bold: true, size: 18, color: NAVY })], { spacing: { after: 30 } }),
-            P([T(note, { size: 16, color: MUTED })], { spacing: { after: 0 } })], W[2], { fill: fill[kind] }),
+              T(item, { bold: true, size: 18, color: NAVY })], { spacing: { after: note ? 30 : 0 } }),
+            ...(note ? [P([T(note, { size: 16, color: MUTED })], { spacing: { after: 0 } })] : [])], W[2], { fill: fill[kind] }),
       cell([P([T(who, { size: 17 })], { spacing: { after: 0 } })], W[3], { fill: fill[kind] })] }));
     t += m;
   });
   rows.push(new TableRow({ cantSplit: true, children: [
     cell([P([T(`${fmt(START)}–${fmt(t)}`, { bold: true, size: 17, color: 'FFFFFF' })], { spacing: { after: 0 } })], W[0], { fill: BLUE }),
     cell([P([T(String(total), { bold: true, size: 17, color: 'FFFFFF' })], { spacing: { after: 0 } })], W[1], { fill: BLUE }),
-    cell([P([T('Total: ' + TOTAL_LABEL + ' (talks at 20 minutes)', { bold: true, size: 18, color: 'FFFFFF' })], { spacing: { after: 0 } })], W[2], { fill: BLUE }),
+    cell([P([T('Total: about ' + TOTAL_LABEL + ' (talks at 20 minutes; 2 hours 30 at most)', { bold: true, size: 18, color: 'FFFFFF' })], { spacing: { after: 0 } })], W[2], { fill: BLUE }),
     cell([P([T('', { size: 17 })], { spacing: { after: 0 } })], W[3], { fill: BLUE })] }));
   return new Table({ width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: W, rows });
 }
 
-// ---- raffle questions: [round, field (hand fan), question, answer]
+// ---- raffle question cards: [number, field (hand fan), fan title, question, answer]
 const QUIZ = [
   [1, 'Public Relations', 'PR Lead', 'In the RACE model of public relations, what do the four letters stand for?', 'Research, Action (planning), Communication, Evaluation.'],
-  [1, 'Advertising', 'Creative Director', 'What does the advertising model AIDA stand for?', 'Attention, Interest, Desire, Action.'],
-  [1, 'Journalism', 'Newsroom Editor', 'What are the "5 Ws and H" every news story should answer?', 'Who, What, When, Where, Why and How.'],
-  [1, 'Broadcasting', 'Broadcast Icon', 'Which government body regulates radio and television broadcasting in Nigeria?', 'The National Broadcasting Commission (NBC).'],
-  [1, 'Media Monitoring & Evaluation', 'Media Intelligence Analyst', 'What is the name of the global set of principles for measuring PR and communication, first agreed in 2010 and named after a Spanish city?', 'The Barcelona Principles.'],
-  [2, 'Digital & New Media', 'Digital Strategist', 'What does SEO stand for?', 'Search Engine Optimisation.'],
-  [2, 'Film & Multimedia', 'Film Director', 'In film production, what is a storyboard?', 'A sequence of drawings or images that plans each shot or scene before filming.'],
-  [2, 'Development Communication', 'Change Maker', 'What do the letters SDGs stand for, and how many goals are there?', 'Sustainable Development Goals; there are 17.'],
-  [2, 'Personal Branding', 'Brand Builder', 'On LinkedIn, what is the short line under your name that tells people what you do called?', 'Your headline.'],
-  [2, 'Strategic Communication', 'Comms CEO', 'What does SWOT stand for?', 'Strengths, Weaknesses, Opportunities, Threats.'],
+  [2, 'Advertising', 'Creative Director', 'What does the advertising model AIDA stand for?', 'Attention, Interest, Desire, Action.'],
+  [3, 'Journalism', 'Newsroom Editor', 'What are the "5 Ws and H" every news story should answer?', 'Who, What, When, Where, Why and How.'],
+  [4, 'Broadcasting', 'Broadcast Icon', 'Which government body regulates radio and television broadcasting in Nigeria?', 'The National Broadcasting Commission (NBC).'],
+  [5, 'Media Monitoring & Evaluation', 'Media Intelligence Analyst', 'What is the name of the global set of principles for measuring PR and communication, first agreed in 2010 and named after a Spanish city?', 'The Barcelona Principles.'],
+  [6, 'Digital & New Media', 'Digital Strategist', 'What does SEO stand for?', 'Search Engine Optimisation.'],
+  [7, 'Film & Multimedia', 'Film Director', 'In film production, what is a storyboard?', 'A sequence of drawings or images that plans each shot or scene before filming.'],
+  [8, 'Development Communication', 'Change Maker', 'What do the letters SDGs stand for, and how many goals are there?', 'Sustainable Development Goals; there are 17.'],
+  [9, 'Personal Branding', 'Brand Builder', 'On LinkedIn, what is the short line under your name that tells people what you do called?', 'Your headline.'],
+  [10, 'Strategic Communication', 'Comms CEO', 'What does SWOT stand for?', 'Strengths, Weaknesses, Opportunities, Threats.'],
 ];
 const SPARE = [
-  ['Any field', 'What does "social listening" mean?', 'Tracking what people say online about a brand, topic or issue, and analysing it to understand sentiment and act on it.'],
-  ['Any field', 'Name the fact-checking question you should ask before sharing any news online.', 'Any sensible answer, e.g. "What is the source?" or "Is it reported by credible outlets?"'],
+  ['Spare', 'What does "social listening" mean?', 'Tracking what people say online about a brand, topic or issue, and analysing it to understand sentiment and act on it.'],
+  ['Spare', 'Name a question you should ask before sharing any news online.', 'Any sensible answer, e.g. "What is the source?" or "Is it reported by credible outlets?"'],
 ];
 
 function quizTable() {
   const W = [Math.round(36 * MM), Math.round(72 * MM)]; W.push(CONTENT_W - W[0] - W[1]);
-  const hdr = ['Field · fan', 'Question', 'Answer'];
+  const hdr = ['No. · field · fan', 'Question', 'Answer'];
   const rows = [new TableRow({ tableHeader: true, cantSplit: true, children: hdr.map((h, i) => cell([P([T(h.toUpperCase(), { bold: true, size: 14, color: 'FFFFFF', characterSpacing: 30 })], { spacing: { after: 0 } })], W[i], { fill: NAVY })) })];
-  let last = 0;
-  QUIZ.forEach(([round, field, fan, q, a], i) => {
-    if (round !== last) {
-      last = round;
-      rows.push(new TableRow({ cantSplit: true, children: [new TableCell({ columnSpan: 3, width: { size: CONTENT_W, type: WidthType.DXA }, shading: { type: ShadingType.CLEAR, fill: YELLOW, color: 'auto' },
-        margins: { top: 60, bottom: 60, left: 100, right: 100 }, borders: { top: none, left: none, right: none, bottom: hair },
-        children: [P([T(round === 1 ? 'ROUND 1 · after Talk 2' : 'ROUND 2 · after the panel', { bold: true, size: 15, color: NAVY, characterSpacing: 30 })], { spacing: { after: 0 } })] })] }));
-    }
-    rows.push(new TableRow({ cantSplit: true, children: [
-      cell([P([T(`${i + 1}. ${field}`, { bold: true, size: 17, color: NAVY })], { spacing: { after: 20 } }), P([T('Fan: Future ' + fan, { size: 15, color: MUTED, italics: true })], { spacing: { after: 0 } })], W[0]),
-      cell([P([T(q, { size: 17 })], { spacing: { after: 0 } })], W[1]),
-      cell([P([T(a, { size: 17, color: '1B2140' })], { spacing: { after: 0 } })], W[2])] }));
-  });
+  QUIZ.forEach(([n, field, fan, q, a]) => rows.push(new TableRow({ cantSplit: true, children: [
+    cell([P([T(`${n}. ${field}`, { bold: true, size: 17, color: NAVY })], { spacing: { after: 20 } }), P([T('Fan: Future ' + fan, { size: 15, color: MUTED, italics: true })], { spacing: { after: 0 } })], W[0]),
+    cell([P([T(q, { size: 17 })], { spacing: { after: 0 } })], W[1]),
+    cell([P([T(a, { size: 17 })], { spacing: { after: 0 } })], W[2])] })));
   rows.push(new TableRow({ cantSplit: true, children: [new TableCell({ columnSpan: 3, width: { size: CONTENT_W, type: WidthType.DXA }, shading: { type: ShadingType.CLEAR, fill: SOFT, color: 'auto' },
     margins: { top: 60, bottom: 60, left: 100, right: 100 }, borders: { top: none, left: none, right: none, bottom: hair },
-    children: [P([T('SPARE QUESTIONS · use if a question is answered before it is asked, or for a tie', { bold: true, size: 15, color: NAVY, characterSpacing: 30 })], { spacing: { after: 0 } })] })] }));
+    children: [P([T('SPARE QUESTIONS · if nobody answers correctly, or for a tie', { bold: true, size: 15, color: NAVY, characterSpacing: 30 })], { spacing: { after: 0 } })] })] }));
   SPARE.forEach(([field, q, a]) => rows.push(new TableRow({ cantSplit: true, children: [
     cell([P([T(field, { bold: true, size: 17, color: NAVY })], { spacing: { after: 0 } })], W[0]),
     cell([P([T(q, { size: 17 })], { spacing: { after: 0 } })], W[1]),
@@ -124,16 +117,16 @@ function quizTable() {
 
 // ---- announcements: [code, when, title, script]
 const ANN = [
-  ['A1', 'After the opening message', 'Certificates and the raffle',
-    'Good morning, everyone. Two quick things before we start. First, if you want a certificate of participation, please register at the front desk before you leave. Make sure your name is spelt exactly as you want it on the certificate. Second, the raffle: when you registered you got a raffle number. In two rounds today we will draw numbers. If your number is called, you answer one question on a field of Mass Communication, PR, journalism, broadcasting and more. Get it right and you win the hand fan for that field, plus airtime. So stay in the hall and keep your number safe.'],
+  ['A1', 'After the opening message', 'Certificates, the raffle and two free books',
+    'Good morning, everyone. Three quick things before we start. First, every one of you will get a certificate of participation, so if you have not registered at the front desk, please do so before you leave, with your name spelt exactly as you want it on the certificate. Second, the raffle: later today we will ask ten questions on different fields of Mass Communication, PR, journalism, broadcasting and more. When we call for a volunteer, pick a number from 1 to 10. Answer that question correctly and you win the hand fan for that field, plus airtime or data. Third, our sponsor Mr. Phillip Odiakose of P+ Measurement is giving away two free copies of his book, The Science of Public Relations: A Comprehensive Guide to Measurement and Evaluation. To win one, post about Tech & Comms on your page today with #TechAndComms and tag [@thecommsboardroom]. We will announce the two winners at the end.'],
   ['A2', 'After Talk 1', 'Free CV revamp with Zofu',
-    'Our partner Zofu is giving every student here one month of Zofu Pro free. Zofu is an AI tool that tailors your CV to each job you apply for, and you get their newest update. The access code is only for people in this hall, so we will share it at the end of the programme. Please do not post it online. Stay till the end to get it.'],
+    'Our partner Zofu is giving every student here one month of Zofu Pro free. Zofu is an AI tool that tailors your CV to each job you apply for, and you get their newest update. [If received: here is a short video from Zofu.] The access code is only for people in this hall, so we will share it at the end of the programme. Please do not post it online. Stay till the end to get it. And to tell us more about why your CV and portfolio matter, please welcome Onaopemipo Famori.'],
   ['A3', 'After Talk 2', 'Scan the survey QR code',
-    'Please bring out your phones. Scan the QR code on the screen. It is a short, anonymous survey, about three minutes, on what you are learning and what you wish you were learning. Your answers will help us push for a curriculum that matches the industry. The code will stay on the screen while we run the first raffle round.'],
-  ['A4', 'After Talk 3', 'Book discount from P+ Measurement',
-    'Our sponsor, P+ Measurement, is offering students here a discount on [book title] by [author]. You get [discount] off when you [how to claim: code, link or desk]. The offer runs until [end date]. Details are on the screen and at the front desk.'],
-  ['A5', 'In the closing', 'Sponsors, Zofu code and certificates',
-    'Thank you to our sponsors, P+ Measurement and Zofu, and to our partners, the Department of Mass Communication, AMACOS and the Crawford University Alumni Association. Here is your Zofu code: [read out or show the code]. Redeem it at zofu.quest by [last redemption date]. [Any other sponsor offer or giveaway.] If you have not registered for your certificate, the front desk is open now. And before you go, add your sticky note to the prompt wall and take a picture at the backdrop. See you online with #TechAndComms.'],
+    'Please bring out your phones and scan the QR code on the screen. You do not need to go anywhere. It is a short, anonymous survey of 5 to 10 questions on what you are learning and what you wish you were learning. Your answers will help us push for a curriculum that matches the industry. Then stay with us: the first raffle round is next.'],
+  ['A4', 'After Talk 3', 'P+ Measurement book offer',
+    'Our sponsor, Mr. Phillip Odiakose of P+ Measurement, has written The Science of Public Relations: A Comprehensive Guide to Measurement and Evaluation. It normally sells for ₦15,000. If ten of us in this hall want a copy, he will let it go for ₦10,000 each. If you are interested, give your name at the front desk [or: raise your hand / see the P+ table]. And remember, two copies are free for the students who post about today on their page. Winners will be announced at the end. Three copies are also being donated to the Department of Mass Communication.'],
+  ['A5', 'In the closing', 'Sponsors, offers, book winners and certificates',
+    'Thank you to our sponsors, P+ Measurement and Zofu, and to our partners, the Department of Mass Communication, AMACOS and the Crawford University Alumni Association. Here is your Zofu code: [read out or show the code]. Redeem it at zofu.quest by [last redemption date]. The two free copies of The Science of Public Relations go to: [winner 1] and [winner 2]. Please come forward. If you want a copy at ₦10,000, see [the front desk]. If you have not registered for your certificate, the front desk is open now. And before you go, add your sticky note to the prompt wall and join us for the group photo. See you online with #TechAndComms.'],
 ];
 
 function annBlocks() {
@@ -161,33 +154,35 @@ const body = [
   new Paragraph({ heading: d.HeadingLevel.TITLE, children: [T('Order of Programme')] }),
   P([T('Where Communications Meet Technology', { italics: true, size: 24, color: MUTED, font: 'Georgia' })], { spacing: { after: 160 } }),
   new Paragraph({ border: { top: { style: BorderStyle.SINGLE, size: 12, color: NAVY, space: 6 }, bottom: { style: BorderStyle.SINGLE, size: 4, color: LINE, space: 6 } }, spacing: { after: 160 },
-    children: [T('Thursday, 26 November 2026', { bold: true, color: NAVY }), T('   ·   Multipurpose Hall, Crawford University   ·   about ' + TOTAL_LABEL, { color: MUTED })] }),
-  P([T('Times assume a 10:00 AM start and 20 minutes per talk. Each speaker may take up to 25 minutes; if all three do, the programme ends 15 minutes later (about 12:25 PM). ', { size: 17, color: MUTED, italics: true }),
-     T('There are no questions after individual talks; all questions are taken from the floor in the open Q&A.', { size: 17, color: MUTED, italics: true })], { spacing: { after: 160 } }),
+    children: [T('Thursday, 26 November 2026', { bold: true, color: NAVY }), T('   ·   Multipurpose Hall, Crawford University   ·   10:00 AM', { color: MUTED })] }),
+  P([T('Times assume 20 minutes per talk. Each speaker may take up to 25 minutes; if all three do, the programme ends about 15 minutes later (around 12:25 PM, 2 hours 30 at most). ', { size: 17, color: MUTED, italics: true }),
+     T('There are no questions after individual talks; all questions go to the panel session.', { size: 17, color: MUTED, italics: true })], { spacing: { after: 160 } }),
   programmeTable(),
   H('01', 'Instructions and announcements to students'),
-  P('Five short announcements, spread through the programme so no single one runs long. The host reads them as written or in their own words. Text highlighted in yellow still needs to be filled in.'),
+  P('Five short announcements, spread through the programme so no single one runs long. The compere reads them as written or in their own words. Text highlighted in yellow still needs to be filled in or confirmed.'),
   ...annBlocks(),
   H('02', 'Raffle draw'),
-  P('Two rounds of 5 minutes, with 5 questions each (10 in total). Each question is on one field of Mass Communication, and the prize is the hand fan for that field, plus airtime.'),
+  P('Two rounds of 5 minutes, with 5 questions each (10 in total). Each question is on one field of Mass Communication, and the prize is the hand fan for that field, plus airtime or data.'),
   ...bullets([
-    'At registration, every student gets a raffle number (a numbered ticket, or the number they register under at the front desk).',
-    'Draw a number, call the student up, and read the question for the next field. About one minute per question.',
-    'Correct answer: they win that field’s hand fan and airtime. Wrong answer: draw another number for the same question.',
-    'The 11th fan, Agba Creator, goes to the best question in the open Q&A, chosen by the speakers.',
-    'Keep fans and airtime ready on a table beside the stage, in question order, so prizes go out quickly.',
+    'No raffle numbers at the door. The compere asks for a volunteer; the student picks a number from 1 to 10 and answers that question.',
+    'Correct answer: they win that field’s hand fan plus airtime or data. Wrong answer: ask another volunteer to try the same question, or move on.',
+    'Round 1 (after the survey) uses five numbers; round 2 (after the panel) uses the five numbers that are left. Tick each number off as it is chosen.',
+    'Keep the ten fans in number order on a table by the stage, with the airtime or data ready, so prizes go out quickly.',
+    'The two free books are not raffle prizes. They go to two students who post about the event on their page (announced in A1, winners named in A5).',
   ]),
   P([T('Host answer sheet', { bold: true, color: NAVY })], { spacing: { before: 160, after: 80 }, keepNext: true }),
   quizTable(),
   H('03', 'Notes for the day'),
   ...bullets([
-    'Each talk is 20 minutes, with up to 25. Show the speaker time cards at 15 minutes ("5 left"), 20 minutes ("wrap up") and 25 minutes ("time").',
-    'No questions after individual talks; all questions are taken from the floor in the open Q&A.',
-    'Two roving microphones for the Q&A; ushers bring them to students. Repeat each question into the main microphone so everyone hears it.',
-    'A team member introduces Samuel Ogundeji before Talk 2, keeps time while he speaks and reads Announcement 3.',
-    'If the programme runs late, cut the raffle rounds to 3 questions each and use the rest at the close, then shorten the Q&A. Keep the talks and panel whole.',
-    'Load all slides and display creatives on one laptop before the start and test the screen, clicker and microphones.',
-    'The front desk stays open for certificate registration until the hall clears.',
+    'Start at 10:00 on the dot, whatever the number in the hall. Registration continues at the front desk while the programme runs.',
+    'Each talk is 20 minutes, with up to 25. Show the speaker a "round up" card at 20 minutes and "time" at 25.',
+    'No questions after individual talks. All questions go to the panel session, where every speaker and panelist sits.',
+    'Gabriel Ntoka joins virtually: test the video link, screen and sound before 10:00, and have a backup (his slides as a PDF on the laptop).',
+    'The panel is moderated by a student (to be confirmed with Jessica), not the compere.',
+    'If the programme runs late, shorten the panel discussion before the open questions, and keep both raffle rounds to 5 minutes.',
+    'Load all slides and display screens on one laptop before the start and test the screen, clicker and microphones.',
+    'Collect the post links for the two free books during the programme so the winners can be named in A5.',
+    'The front desk stays open for certificate registration until the hall clears. Group photo straight after the vote of thanks.',
   ]),
 ];
 
